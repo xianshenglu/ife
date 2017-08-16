@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>任务一：表单（一）单个表单项的检验</title>
+	<style>
+		body,div,input,span {
+			margin: 0;
+			padding: 0;
+			font-family: "SimSun";
+		}
+		body {
+			background-color: black;			
+			font-size: 25px;
+		}
+		.container {
+			width: 75%;
+			min-height: 800px;
+			margin: 0 auto;
+			background-color: #fff;
+		}
+		form {
+			width: 60%;
+			margin: 0 auto;			
+			overflow: hidden;	
+			border: 1px solid red;
+		}
+		form>.line {	
+			overflow: hidden;		
+		} 
+		form>.line:not(.mention) {
+			margin-top: 30px;
+		}
+		form>.mention {
+			line-height: 40px;
+			color: #aaaaaa ;			
+			margin-left: 150px;	
+			font-size: 20px;			
+			font-family: "Arial";			
+			display: none;
+		}
+		form>.mentionError {
+			color: red;			
+		}		
+		.line>span {					
+			height: 60px;	
+			line-height: 60px;
+			width: 110px;	
+			max-height: 100%;						
+			color: black;
+			text-align: right;
+			float: left;
+			font-weight: bold;			
+		}
+		.line>input {		
+			width: calc(100% - 200px);	
+			height: 60px;
+			margin-left: 40px;
+			float: left;
+			border: 2px solid #cccccc;
+			border-radius: 5px;
+			font-size: 25px;
+			outline: none;
+		}
+		form input:invalid {
+			border-color: red;
+		}
+		form input:valid {
+			border-color: #cccccc;
+		}
+		
+		.testAll {			
+			width: 100px;
+			height: 60px;
+			float: right;						
+			border: 1px solid #2f79ba;
+			background-color: #2f79ba;
+			color: white;
+			font-size: 25px;
+			border-radius: 10px;
+			outline: none;
+			margin-right: 46px;	
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<form action="" >
+		<!-- 使用了“novalidate”的form属性关闭表单自动约束-验证功能，这样预设的错误消息提示框就没有了，但并不影响表单的约束-验证API和一些样式伪类的使用; -->
+			<div class="line"><span>名称</span><input type="text" id="nickName" autofocus /></div>
+			<div class="line mention nickNameMention">必填，长度为4~16个字符</div>
+			<div class="line"><span>密码</span><input type="text" id="password" pattern="[\da-zA-Z_]{4,16}" /></div>
+			<div class="line mention passwordMention">必填，长度为4~16个数字、字母或下划线</div>
+			<div class="line"><span>密码确认</span><input type="text" id="passwordConfirm" pattern="[\da-zA-Z_]{4,16}" /></div>
+			<div class="line mention passwordConfirmMention">再次输入相同密码</div>
+			<div class="line"><span>邮箱</span><input type="text" id="mailfox" pattern="^[\s\S]+@[\s\S]+\.[\s\S]*[\S]+[\s\S]*$" /></div>
+			<div class="line mention mailfoxMention">请输入你的邮箱</div>
+			<div class="line"><span>手机</span><input type="text" id="phoneNum" pattern="[\d]{11}" /></div>
+			<div class="line mention phoneNumMention">请输入你的手机号码</div>
+			<div class="line"><button type="button" class="testAll">提交</button></div>
+		</form>
+	</div>
+	<script>
+		window.onload=function () {
+			var form=document.forms[0],
+				nickName=document.getElementById('nickName'),
+				nickMention=form.getElementsByClassName('nickMention')[0],
+				input=form.getElementsByTagName("input"),
+				originMention={};
+				for (var i = 0; i < input.length; i++) {
+					var inputId=input[i].id;
+					var inputMen=form.getElementsByClassName(inputId+"Mention")[0].innerHTML;
+					originMention[inputId+"Mention"]=inputMen;						
+					input[i].addEventListener("focus",mention,false);
+					input[i].addEventListener("blur",mention,false);					
+				}				
+				function mention(event) {
+					var type=event.type,
+					ele=event.target,
+					mentionClassName=ele.id+"Mention",
+					eleMention=document.getElementsByClassName(mentionClassName)[0],
+					content=ele.innerHTML;					
+					if (type=="focus") {
+						eleMention.style.display="block";
+						eleMention.innerHTML=originMention[mentionClassName];	
+						eleMention.className=eleMention.className.replace(/mentionError/g,'')					
+					}else if(type=="blur"){	
+						if (!ele.validity.valid) {
+						eleMention.innerHTML="格式错误";												
+						eleMention.className=eleMention.className+" mentionError";							
+						}else{
+							eleMention.style.color="#65c04d";
+							ele.style.borderColor='#65c04d';	
+						}
+						var eleId=ele.id,
+						password=document.getElementById("password");
+						if (eleId=="nickName") {
+							var nickNameLength=ele.value.replace(/[^\x00-\xff]/g,'aa').length;
+							console.log(nickNameLength);
+							if (nickNameLength<4||nickNameLength>16) {								
+								ele.style.borderColor="red";
+							}else{
+								ele.style.borderColor="#cccccc";
+							}
+						}else if(eleId=="passwordConfirm"){
+							if(ele.value!=password.value){
+								ele.style.borderColor="red";
+								document.getElementsByClassName(eleId+"Mention")[0].innerHTML="请输入相同的密码";
+							}else {
+								ele.style.borderColor="#cccccc";	
+							}
+						}
+
+					}				
+					
+				}
+				/*button=form.getElementsByClassName("testAll")[0];
+				button.addEventListener("click",mention,false);*/				
+				/*function mention(){
+					if (nickName.value.match(/^\s*$/g)) {
+						nickMention.innerHTML="昵称不能为空";
+						nickMention.style.color="red";
+						nickName.style.borderColor="red";
+					}else if(nickName.value.trim().replace(/[^\x00-\xff]/gi,'**').length<4||nickName.value.trim().replace(/[^\x00-\xff]/gi,'').length>16){
+						nickMention.innerHTML="格式错误";
+						nickMention.style.color="red";
+						nickName.style.borderColor="red";
+						console.log(nickName.value.bit);
+					}else {
+						nickMention.innerHTML="格式正确";
+						nickMention.style.color="#69bc56";
+						nickName.style.borderColor="#69bc56";
+					}
+				}*/
+		};
+	</script>
+</body>
+</html>
