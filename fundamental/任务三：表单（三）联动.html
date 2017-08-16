@@ -2,308 +2,217 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>任务一：表单（一）单个表单项的检验</title>
+	<title>任务三：表单（三）联动</title>
 	<style>
-		body,div,input,span {
+		body,div,input,select,span,label {
 			margin: 0;
 			padding: 0;
-			font-family: "SimSun";
 		}
 		html {
 			height: 100%;
 		}
 		body {
-			background-color: black;			
-			font-size: 25px;
 			height: 100%;
 		}
-		.container {
-			width: 75%;			
-			height: 100%;			
-			margin: 0 auto ;
-			background-color: #fff;
+		.container {			
+			margin: 0 auto;
+			height: 100%;
 			display: table;
-			position: relative;			
 		}
-		form {			
-			padding: 0 20%;
-			margin: 0 auto;			
-			overflow: hidden;				
+		form {
 			display: table-cell;
 			vertical-align: middle;
 		}
-		form>.line {	
-			overflow: hidden;		
-		} 
-		form>.con {
-			margin-top: 20px;
+		.isStd {
+			overflow: hidden;
+			margin-bottom: 50px;
 		}
-		form .mention,.mentionCorre,.mentionWrong {
-			line-height: 40px;
-			color: #aaaaaa ;			
-			margin-left: 150px;	
-			font-size: 20px;			
-			font-family: "Arial";			
+		.isStd div,.isStd input,.isStd label{
+			float: left;			
+		}		
+		.isStd label {
+			margin-right: 150px;
+		}		
+		.isStd input{
 			display: none;
 		}
-		.nameMention {
-			display: block;
+		.isStd:first-child {
+			margin-left: 100px;
 		}
-		form .mentionWrong {
-			color: red;			
+		.isStd .radioSimu {
+			margin-right: 10px;
+		}
+		.isStd .chosen {
+			background-color: white;
+			width: 8px;
+			height: 8px;
+			border: 6px solid #389afa;
+			border-radius: 10px;	
+		}
+		.isStd .not_chosen {
+			background-color: white;
+			width: 18px;
+			height: 18px;
+			border: 1px solid black;
+			border-radius: 9px;	
+		}
+		.choices {
+			margin-top: 30px;
+		}
+		.choices input[name="company"] {
+			width: 370px;
 		}		
-		form .mentionCorre {
-			color: #65c04d;			
-		}	
-		.line>span {					
-			height: 40px;	
-			line-height: 40px;
-			width: 110px;	
-			max-height: 100%;						
-			color: black;
+		.choices .coluName{
+			display: inline-block;
+			width: 80px;
 			text-align: right;
-			float: left;
-			font-weight: bold;			
+			margin-right: 15px;
 		}
-		.line>input {		
-			width: calc(100% - 200px);	
-			height: 40px;
-			margin-left: 40px;
-			float: left;
-			border: 2px solid #cccccc;
+		input[type="text"]{
+			height: 25px;			
+			border: 1px solid #A0A0A0;
 			border-radius: 5px;
-			font-size: 25px;
-			outline: none;
 		}		
-		#testAll {			
-			width: 100px;
-			height: 60px;
-			float: right;						
-			border: 1px solid #2f79ba;
-			background-color: #2f79ba;
-			color: white;
-			font-size: 25px;
-			border-radius: 10px;
-			outline: none;
-			margin-right: 46px;	
-			cursor: pointer;
+		.collegeSelect {
+			position: relative;		
+			height: 25px;			
+			padding: 1px 0;
 		}
-		.alertDiv {
-			z-index: 1;
-			/* display: none; */
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			transform: translate(-50%,-50%);
-			width: 600px;
-			height: 200px;
-			background-color: #ececec;
-			font-size: 20px;
-			border: 1px solid #a9a9a9;
-			border-radius: 10px;
-			font-weight: bold;		
-			box-shadow: 0 0 60px #dcd9df;	
+		.collegeSelect select {
+			position: absolute;		
+			border: 1px solid #A0A0A0;
+			border-radius: 5px;
+			min-height: 25px;	
+			
+		}
+		.collegeSelect select[name="city"] {
+			left:100px;
+			top: 0;
+			width: 120px;			
+		}
+		.collegeSelect select[name="college"] {
+			left:270px;
+			top: 0;
+			width: 200px;
+		}
+
+		.hidden {
 			display: none;
-		}
-		.headColor {
-			width: 600px;
-			height: 40px;
-			background-image: linear-gradient(to bottom,#f2f2f2,#b4b4b4);
-			border-bottom: 1px solid #d1d1d1;
-			border-radius: 10px 10px 0 0;			
-		}
-		.google {
-			float: left;
-			width: 100px;
-			height: 100px;
-			margin: 20px 15px 0 30px;
-		}
-		.message {
-			width: 455px;
-			margin-top: 20px;
-			float: left;
-		}
-		.result {
-			margin: 10px 0 40px;
-		}
-		.confirm {
-			font-size: 20px;
-			width: 120px;
-			height: 35px;
-			border-radius: 8px;
-			color: white;
-			/* background-color: #50aefc; */
-			background-image: linear-gradient(to bottom ,#99c3f0,rgb(15,129,255));
-			font-weight: none;
-			float: right;
-			margin-right: 50px;
-			outline: none;
-			cursor: pointer;
-			font-weight: none;
 		}
 	</style>
 </head>
 <body>
 	<div class="container">
-		<form action="" >		
-			<div class="line con"><span>名称</span><input type="text" id="name" autofocus /></div>
-			<div class="line mention nameMention">必填，长度为4~16个字符</div>
-			<div class="line mentionCorre nameCorre">名称正确</div>
-			<div class="line mentionWrong nameWrong">名称格式错误</div>
-			<div class="line con"><span>密码</span><input type="text" id="password" /></div>
-			<div class="line mention passwordMention">必填，长度为4~16个数字、字母或下划线</div>
-			<div class="line mentionCorre passwordCorre">密码正确</div>
-			<div class="line mentionWrong passwordWrong">密码格式错误</div>
-			<div class="line con"><span>密码确认</span><input type="text" id="passwordConfirm" /></div>
-			<div class="line mention passwordConfirmMention">请输入相同的密码</div>
-			<div class="line mentionCorre passwordConfirmCorre">密码一致</div>
-			<div class="line mentionWrong passwordConfirmWrong">密码格式错误或两次密码不一致</div>
-			<div class="line con"><span>邮箱</span><input type="text" id="email"  /></div>
-			<div class="line mention emailMention">请输入你的邮箱</div>
-			<div class="line mentionCorre emailCorre">邮箱格式正确</div>
-			<div class="line mentionWrong emailWrong">邮箱格式错误</div>
-			<div class="line con"><span>手机</span><input type="text" id="phoneNum"  /></div>
-			<div class="line mention phoneNumMention">请输入你的手机号码</div>
-			<div class="line mentionCorre phoneNumCorre">手机号码格式正确</div>
-			<div class="line mentionWrong phoneNumWrong">手机号码格式错误</div>
-			<div class="line con"><button type="button" id="testAll">提交</button></div>
-		</form>
-		<div class="alertDiv">
-			<div class="headColor"></div>
-			<img src="../ife_fundamental_normal/google.png" alt="" class="google" />
-			<div class="message">
-				<div>显示：</div>
-				<div class="result">输入有误!</div>
-				<button class="confirm">确定</button>	
+		<form action="">
+			<div class="isStd">
+				<div class="students radioSimu chosen"></div>
+				<input type="radio" name="students" id="students" class="students" />
+				<label for="students" class="students">在校生</label>
+				<div class="not_students radioSimu not_chosen"></div>
+				<input type="radio" name="not_students" id="not_students" class="not_students" />
+				<label for="not_students" class="not_students">非在校生</label>
 			</div>
-			
-		</div>
+			<div class="choices collegeSelect ">
+				<span class="coluName">学校</span>
+				<select name="city" id="city">
+					<option value="北京" selected="">北京</option>
+				</select>
+				<select name="college" id="college">
+					<option value="北京大学">北京大学</option>
+				</select>
+			</div>
+			<div class="choices company hidden">
+				<span class="coluName">就业单位</span>
+				<input name="company" type="text" />
+			</div>
+		</form>
 	</div>
 	<script>
-		window.onload=function () {
-			var container=document.body.firstElementChild,
-				form=document.forms[0],
-				input=form.getElementsByTagName("input"),
-				testBtn=document.getElementById("testAll");
-			for (var i = 0; i < input.length; i++) {
-				input[i].addEventListener("focus",mention,false);
-				input[i].addEventListener("blur",mention,false);
-			}
-			testBtn.addEventListener("click",mention,false);
-
-			//focus,blur事件不能冒泡;	
-
-			function mention(){
-				var type=event.type,
-					target=event.target,
-					targetId=target.id,
-					targetValue=target.value;					
-				var nameLength=document.getElementById("name").value.replace(/[^\x00-\xff]/g,'aa').length,
-					pwdReg=/^[\da-zA-Z_]{4,16}$/,
-					passwordValue=document.getElementById("password").value,
-					emailReg=/^[\s\S]+@[\s\S]+\.[\s\S]+$/,
-					phoneNumReg=/^[\d]{5}$/;					
-				var wrongInputArr=[];
-				if (type=="focus"&&targetId!="testAll") {
-					showMen(targetId);
-				}else if(type=="blur"&&targetId!="testAll"){
-					check(targetId,targetValue,target);					
-				}else if(type=="click"&&targetId=="testAll"){					
-					for (var i = 0; i < input.length; i++) {						
-						check(input[i].id,input[i].value,input[i]);	
-						if (input[i].style.borderColor=="red") {
-							wrongInputArr.push(input[i].previousElementSibling.innerHTML);						
-						}						
+		window.onload=function(){			
+			var form=document.forms[0],		
+			//修改单选框默认样式，和对应的学校或就业单位	
+			isStd=document.getElementsByClassName("isStd")[0],
+			studentsDiv=isStd.getElementsByClassName("students")[0],
+			notStudentsDiv=isStd.getElementsByClassName("not_students")[0],
+			studentsInput=form.elements["students"],
+			notStudentsInput=form.elements["not_students"];
+			isStd.addEventListener("click",showColleCom,false);			
+			function showColleCom(){
+				var targetEle=event.target;
+				//如果点击的是非在校生
+				if (targetEle.className.indexOf("not_students")>=0) {
+					notStudentsInput.checked=true;
+					//如果之前没有选中非在校生，就加个样式className，把在校生的样式className去掉
+					//如果之前选中了，就不再重复添加样式className了
+					if (notStudentsDiv.className.indexOf(" chosen")<0) {
+						notStudentsDiv.className=notStudentsDiv.className.replace(' not_chosen',' chosen');		
+						studentsInput.checked=false;	
+						studentsDiv.className=studentsDiv.className.replace(" chosen",' not_chosen');			
+						company.style.display="block";
+						collegeSelect.style.display="none";
+					}					
+				}else if(targetEle.className.indexOf("not_students")<0){					
+					studentsInput.checked=true;
+					if (studentsDiv.className.indexOf(" chosen")<0) {
+						studentsDiv.className=studentsDiv.className.replace(' not_chosen',' chosen');
+						notStudentsInput.checked=false;	
+						notStudentsDiv.className=notStudentsDiv.className.replace(" chosen",' not_chosen');
+						collegeSelect.style.display="block";
+						company.style.display="none";
 					}
-						showMes(wrongInputArr.join("、"));
-				}
-				var mentionMesCls,
-					mentionCorreCls,
-					mentionWrongCls,
-					mentionMes,
-					mentionCorre,
-					mentionWrong;
-				function getMenEle(id){					
-				    mentionMesCls=id+"Mention";
-					mentionCorreCls=id+"Corre";
-					mentionWrongCls=id+"Wrong";
-					mentionMes=form.getElementsByClassName(mentionMesCls)[0];
-					mentionCorre=form.getElementsByClassName(mentionCorreCls)[0];
-					mentionWrong=form.getElementsByClassName(mentionWrongCls)[0];								
-				}
-				function showMen(id){
-					getMenEle(id);
-					mentionMes.style.display="block";
-					mentionWrong.style.display="none";
-					mentionCorre.style.display="none";
-					target.style.borderColor="#cccccc";
-				}
-				function showMenCorre(id,ele){
-					getMenEle(id);
-					mentionMes.style.display="none";
-					mentionWrong.style.display="none";
-					mentionCorre.style.display="block";
-					ele.style.borderColor="#65c04d";
-				}
-				function showMenWrong(id,ele){
-					getMenEle(id);
-					mentionMes.style.display="none";
-					mentionCorre.style.display="none";
-					mentionWrong.style.display="block";
-					ele.style.borderColor="red";
-				}
-				function check(id,value,ele){
-					if (id=="name") {
-						if (nameLength>=4&&nameLength<=16) {
-							showMenCorre(id,ele);
-						}else{
-							showMenWrong(id,ele);
-						}
-					}
-					if (id=="password") {
-						if (pwdReg.test(value)) {
-							showMenCorre(id,ele);
-						}else{
-							showMenWrong(id,ele);
-						}
-					}
-					if (id=="passwordConfirm") {	
-						if (pwdReg.test(value)&&passwordValue==value) {							
-							showMenCorre(id,ele);								
-						}else{
-							showMenWrong(id,ele);
-						}
-					}
-							
-					if (id=="email") {
-						if (emailReg.test(value)) {
-							showMenCorre(id,ele);
-						}else{
-							showMenWrong(id,ele);
-						}
-					}
-					if (id=="phoneNum") {
-						if (phoneNumReg.test(value)) {
-							showMenCorre(id,ele);
-						}else{
-							showMenWrong(id,ele);
-						}
-					}
-				}
-				function showMes(str){
-					var alertDiv=container.getElementsByClassName("alertDiv")[0],
-						message=alertDiv.getElementsByClassName("message")[0],
-						messageCon=message.firstElementChild,
-						confirm=message.getElementsByClassName("confirm")[0];					
-					messageCon.innerHTML=str+" 显示";
-					alertDiv.style.display="block";
-					confirm.addEventListener("click",function(){						
-						alertDiv.style.display="none";
-						confirm.removeEventListener("click",false);
-					},false);
 				}
 			}
-		};				
+			//定义省市和大学，实现联动
+			var collegeArr={
+				"北京":["北京大学","清华大学","中国人民大学"],
+				"南京":["南京大学","东南大学","南京审计大学"],
+				"上海":["同济大学","交通大学","上海财经大学"]
+			},
+			    city=form.elements["city"],				
+				collegeSelect=form.getElementsByClassName('collegeSelect')[0],
+				company=form.getElementsByClassName("company")[0],
+				collegeRange=collegeArr[city.value],
+				college=form.elements["college"];	
+			//通过mousemove先更新 select 列表；！！！
+			//select 下的option如果是动态生成，第一次点击显示有故障，可以采用 mousemove 来触发第一次事件，先更新 select 列表，这样当点击时就不会有故障出现
+			city.addEventListener("mousemove",cityChoice,true);
+			city.addEventListener("click",cityChoice,true);
+			var mousemoveTime=0;
+			//option 无法触发 click 事件,在option上click只会触发select上的click
+			function cityChoice() {	
+				var selectedIndex=city.selectedIndex,
+					selectedOpt=city.options[selectedIndex],
+					fragment=document.createDocumentFragment();
+					//第一次鼠标滑过才执行，更新列表，之后就不执行了
+				if (mousemoveTime==0) {
+					mousemoveTime=mousemoveTime+1;					
+				//判断是否已经加载过省市数据，如果已经加载过了，这里就不加载了
+				if (city.length<=1&&mousemoveTime==1) {
+					city.innerHTML=null;
+					for(var key in collegeArr){							
+						var option=document.createElement("option");
+						option.value=key;
+						option.text=key;
+						fragment.appendChild(option);								
+					}
+					city.appendChild(fragment);
+				}				
+			}			
+			//大学联动				
+			if (event.type=="click") {
+				var collegeRange=collegeArr[city.value];
+				college.innerHTML=null;					 
+				for (var i = 0; i < collegeRange.length; i++) {
+					var opt=document.createElement("option");
+					opt.value=collegeRange[i];
+					opt.text=collegeRange[i];
+					fragment.appendChild(opt);
+				}
+				college.appendChild(fragment);
+			}
+		}
+	};
+		
 	</script>
 </body>
 </html>
