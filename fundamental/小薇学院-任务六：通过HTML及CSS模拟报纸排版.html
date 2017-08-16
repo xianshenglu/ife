@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>通过HTML及CSS模拟报纸排版</title>
+	<style>
+		body,div {
+			margin: 0;
+			padding: 0;
+		}
+		.container {
+			background-color: #e4e9f0;
+			width: 892px;
+			height: 1386px;
+			padding: 0 44px;
+			margin: 0 auto;
+		}
+		.container .header {
+			width: 892px;
+			height: 61px;
+			border-bottom: 2px solid #938e8c;
+			font-size: 12px;
+			font-family: "黑体";
+		}
+		.container .red_rect {
+			background-color: #d55d5c;
+			color: white;
+		}
+		.header .red_rect {
+			width: 100px;
+			height: 14px;
+			padding: 43px 0 5px 5px;			
+			float: left;
+		}
+		.header .right_date {
+			padding: 43px 0 5px 5px;
+			float: right;
+			color: #d45d5c;
+		}
+		.content_top {
+			font-family: "微软雅黑";
+		}
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<div class="red_rect">
+				 ife baidu.com
+			</div>
+			<div class="right_date">
+				2016.03
+			</div>
+		</div>
+		<div class="content_top">
+			<div class="left_img">
+				<div class="left_backround"></div>
+				<div class="right_backround"></div>
+			</div>
+			<div class="right_content"></div>
+		</div>
+	</div>
+</body>
+</html>
