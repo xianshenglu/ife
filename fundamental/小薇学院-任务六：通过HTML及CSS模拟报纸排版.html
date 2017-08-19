@@ -4,7 +4,7 @@
 	<meta charset="UTF-8" />
 	<title>通过HTML及CSS模拟报纸排版</title>
 	<style>
-		body,div {
+		* {
 			margin: 0;
 			padding: 0;
 		}
@@ -21,6 +21,7 @@
 			border-bottom: 2px solid #938e8c;
 			font-size: 12px;
 			font-family: "黑体";
+			margin-bottom: 34px;
 		}
 		.container .red_rect {
 			background-color: #d55d5c;
@@ -39,9 +40,364 @@
 		}
 		.content_top {
 			font-family: "微软雅黑";
+			/* border-bottom: 1px solid blue; */
+			overflow: hidden;
+			margin-bottom: 40px;
+		}
+		.content_top .left_img {
+			float: left;
+			width: 641px;
+			height: 301px;
+			background: url(../fundamental/images/computer1.png) no-repeat left top;
+		}
+		.content_top .left_img div{
+			width: 191px;
+			height: 301px;	
+		}
+		.content_top .left_img .left_background{					
+			background: url(../fundamental/images/cover_left.png) no-repeat left top;
+			float: left;
+			opacity: 0.4;			
+
+		}
+		.content_top .left_img .right_background{
+			background: url(../fundamental/images/cover_right.png) no-repeat left top;
+			float: right;
+			opacity: 0.4;			
+		}
+		.content_top .right_content {
+			float: left;
+			margin-left: 48px;
+			padding-top: 6px;
+			border-top: 2px solid #cc8091;			
+			font-family: "微软雅黑";
+			max-width:203px;
+		}
+		.content_top .right_content .h3 {
+			margin-top: 8px;
+			display: inline-block;
+			margin-right: 120px;
+			font-size: 16px;
+			color: #000000;
+			border-bottom: 2px solid #000000;		
+			line-height: 20px;			
+		}
+		.content_top .right_content .h3::first-letter {
+			font-size: 24px;			
+		}		
+		.content_top .right_content .remark {
+			font-size: 12px;
+			line-height: 10px;
+			color: #676767;
+			font-family: "楷体";
+			margin-top: 12px;
+		}
+		.content_top .right_content .bigNum {
+			font-size: 116px;
+			color: #75b86b;
+			height: 116px;
+			width: 198px;			
+			transform: skewX(-9deg);			
+			/* font-weight: bold; */
+			margin-left: -4px;
+		}
+		.content_top .right_content .midNum{
+			color: #cc8091;
+			font-size: 55px;
+			overflow: hidden;
+			height: 60px;
+			margin: 20px 0 0 -4px;
+		}
+		.content_top .right_content .midNum>div{
+			height: 60px;
+			float: left;
+		}
+		.content_top .right_content .midNum .mid_mid {
+			margin: 22px 0 0 10px;
+			height: 70px;			
+		}
+		.content_top .right_content .midNum .mid_tag{
+			font-size: 21px;	
+			margin-bottom: -5px;					
+		}
+		.content_top .right_content .midNum .mid_p{
+			font-size: 12px;
+			color: grey;
+
+		}
+		.content_mid {
+			height: 242px;
+			width: 642px;			
+		}
+		.content_mid>div {
+			float: left;
+			box-sizing: border-box;
+			padding-right: 30px;
+		}
+		.content_mid .title {
+			font-size: 16px;
+			font-weight: bold;
+			font-family: "微软雅黑";
+			text-decoration: underline;
+			margin-bottom: 10px;
+		} 		
+		.content_mid p {
+			font-size: 12px;
+			font-family: "宋体";
+			color: black;
+			opacity: 0.7;
+			line-height: 16px;
 		}
 
+		.content_mid .left {
+			width: 40%;		
+
+		}
+		.content_mid .left .title {
+			color: #418c59;		
+		}
+		.content_mid .mid {
+			width: 30%;
+			color: #231815;
+		}
+		.content_mid .mid .title {
+			color: #d2994f;		
+		}
+		.content_mid .right {
+			width: 30%;
+		}
+		.content_mid .right .title {
+			color: #cc7680;
+		}
+		.content_mid .right .pa {
+			margin-bottom: 20px;
+		}
+		.content_mid .right p {
+			line-height: 20px;
+		}
+		.content_mid .right .little_title {	
+			font-family: "微软雅黑";
+			opacity: 1;
+		}
+		.content_mid .right p span {
+			color: #cd4a48;
+			font-style: italic;
+		}	
+		.content_bottom {
+			height: 608px;	
+			/* margin-bottom: 38px;	 */	
+		}	
+		.content_bottom .left {			
+			width: 415px;
+			float: left;
+		}
+		.content_bottom .left .top {
+			border-bottom: 2px solid #0f4569;
+			font-family: "黑体";
+			font-weight: bold;			
+			
+		}
+		.content_bottom .left .top .title_eng {			
+			font-size: 42px;
+			color: #11456b;
+			line-height: 41px;
+			padding-top: 4px;	
+		}
+		.content_bottom .left .top .title_eng span {			
+			display: inline-block;		
+			font-size: 72px;
+			color: #f5e327;
+			transform: skewX(-12deg);
+		}
+		.content_bottom .left .top .title_chn {
+			font-size: 33px;						
+			color: #11456b;
+			margin: 4px 0 12px 0;
+		}
+		.content_bottom .left .bottom {
+			padding-top: 23px;
+			font-size: 12px;
+			font-family: "宋体";
+			color: #767777;
+			line-height: 16px;
+		}
+		.content_bottom .left .bottom p:not(.head) {			
+			text-indent: 2em;
+		}
+		.content_bottom .left .bottom p .first-letter {
+			display: block;
+			margin-top: 33px;
+			width: 75px;
+			height: 50px;
+			line-height: 0;
+			float: left;	
+			font-size: 70px;
+			color: #f5e327;
+			font-family: "微软雅黑";
+		}
+		.content_bottom .left .bottom img {
+			width: 164px;
+			height: 288px;			
+			float: right;			
+			margin: 16px 4px 16px 18px;
+			
+		}
+		.content_bottom .right {
+			float: right;
+			width: 458px;						
+		}
+		.content_bottom .right .top {			
+			width: 458px;												
+			padding-top: 196px;	
+			margin-bottom: 30px;
+			height: 61px;
+			background: url(../fundamental/images/computer3.png) no-repeat left top;			
+		}
+		.content_bottom .right .top .cover_content {	
+			height: 44px;
+			background-color: rgba(4,0,0,0.4);	
+			padding: 9px 0 8px 32px;;		
+			font-family: "微软雅黑";
+		}		
+		.content_bottom .right .top .cover_content h3 {			
+			display: inline-block;			
+			height: 44px;
+			border-left: 3px solid #6fb866;
+			padding-left: 14px;
+			color: #ffffff;
+			font-size: 26px;
+			font-weight: normal;
+		}
+		.content_bottom .right .top .cover_content h5 {			
+			display: inline-block;		
+			color: #6fb866;
+			font-size: 15px;
+			font-style: italic;
+			letter-spacing: 1px;
+			font-weight: normal;
+		}	
+		.content_bottom .right .bottom {
+			background-color: #eeeed6;
+			width: 435px;
+			height: 318px;
+			padding-right: 21px;
+		}
+		.content_bottom .right .bottom ul {
+			padding-top: 34px;
+		}
+		.content_bottom .right .bottom ul li{
+			list-style-type: none;
+			margin:  0  0 24px 30px;
+			font-family: "宋体";		
+			color: #5a5b5b;	
+		}
+		.content_bottom .right .bottom ul li .arrow {
+			display: inline-block;
+			border: 5px solid transparent;
+			border-bottom-color: #000000;	
+			margin-top: -10px;		
+		}
+		.content_bottom .right .bottom ul li .title {
+			font-size: 16px;
+			text-align: left;
+		}
+		.content_bottom .right .bottom ul li .ellip {
+			letter-spacing: 6px;
+		}
+		.content_bottom .right .bottom ul li .date {
+			font-size: 12px;
+			padding-top: 4px;
+			float: right;
+		}
+		.content_bottom .right .bottom .words {
+			margin-top: -2px;
+		}
+		.content_bottom .right .bottom .words>.left {
+			color: white;
+			width: 250px;
+			height: 160px;
+			padding: 0px 0px 0 10px;
+			background-color: #d55d5c;			
+		}
+		.content_bottom .right .bottom .words>.left .left1 {
+			display: block;
+			float: left;
+			font-size: 110px;
+			font-family: "微软雅黑";
+			margin-top: 10px;
+		}
+		.content_bottom .right .bottom .words>.left .mid_border {
+			float: left;
+			height: 86px;
+			margin: 42px 8px 0 3px;
+			border: 1px solid #fff;			
+		}		
+		.content_bottom .right .bottom .words>.left .right1 {				
+			float:left;
+			margin-top: 48px;
+			width: 158px;
+		}
+		.content_bottom .right .bottom .words>.left .right1 span {
+			display: block;
+			float: left;
+		} 
+		.content_bottom .right .bottom .words>.left .right1 .right11 {
+			font-size: 21px;
+			font-family: "黑体";
+			font-style: italic;
+
+		} 
+		.content_bottom .right .bottom .words>.left .right1 .right12 {
+			font-size: 12px;
+			font-family: "黑体";
+			
+		} 	
+		.content_bottom .right .bottom .words>.right {
+			margin-left: 11px;
+			font-family: "黑体";
+			float: left;
+			width: 164px;
+		}
+		.content_bottom .right .bottom .words>.right .pa {
+			font-size: 14px;
+			color: #5a5b5b;
+			font-style: italic;
+			line-height: 16px;
+			margin-top: 18px;
+		}
+		.content_bottom .right .bottom .words>.right span {
+			font-size:72px;
+			color: #d45d5c;
+			float: left;
+			display: block;
+			height: 30px;
+		}
+		.content_bottom .right .bottom .words>.right .front_mark {
+			margin-left:-38px;
+			margin-right: 8px;
+		}
+		.content_bottom .right .bottom .words>.right .back_mark {
+			margin-left: 130px;
+			margin-top: -18px;
+		}
+		.footer {			
+			margin-top: 38px;	
+		}
+		.footer hr {
+			width: 892px;
+			height: 1px;
+			color: #938e8c;
+		}
+		.footer span {
+			text-align: right;
+			display: block;
+			float: right;
+			color: #d45d5c;
+			font-family: "黑体";
+			font-size: 12px;
+		}
 	</style>
+		
 </head>
 <body>
 	<div class="container">
@@ -55,10 +411,106 @@
 		</div>
 		<div class="content_top">
 			<div class="left_img">
-				<div class="left_backround"></div>
-				<div class="right_backround"></div>
+				<div class="left_background"></div>
+				<div class="right_background"></div>
 			</div>
-			<div class="right_content"></div>
+			<div class="right_content">
+				<div class="h3">ABOUT</div>
+				<div class="h3">TECHNOLOGE</div>
+				<p class="remark">About technologe about technologe<br />
+				about technologe</p>
+				<div class="bigNum">700</div>
+				<div class="midNum">
+					<div class="mid_big">3.2</div>
+					<div class="mid_mid">
+						<div class="mid_tag">css</div>
+						<div class="mid_p">cscscscscscsc</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content_mid">
+			<div class="left">
+				<h3 class="title">What</h3>
+				<p>前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端前前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端端前端前端前端前端前端前前端前端前端前端前端前端前端前端前端前端</p>
+			</div>
+			<div class="mid">
+				<h3 class="title">When</h3>
+				<p>前端前端前端前端前端前端前端前端前端端前端前端端前端前端前端前端前端端前端前端端前端前端端前端前端前端前端前端前前端前端前端前端前端前端前前端前端前端前端前端前端前端前前端前端前端前端前端前端前端前端前端前端前</p>
+			</div>
+			<div class="right">
+				<h3 class="title">How</h3>
+				<p>前端前端前端前端端</p>
+				<p>前端前端前端前端前端端前端</p>
+				<p class="pa">前端前前端前</p>
+				<p class="little_title">What------<span>40%</span></p>
+				<p class="little_title">What------<span>30%</span></p>
+				<p class="little_title">What------<span>30%</span></p>
+			</div>
+		</div>
+		<div class="content_bottom">
+			<div class="left">
+				<div class="top">
+					<h2 class="title_eng"><span>THE</span> TECHNOLOGE OF FRONT</h2>
+					<h2 class="title_chn">前端技术领域</h2>
+				</div>
+				<div class="bottom">
+					<p class="head"><span class="first-letter">前</span>端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前前端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端<img src="../fundamental/images/computer2.png" alt="" />前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前</p><p>前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前	端前端前端前端前端前端前端前端前端端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前</p><p>端前端前端前端前前端前端端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端端前端前端前</p>
+				</div>
+			</div>
+			<div class="right">
+				<div class="top">					
+						<div class="cover_content">							
+							<h3>前端技术</h3>
+							<h5>前端技术前端技术</h5>
+						</div>					
+				</div>
+				<div class="bottom">
+					<ul>
+						<li>
+							<span class="arrow"></span>
+							<span class="title">前端前端前端前端前端前端</span>
+							<span class="ellip">...........</span>
+							<span class="date">前端</span>
+						</li>
+						<li>
+							<span class="arrow"></span>
+							<span class="title">前端前端前端前端前端</span>
+							<span class="ellip">.............</span>
+							<span class="date">前端前</span>
+						</li>
+						<li>
+							<span class="arrow"></span>
+							<span class="title">前端前端前端前端前端前端前端前端</span>
+							<span class="ellip">.......</span>
+							<span class="date">前端</span>
+						</li>
+					</ul>
+					<div class="words">
+						<div class="left">
+							<div class="left1">0</div>
+							<div class="mid_border"></div>
+							<div class="right1">
+								<span class="right11">ONE TWO</span>
+								<span class="right11">THREE FOUR FIVE</span>
+								<span class="right12">hello world hello world</span>
+								<span class="right12">hello world</span>								
+							</div>
+						</div>
+						<div class="right">
+							<span class="front_mark">“</span>
+							<p class="pa">
+								hello world hello world hello world hello world hello world hello world hello world hello world hello world world hello world 
+							</p>
+							<span class="back_mark">”</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<hr />
+			<span>ife baidu.com</span>
 		</div>
 	</div>
 </body>
