@@ -1,0 +1,231 @@
+/*定义变量*/
+* {
+  margin: 0;
+  padding: 0;
+}
+.float_left {
+  float: left;
+}
+.float_right {
+  float: right;
+}
+ul {
+  list-style-type: none;
+}
+#homepage {
+  width: 1280px;
+  height: 2000px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+#header {
+  height: 58px;
+  overflow: hidden;
+}
+#header .title {
+  margin-left: 48px;
+  font-size: 20px;
+}
+#header .title img {
+  margin: 12px;
+  width: 33px;
+  height: 33px;
+}
+#header .title span {
+  display: block;
+  padding-top: 15px;
+}
+#header ul {
+  margin-left: 514px;
+}
+#header ul li {
+  font-size: 14px;
+  padding: 15px 16px 20px 20px;
+  margin: 0 5px;
+  border-bottom: 4px solid transparent;
+  color: black;
+  font-weight: normal;
+}
+#header ul .active {
+  color: #e85460;
+  border-bottom: 4px solid #e85460;
+  font-weight: bold;
+}
+#header .login {
+  font-size: 14px;
+  padding: 15px 15px 15px 12px;
+  color: #e85460;
+}
+#header .login img {
+  margin: 1px 8px 0 0;
+  width: 16px;
+  height: 16px;
+}
+#top_pic {
+  height: 636px;
+  width: 1280px;
+  margin-top: -1px;
+  padding: 218px 0 0 116px;
+  color: white;
+  background: url(../images/top1.jpg) no-repeat left top;
+}
+#top_pic .eng_title {
+  font-size: 60px;
+  margin-bottom: 12px;
+}
+#top_pic .para {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+#top_pic .try {
+  font-size: 29px;
+  letter-spacing: 4px;
+  display: block;
+  margin-top: 52px;
+  width: 330px;
+  height: 40px;
+  background-color: #e85460;
+  text-align: center;
+  padding: 10px 0 14px;
+}
+#part_use {
+  height: 250px;
+}
+#part_use ul {
+  height: 125px;
+}
+#part_use .icon li {
+  padding: 42px 139px;
+}
+#part_use .icon li img {
+  width: 42px;
+  height: 42px;
+}
+#part_use .words li {
+  width: 154px;
+  height: 44px;
+  padding: 4px 82px 0;
+  font-size: 14px;
+  color: #949494;
+  border-right: 2px solid #ababab;
+}
+#part_use .words li div {
+  text-align: center;
+}
+#part_use .words .last {
+  border-right: 2px solid transparent;
+}
+#part_question {
+  background-color: #eeeced;
+  height: 270px;
+  padding-top: 90px;
+}
+#part_question img {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 44px;
+}
+#part_question p {
+  font-family: "黑体";
+  font-size: 51px;
+  color: #a2a2a2;
+  text-align: center;
+  letter-spacing: 3px;
+}
+#part_search {
+  height: 340px;
+  padding: 0 110px;
+  color: white;
+  background: url(../images/map.jpg) no-repeat left top;
+}
+#part_search h4 {
+  font-size: 21px;
+  font-weight: normal;
+  text-align: center;
+  padding-top: 50px;
+}
+#part_search .hr {
+  border: 1px solid #fcfef9;
+  width: 32px;
+  margin: 8px auto 18px;
+}
+#part_search p {
+  text-align: center;
+  font-size: 13px;
+}
+#part_search form {
+  padding-top: 52px;
+  width: 1280px;
+  font-size: 13px;
+}
+#part_search form .radio,
+#part_search form .search_btn {
+  height: 36px;
+  margin: 0 15px;
+  border: 1px solid transparent;
+}
+#part_search form input {
+  height: 36px;
+  width: 225px;
+  padding-left: 8px;
+  outline: none;
+  border: 1px solid transparent;
+}
+#part_search form .radio {
+  display: inline-block;
+  height: 208px;
+  position: relative;
+  color: #bdbdd;
+  border: 1px solid transparent;
+}
+#part_search form .radio img {
+  width: 20px;
+  height: 18px;
+}
+#part_search form .radio .input_img {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+#part_search form .radio ul {
+  display: block;
+  position: absolute;
+  height: 170px;
+  border-top: none;
+  background-color: #e3e3e5;
+}
+#part_search form .radio ul li {
+  height: 23px;
+  width: 225px;
+  padding: 3px 0 0 8px;
+  color: #78787a;
+}
+#part_search form .radio ul li img {
+  width: 20px;
+  height: 18px;
+  margin-right: 10px;
+  float: left;
+  visibility: hidden;
+}
+#part_search form .active {
+  border: 1px solid #bf4e48;
+}
+#part_search form .active ul {
+  display: hidden;
+}
+#part_search form .active .active {
+  background-color: #bf4e48;
+  color: white;
+}
+#part_search form .active .active img {
+  visibility: visible;
+}
+#part_search form .search_btn {
+  height: 38px;
+  padding: 0 92px 4px 88px;
+  font-size: 16px;
+  background-color: #e85460;
+  color: white;
+  letter-spacing: 18px;
+  cursor: pointer;
+}

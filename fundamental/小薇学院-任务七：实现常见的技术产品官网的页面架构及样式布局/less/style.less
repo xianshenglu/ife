@@ -1,0 +1,238 @@
+/*定义变量*/
+@mainRed:#e85460;
+
+* {
+	margin: 0;
+	padding: 0;
+}
+.float_left {
+	float: left;
+}
+.float_right {
+	float: right;
+}
+ul {
+	list-style-type: none;
+}
+#homepage {
+	width: 1280px;
+	height: 2000px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+#header {
+    height: 58px;
+    overflow: hidden;
+    .title {
+        margin-left: 48px;
+        font-size: 20px;
+        img {
+            margin: 12px;
+            width: 33px;
+            height: 33px;
+        }
+        span {
+            display: block;
+            padding-top: 15px;
+        }
+    }
+    ul {
+        margin-left: 514px;
+        li {
+            font-size: 14px;
+            padding: 15px 16px 20px 20px;
+            margin: 0 5px;
+            border-bottom: 4px solid transparent;
+            color: black;
+            font-weight: normal;
+        }
+        .active {
+            color: @mainRed;
+            border-bottom: 4px solid @mainRed;
+            font-weight: bold;
+        }
+    }
+    .login {
+        font-size: 14px;
+        padding: 15px 15px 15px 12px;
+        color: @mainRed;
+        img {
+            margin: 1px 8px 0 0;
+            width: 16px;
+            height: 16px;
+        }
+    }
+}
+#top_pic {
+	height: 636px;
+	width: 1280px;
+	margin-top: -1px;
+	padding: 218px 0 0 116px;
+	color: white;
+	background: url(../images/top1.jpg) no-repeat left top;
+	.eng_title {
+		font-size: 60px;
+		margin-bottom: 12px;
+	}	
+	.para {
+		font-size: 20px;
+		margin-bottom: 6px;
+	}
+	.try {
+		font-size: 29px;
+		letter-spacing: 4px;
+		display: block;
+		margin-top: 52px;
+		width: 330px;
+		height: 40px;
+		background-color: @mainRed;
+		text-align: center;
+		padding: 10px 0 14px;
+	}
+}
+#part_use {
+    height: 250px;
+    ul {
+        height: 125px;
+    }
+    .icon {
+        li {
+            padding: 42px 139px;
+            img {
+                width: 42px;
+                height: 42px;
+            }
+        }
+    }
+    .words {
+        li {
+            width: 154px;
+            height: 44px;
+            padding: 4px 82px 0;
+            font-size: 14px;
+            color: #949494;
+            border-right: 2px solid #ababab;
+            div {
+                text-align: center;
+            }
+        }
+        .last {
+            border-right: 2px solid transparent;
+        }
+    }
+}
+#part_question {
+	background-color: #eeeced;
+	height: 270px;
+	padding-top: 90px;
+	img {
+		display: block;
+		margin: 0 auto;
+		margin-bottom: 44px;
+	}
+	p {
+		font-family: "黑体";
+		font-size: 51px;
+		color: #a2a2a2;
+		text-align: center;
+		letter-spacing: 3px;
+	}
+}
+#part_search {
+    height: 340px;
+    padding: 0 110px;
+    color: white;
+    background: url(../images/map.jpg) no-repeat left top;
+    h4 {
+        font-size: 21px;
+        font-weight: normal;
+        text-align: center;
+        padding-top: 50px;
+    }
+    .hr {
+        border: 1px solid #fcfef9;
+        width: 32px;
+        margin: 8px auto 18px;
+    }
+    p {
+        text-align: center;
+        font-size: 13px;
+    }
+    form {
+        padding-top: 52px;
+        width: 1280px;
+        font-size: 13px;
+        .radio,
+        .search_btn {
+            height: 36px;
+            margin: 0 15px;
+            border: 1px solid transparent;
+        }
+        input {
+            height: 36px;
+            width: 225px;
+            padding-left: 8px;
+            outline: none;
+            border: 1px solid transparent;
+        }
+        .radio {
+            display: inline-block;
+            height: 208px;
+            position: relative;
+            color: #bdbdd;
+            border: 1px solid transparent;
+            img {
+                width: 20px;
+                height: 18px;
+            }
+            .input_img {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+            }
+            ul {
+            	display: block;
+                position: absolute;
+                height: 170px;
+                border-top: none;
+                background-color: #e3e3e5;
+                li {
+                    height: 23px;
+                    width: 225px;
+                    padding: 3px 0 0 8px;
+                    color: #78787a;
+                    img {
+                        width: 20px;
+                        height: 18px;
+                        margin-right: 10px;
+                        float: left;
+                        visibility: hidden;
+                    }
+                }
+            }
+        }
+        .active {        	
+            border: 1px solid #bf4e48;
+            ul {
+				display:hidden;
+            }
+            .active {
+                background-color: #bf4e48;
+                color: white;
+                img {
+                    visibility: visible;
+                }
+            }
+        }
+        .search_btn {
+        	//input[type="button"] 盒模型为 border-box
+        	height: 38px;
+            padding: 0 92px 4px 88px;
+            font-size: 16px;
+            background-color: @mainRed;
+            color: white;
+            letter-spacing: 18px;
+            cursor: pointer;
+        }
+    }
+}

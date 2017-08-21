@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>任务一：表单（一）单个表单项的检验</title>
+	<style>
+		body,div,input,span {
+			margin: 0;
+			padding: 0;
+			font-family: "SimSun";
+		}
+		html {
+			height: 100%;
+		}
+		body {
+			background-color: black;			
+			font-size: 25px;
+			height: 100%;
+		}
+		.container {
+			width: 75%;			
+			height: 100%;			
+			margin: 0 auto ;
+			background-color: #fff;
+			display: table;
+			position: relative;			
+		}
+		form {			
+			padding: 0 20%;
+			margin: 0 auto;			
+			overflow: hidden;				
+			display: table-cell;
+			vertical-align: middle;
+		}
+		form>.line {	
+			overflow: hidden;		
+		} 
+		form>.con {
+			margin-top: 20px;
+		}
+		form .mention,.mentionCorre,.mentionWrong {
+			line-height: 40px;
+			color: #aaaaaa ;			
+			margin-left: 150px;	
+			font-size: 20px;			
+			font-family: "Arial";			
+			display: none;
+		}
+		.nameMention {
+			display: block;
+		}
+		form .mentionWrong {
+			color: red;			
+		}		
+		form .mentionCorre {
+			color: #65c04d;			
+		}	
+		.line>span {					
+			height: 40px;	
+			line-height: 40px;
+			width: 110px;	
+			max-height: 100%;						
+			color: black;
+			text-align: right;
+			float: left;
+			font-weight: bold;			
+		}
+		.line>input {		
+			width: calc(100% - 200px);	
+			height: 40px;
+			margin-left: 40px;
+			float: left;
+			border: 2px solid #cccccc;
+			border-radius: 5px;
+			font-size: 25px;
+			outline: none;
+		}		
+		#testAll {			
+			width: 100px;
+			height: 60px;
+			float: right;						
+			border: 1px solid #2f79ba;
+			background-color: #2f79ba;
+			color: white;
+			font-size: 25px;
+			border-radius: 10px;
+			outline: none;
+			margin-right: 46px;	
+			cursor: pointer;
+		}
+		.alertDiv {
+			z-index: 1;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%,-50%);
+			width: 600px;
+			height: 200px;
+			background-color: #ececec;
+			font-size: 20px;
+			border: 1px solid #a9a9a9;
+			border-radius: 10px;
+			font-weight: bold;		
+			box-shadow: 0 0 60px #dcd9df;	
+			display: none;
+		}
+		.headColor {
+			width: 600px;
+			height: 40px;
+			background-image: linear-gradient(to bottom,#f2f2f2,#b4b4b4);
+			border-bottom: 1px solid #d1d1d1;
+			border-radius: 10px 10px 0 0;			
+		}
+		.google {
+			float: left;
+			width: 100px;
+			height: 100px;
+			margin: 20px 15px 0 30px;
+		}
+		.message {
+			width: 455px;
+			margin-top: 20px;
+			float: left;
+		}
+		.result {
+			margin: 10px 0 40px;
+		}
+		.confirm {
+			font-size: 20px;
+			width: 120px;
+			height: 35px;
+			border-radius: 8px;
+			color: white;
+			background-image: linear-gradient(to bottom ,#99c3f0,rgb(15,129,255));
+			font-weight: none;
+			float: right;
+			margin-right: 50px;
+			outline: none;
+			cursor: pointer;
+			font-weight: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<form action="" >		
+			<div class="line con"><span>名称</span><input type="text" id="name" autofocus /></div>
+			<div class="line mention nameMention">必填，长度为4~16个字符</div>
+			<div class="line mentionCorre nameCorre">名称正确</div>
+			<div class="line mentionWrong nameWrong">名称格式错误</div>
+			<div class="line con"><span>密码</span><input type="text" id="password" /></div>
+			<div class="line mention passwordMention">必填，长度为4~16个数字、字母或下划线</div>
+			<div class="line mentionCorre passwordCorre">密码正确</div>
+			<div class="line mentionWrong passwordWrong">密码格式错误</div>
+			<div class="line con"><span>密码确认</span><input type="text" id="passwordConfirm" /></div>
+			<div class="line mention passwordConfirmMention">请输入相同的密码</div>
+			<div class="line mentionCorre passwordConfirmCorre">密码一致</div>
+			<div class="line mentionWrong passwordConfirmWrong">密码格式错误或两次密码不一致</div>
+			<div class="line con"><span>邮箱</span><input type="text" id="email"  /></div>
+			<div class="line mention emailMention">请输入你的邮箱</div>
+			<div class="line mentionCorre emailCorre">邮箱格式正确</div>
+			<div class="line mentionWrong emailWrong">邮箱格式错误</div>
+			<div class="line con"><span>手机</span><input type="text" id="phoneNum"  /></div>
+			<div class="line mention phoneNumMention">请输入你的手机号码</div>
+			<div class="line mentionCorre phoneNumCorre">手机号码格式正确</div>
+			<div class="line mentionWrong phoneNumWrong">手机号码格式错误</div>
+			<div class="line con"><button type="button" id="testAll">提交</button></div>
+		</form>
+		<div class="alertDiv">
+			<div class="headColor"></div>
+			<img src="images/google.png" alt="" class="google" />
+			<div class="message">
+				<div>显示：</div>
+				<div class="result">输入有误!</div>
+				<button class="confirm">确定</button>	
+			</div>
+			
+		</div>
+	</div>
+	<script>
+		window.onload=function () {
+			var container=document.body.firstElementChild,
+				form=document.forms[0],
+				input=form.getElementsByTagName("input"),
+				testBtn=document.getElementById("testAll");
+			for (var i = 0; i < input.length; i++) {
+				input[i].addEventListener("focus",mention,false);
+				input[i].addEventListener("blur",mention,false);
+			}
+			testBtn.addEventListener("click",mention,false);
+
+			//focus,blur事件不能冒泡;	
+
+			function mention(){
+				var type=event.type,
+					target=event.target,
+					targetId=target.id,
+					targetValue=target.value;					
+				var nameLength=document.getElementById("name").value.replace(/[^\x00-\xff]/g,'aa').length,
+					pwdReg=/^[\da-zA-Z_]{4,16}$/,
+					passwordValue=document.getElementById("password").value,
+					emailReg=/^[\s\S]+@[\s\S]+\.[\s\S]+$/,
+					phoneNumReg=/^[\d]{5}$/;					
+				var wrongInputArr=[];
+				if (type=="focus"&&targetId!="testAll") {
+					showMen(targetId);
+				}else if(type=="blur"&&targetId!="testAll"){
+					check(targetId,targetValue,target);					
+				}else if(type=="click"&&targetId=="testAll"){					
+					for (var i = 0; i < input.length; i++) {						
+						check(input[i].id,input[i].value,input[i]);	
+						if (input[i].style.borderColor=="red") {
+							wrongInputArr.push(input[i].previousElementSibling.innerHTML);						
+						}						
+					}
+						showMes(wrongInputArr.join("、"));
+				}
+				var mentionMesCls,
+					mentionCorreCls,
+					mentionWrongCls,
+					mentionMes,
+					mentionCorre,
+					mentionWrong;
+				function getMenEle(id){					
+				    mentionMesCls=id+"Mention";
+					mentionCorreCls=id+"Corre";
+					mentionWrongCls=id+"Wrong";
+					mentionMes=form.getElementsByClassName(mentionMesCls)[0];
+					mentionCorre=form.getElementsByClassName(mentionCorreCls)[0];
+					mentionWrong=form.getElementsByClassName(mentionWrongCls)[0];								
+				}
+				function showMen(id){
+					getMenEle(id);
+					mentionMes.style.display="block";
+					mentionWrong.style.display="none";
+					mentionCorre.style.display="none";
+					target.style.borderColor="#cccccc";
+				}
+				function showMenCorre(id,ele){
+					getMenEle(id);
+					mentionMes.style.display="none";
+					mentionWrong.style.display="none";
+					mentionCorre.style.display="block";
+					ele.style.borderColor="#65c04d";
+				}
+				function showMenWrong(id,ele){
+					getMenEle(id);
+					mentionMes.style.display="none";
+					mentionCorre.style.display="none";
+					mentionWrong.style.display="block";
+					ele.style.borderColor="red";
+				}
+				function check(id,value,ele){
+					if (id=="name") {
+						if (nameLength>=4&&nameLength<=16) {
+							showMenCorre(id,ele);
+						}else{
+							showMenWrong(id,ele);
+						}
+					}
+					if (id=="password") {
+						if (pwdReg.test(value)) {
+							showMenCorre(id,ele);
+						}else{
+							showMenWrong(id,ele);
+						}
+					}
+					if (id=="passwordConfirm") {	
+						if (pwdReg.test(value)&&passwordValue==value) {							
+							showMenCorre(id,ele);								
+						}else{
+							showMenWrong(id,ele);
+						}
+					}
+							
+					if (id=="email") {
+						if (emailReg.test(value)) {
+							showMenCorre(id,ele);
+						}else{
+							showMenWrong(id,ele);
+						}
+					}
+					if (id=="phoneNum") {
+						if (phoneNumReg.test(value)) {
+							showMenCorre(id,ele);
+						}else{
+							showMenWrong(id,ele);
+						}
+					}
+				}
+				function showMes(str){
+					var alertDiv=container.getElementsByClassName("alertDiv")[0],
+						message=alertDiv.getElementsByClassName("message")[0],
+						messageCon=message.firstElementChild,
+						confirm=message.getElementsByClassName("confirm")[0];					
+					messageCon.innerHTML=str+" 显示";
+					alertDiv.style.display="block";
+					confirm.addEventListener("click",function(){						
+						alertDiv.style.display="none";
+						confirm.removeEventListener("click",false);
+					},false);
+				}
+			}
+		};				
+	</script>
+</body>
+</html>
