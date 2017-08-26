@@ -583,6 +583,7 @@ input {
         }        
         .protocol {
             position: absolute;  
+            z-index: 0;
             background-color: white;            
             overflow: hidden;       
             .content {
@@ -593,6 +594,7 @@ input {
             position: absolute;
             left: 0;
             top: 122px;            
+            z-index: 0;
             background-color: white;                    
             overflow: hidden;
             .content {
@@ -603,6 +605,7 @@ input {
             position: absolute;
             left: 0;
             top: 240px;            
+            z-index: 0;
             background-color: white;
             h5 {
                 margin-bottom: 15px;
@@ -615,7 +618,8 @@ input {
         .active {
             height: auto;
             z-index: 1;
-            .content {
+            .content:not(.no_more) {
+                //FF overflow-y: scroll; 即使高度为 0 还是会自动分一个 scroll;
                 height: auto;
                 overflow-y: scroll; 
             }

@@ -571,6 +571,7 @@ input {
 }
 #part_volunteer .terms .protocol {
   position: absolute;
+  z-index: 0;
   background-color: white;
   overflow: hidden;
 }
@@ -581,6 +582,7 @@ input {
   position: absolute;
   left: 0;
   top: 122px;
+  z-index: 0;
   background-color: white;
   overflow: hidden;
 }
@@ -591,6 +593,7 @@ input {
   position: absolute;
   left: 0;
   top: 240px;
+  z-index: 0;
   background-color: white;
 }
 #part_volunteer .terms .more_condition h5 {
@@ -604,7 +607,7 @@ input {
   height: auto;
   z-index: 1;
 }
-#part_volunteer .terms .active .content {
+#part_volunteer .terms .active .content:not(.no_more) {
   height: auto;
   overflow-y: scroll;
 }

@@ -1,25 +1,115 @@
 window.onload=function () {
-	//导航条click事件
+	//常用方法
+	var funObj={		
+		//数组去重
+		uniqueArr: function(array){
+			var newArr=[];
+			for (var i = 0; i < array.length; i++) {
+				if (newArr.indexOf(array[i]) < 0) {
+					newArr.push(array[i]);
+				}
+			}
+			return newArr;
+		},
+		toTrim:function(str){
+			//IE8 不支持 trim() 方法
+			if (str) {
+				if (str.trim) {
+					return str=str.trim();					
+				}else{
+					return str=str.replace(/^\s+/g,'').replace(/\s+$/g,'');
+				}			
+			}else{
+				return null;
+			}
+		},
+		hasClass: function(ele,clsName){
+			var clsArr;
+			if (ele.className) {				
+				clsArr=funObj.toTrim(ele.className).split(/\s+/g);
+				clsArr=funObj.uniqueArr(clsArr);
+				var index=clsArr.indexOf(clsName);			
+				if (index >= 0) {
+					return true;			
+				}else {
+					return false;
+				}
+			}else {
+				return false;
+			}
+		},
+		//移除clasName
+		removeClass: function (ele,clsName){
+			var clsArr;
+			if (ele.className) {
+				/*alert(funObj.toTrim(ele.className));*/
+				clsArr=funObj.toTrim(ele.className).split(/\s+/g);
+				clsArr=funObj.uniqueArr(clsArr);
+				var index=clsArr.indexOf(clsName);			
+				if (index >= 0) {
+					clsArr.splice(index,1);
+					ele.className=clsArr.join(' ');				
+				}
+			}else {
+				ele.className=clsName;
+			}				
+		},
+		//增加clasName
+		addClass: function (ele,clsName){
+			var clsArr;
+			if (ele.className) {
+				clsArr=funObj.toTrim(ele.className).split(/\s+/g);
+				clsArr=funObj.uniqueArr(clsArr);	
+				if (clsArr.indexOf(clsName) < 0) {
+					clsArr.push(clsName);
+					ele.className = clsArr.join(' ');		
+				}
+			}
+		},
+		getEleByCls: function(ele,clsName){
+			if (ele.getElementsByClassName) {
+				return ele.getElementsByClassName(clsName);
+			}else{
+				var eleChilds=ele.getElementsByTagName("*");
+				var targetEleArr=[];
+				for (var i = 0; i < eleChilds.length; i++) {
+					if(funObj.hasClass(eleChilds[i],clsName)){
+						targetEleArr.push(eleChilds[i]);
+					}
+				}
+				return targetEleArr;
+			}
+		},
+		addEventHandler: function(ele,eventType,func,trueOrFalse){
+			if (ele.addEventListener) {
+				ele.addEventListener(eventType,func,trueOrFalse);
+			}else if(ele.attachEvent){
+				ele.attachEvent('on'+eventType,func);
+			}
+		}
+	};	
+	//导航条click事件	
 	var header=document.getElementById('header');
 	var headerUl=header.getElementsByTagName('ul')[0];
-	var lis=header.getElementsByTagName('li');
-	headerUl.addEventListener("click",navBgc,false);
+	var lis=header.getElementsByTagName('li');	
+	funObj.addEventHandler(headerUl,"click",navBgc,false);
 
 	//城市活动搜索
 	var partSearch=document.getElementById('part_search');
 	var partSearchForm=document.forms[0];
-	partSearchForm.addEventListener("click",showOptDiv,false);
+	funObj.addEventHandler(partSearchForm,"click",showOptDiv,false);
 
 	//part_chapter 新世界篇章
 	var partChap=document.getElementById('part_chapter');
-	partChap.addEventListener("click",changeChap,false);
+	funObj.addEventHandler(partChap,"click",changeChap,false);
 
 	//志愿者 更多伸缩变化
 	var volTerms=document.getElementById('part_volunteer').children[1];
-	volTerms.addEventListener("click",moreTerms,false);
+	funObj.addEventHandler(volTerms,"click",moreTerms,false);
 
 
-	function navBgc(){
+	function navBgc(event){
+		//event 参数  兼容FF				
 		var target=event.target;
 		for (var i = 0; i < lis.length; i++) {
 			funObj.removeClass(lis[i],"active");
@@ -27,9 +117,10 @@ window.onload=function () {
 		funObj.addClass(target,"active");
 	}
 
-	function showOptDiv(){
+	function showOptDiv(event){
+		event=event||window.event;
 		var target=event.target;
-		var selectDiv=this.getElementsByClassName('select');
+		var selectDiv=funObj.getEleByCls(this,'select');
 		var selectDivActive;
 		var tarParClsName= target.parentNode.className;
 		if (target.tagName.toLowerCase()==='input') {
@@ -59,9 +150,10 @@ window.onload=function () {
 		}
 	}
 	
-	function changeChap(){
+	function changeChap(event){
+		event=event||window.event;
 		var target=event.target;
-		var partChapTextDiv=this.getElementsByClassName('text');
+		var partChapTextDiv=funObj.getEleByCls(this,'text');
 		var chapNumArr={one:1,two:2,three:3};
 		if (funObj.hasClass(target.parentNode,'choices')) {
 			for (var key in chapNumArr) {
@@ -74,7 +166,8 @@ window.onload=function () {
 		}	
 	}
 
-	function moreTerms(){
+	function moreTerms(event){
+		event=event||window.event;
 		var target=event.target;	
 		//把事件目标换成 moreInfo ，不管点击的是 more 还是 arrow	
 		if(funObj.hasClass(target.parentNode,'more_info')){
@@ -86,74 +179,25 @@ window.onload=function () {
 			return false;
 		}		
 
+		var termsUnderDiv=this.children;
 		var moreOrLess=target.firstElementChild;	
-		
-		if (moreOrLess.innerHTML==='more') {
-			moreOrLess.innerHTML='  less';
-			funObj.addClass(target.parentNode,'active');
-			target.previousElementSibling.scrollTop=0;
-		}else {
-			moreOrLess.innerHTML='more';
-			funObj.removeClass(target.parentNode,'active');				
-			target.previousElementSibling.scrollTop=0;
-		}
-		
-	}
-
-	var funObj={		
-		//数组去重
-		uniqueArr: function(array){
-			var newArr=[];
-			for (var i = 0; i < array.length; i++) {
-				if (newArr.indexOf(array[i]) < 0) {
-					newArr.push(array[i]);
-				}
-			}
-			return newArr;
-		},
-		hasClass: function(ele,clsName){
-			var clsArr;
-			if (ele.className) {
-				clsArr=ele.className.trim().split(/\s+/g);
-				clsArr=funObj.uniqueArr(clsArr);
-				var index=clsArr.indexOf(clsName);			
-				if (index >= 0) {
-					return true;			
+		for (var i = 0; i < termsUnderDiv.length; i++) {	
+			if (target.parentNode!=termsUnderDiv[i]) {
+				funObj.removeClass(termsUnderDiv[i],'active');
+				funObj.getEleByCls(termsUnderDiv[i],'word')[0].innerHTML='more';	
+			}else {
+				if (moreOrLess.innerHTML==='more') {
+					moreOrLess.innerHTML='less';
+					funObj.addClass(target.parentNode,'active');
+					target.previousElementSibling.scrollTop=0;
 				}else {
-					return false;
+					moreOrLess.innerHTML='more';
+					funObj.removeClass(target.parentNode,'active');				
+					target.previousElementSibling.scrollTop=0;
 				}
-			}else {
-				return false;
-			}
-		},
-		//增加clasName
-		removeClass: function (ele,clsName){
-			var clsArr;
-			if (ele.className) {
-				clsArr=ele.className.trim().split(/\s+/g);
-				clsArr=funObj.uniqueArr(clsArr);
-				var index=clsArr.indexOf(clsName);			
-				if (index >= 0) {
-					clsArr.splice(index,1);
-					ele.className=clsArr.join(' ');				
-				}
-			}else {
-				ele.className=clsName;
-			}				
-		},
-		//移出clasName
-		addClass: function (ele,clsName){
-			var clsArr;
-			if (ele.className) {
-				clsArr=ele.className.trim().split(/\s+/g);
-				clsArr=funObj.uniqueArr(clsArr);	
-				if (clsArr.indexOf(clsName) < 0) {
-					clsArr.push(clsName);
-					ele.className = clsArr.join(' ');		
-				}
-			}
-		}
-	};
 
+			}
+		}		
+	}
 
 };
