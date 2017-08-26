@@ -14,9 +14,18 @@
 ul {
 	list-style-type: none;
 }
+button,.try {
+    cursor: pointer;
+    background-color: white;    
+    border:none;
+    outline: none;
+}
+input {
+    border:none;    
+    outline: none;
+}
 #homepage {
 	width: 1280px;
-	height: 2000px;
 	margin: 0 auto;
 	overflow: hidden;
 }
@@ -46,11 +55,11 @@ ul {
             color: black;
             font-weight: normal;
         }
-        .active {
+        li:hover,li.active {
             color: @mainRed;
-            border-bottom: 4px solid @mainRed;
-            font-weight: bold;
-        }
+            border-bottom: 4px solid @mainRed;            
+            cursor: pointer;
+        }        
     }
     .login {
         font-size: 14px;
@@ -60,6 +69,9 @@ ul {
             margin: 1px 8px 0 0;
             width: 16px;
             height: 16px;
+        }
+        &:hover {
+            cursor: pointer;
         }
     }
 }
@@ -162,7 +174,7 @@ ul {
         padding-top: 52px;
         width: 1280px;
         font-size: 13px;
-        .radio,
+        .select,
         .search_btn {
             height: 36px;
             margin: 0 15px;
@@ -175,9 +187,9 @@ ul {
             outline: none;
             border: 1px solid transparent;
         }
-        .radio {
+        .select {
             display: inline-block;
-            height: 208px;
+            
             position: relative;
             color: #bdbdd;
             border: 1px solid transparent;
@@ -191,36 +203,64 @@ ul {
                 top: 10px;
             }
             ul {
-            	display: block;
+            	display: none;
                 position: absolute;
                 height: 170px;
                 border-top: none;
                 background-color: #e3e3e5;
                 li {
-                    height: 23px;
-                    width: 225px;
-                    padding: 3px 0 0 8px;
+                    height: 25px;
+                    width: 235px;
                     color: #78787a;
                     img {
+                        padding: 3px 0 0 8px;
                         width: 20px;
                         height: 18px;
                         margin-right: 10px;
                         float: left;
                         visibility: hidden;
                     }
+                    span {
+                        padding: 3px 0 5px 8px;
+                        display: block;
+                    }
                 }
             }
-        }
-        .active {        	
+        }        
+        .select.active {       
+            height: 208px; 	
             border: 1px solid #bf4e48;
-            ul {
-				display:hidden;
+            input {
+                border-bottom: 1px solid #bf4e48;
             }
-            .active {
-                background-color: #bf4e48;
-                color: white;
-                img {
-                    visibility: visible;
+            ul {
+                display:block;  
+                li.active {
+                    background-color: #bf4e48;
+                    color: white;
+                    cursor: pointer;
+                    img {
+                        visibility: visible;
+                    }
+                }
+            }
+            //当鼠标滑过li时，触发到ul，把ul的第一个li的默认选中样式去掉，然后再给li:hover
+            //这样滑过li，可以去掉第一个li的默认选中样式
+            ul:hover {
+                li {
+                    background-color: #e3e3e5;
+                    color: #78787a;;                    
+                    img {
+                        visibility: hidden;
+                    }
+                }                          
+                li:hover {
+                    background-color: #bf4e48;
+                    color: white;
+                    cursor: pointer;
+                    img {
+                        visibility: visible;
+                    }
                 }
             }
         }
@@ -235,4 +275,487 @@ ul {
             cursor: pointer;
         }
     }
+}
+#part_activity {
+    height: 392px;
+    padding: 100px 130px 112px; 
+    background-color: #f7f7f7;
+    .photo_words {
+        float: left;
+        margin: 0 18px;
+        position: relative;
+        .photo {
+            border: 1px solid #e8e8e8;
+            padding: 12px 8px;
+            height: 311px;
+            background-color: white;
+            img {
+                width: 201px;
+                height: 311px;
+            }
+        }
+        .words {
+            padding: 0 9px;
+            div {
+                text-align: center;
+            }
+            .title {
+                width: 201px;
+                margin: 10px 0 7px;
+                color: black;
+                font-size: 15px;
+            }
+            .introduction {
+                color: #bcbcbd;
+                font-size: 14px;
+                margin: 0;
+            }
+        }
+
+    }
+    .active {
+        .words {            
+            .title {
+                margin: 0;                
+                height: 26px;
+                font-size: 22px;
+                //文字两端对齐-控制失败
+               /*  letter-spacing: 28px; */
+               //text-align: justify;可以实现，但元素为：
+               //内联或内联块状、内容超出一行（里面加一个span模拟，超出的overflow:hidden;）
+                display: inline-block;
+                text-align: justify;
+                overflow: hidden;
+                .justify {
+                    height: 0;
+                    width: 100%;
+                    display: inline-block;
+                }
+            }
+            .introduction {
+                margin-bottom: 5px;
+            }
+        }
+    }
+}
+#part_chapter {
+    position: relative;
+    height: 562px;
+    overflow: hidden;    
+    .slogan {
+        width: 368px;
+        height: 446px;  
+        padding: 120px 242px 0;
+        background: url(../images/part_chapter_slogan.jpg) no-repeat left top;
+        color: white;
+        .title {
+            font-size: 50px;   
+            width: 368px; 
+            text-align: center;
+            height: 48px;        
+        }
+        .eng_title {
+            font-size: 158px;   
+            text-align: center;
+            margin: -28px 0 -8px;
+        }
+        .location {
+            font-size: 23px;   
+            text-align: center;
+            margin-bottom: 14px;
+        }
+        .year_month {
+            font-size: 22px;  
+            text-align: center; 
+        }
+    }
+    .text {
+        width: 430px;
+        height: 566px;
+        left: 850px;
+        top: 0;
+        position: absolute;  
+        display: none;      
+        .title {
+            margin: 160px 0 18px;
+            font-size: 20px;
+            text-align: center;
+            color: black;
+            .number {
+                color: @mainRed;
+            }
+            .slash {
+                display: inline-block;
+                width: 24px;
+                border-top: 1px solid black;                
+                transform: rotate(-45deg);
+                position: relative;
+                top: -6px;                
+            }
+        }
+        .para {
+            font-size: 12px;
+            padding: 0 70px;
+            color: #bdbdbd;
+            line-height: 30px;
+            letter-spacing: 1px;
+        }
+        button {
+            font-size: 12px;
+            width: 106px;
+            height: 33px;
+            border: 1px solid @mainRed;
+            color: @mainRed;
+            margin: 42px 162px 0;
+            background: white;
+        }
+        .choices {
+            width: 78px;
+            margin: 26px auto 176px;
+            margin-top: ;
+            div {
+                width: 10px;
+                height: 10px;
+                margin: 0 7px;
+                border: 1px solid #929293;
+                border-radius: 6px;
+                background-color: white;  
+                cursor: pointer;              
+            }
+            .active {
+                background-color: #929293;                   
+            }
+        }
+        .triangle {           
+            border: 16px solid transparent;           
+            border-right: 24px solid white;
+            position: absolute;
+            left:-39px;
+            top: 270px;
+        }
+    }
+    .text.active {
+        display: block;
+    }
+}
+#part_us {
+    padding: 0 1px;
+    overflow: hidden;
+    &>div {
+        height: 521px;
+    }
+    .red,.white {
+        width: 425px;
+        font-size: 20px;
+        div {
+            text-align: center;
+        }
+        button {
+            font-size: 20px;
+            margin: 0 128px;
+            width: 169px;
+            height: 44px;
+            border: 1px solid black;
+        }
+        .title {
+            margin: 170px 0 4px;
+        }
+        .hr {
+            border: 1px solid #abaaaa;
+            width: 29px;
+            margin: 23px 198px;
+        }
+
+    }
+    .red {
+        background-color: #e74f4d;
+        color: white;
+        button {
+            border-color: white;
+            color: white;
+            background-color: #e74f4d;
+        }
+        .hr {
+            border-color: white;
+        }
+    }
+    .white {
+        background-color: white;
+        color: black;
+        button {
+            color:#e74f4d;
+            border-color: #e74f4d;
+        }
+    }
+    .picture {
+        width: 428px;
+        height: 521px;
+        background: url(../images/part_us_train_girl.jpg) no-repeat left top;
+        position: relative;
+        .triangle {           
+            border: 16px solid transparent;           
+            border-left: 24px solid white;            
+            position: absolute;
+            left: 0px;
+            top: 247px;
+        }
+    }
+
+}
+#part_volunteer {
+    padding: 116px 140px 0;
+    height: 500px;
+    overflow: hidden;
+    h5,button {
+        font-size: 14px;        
+    }
+    p,input,.more_info {
+        font-size: 12px;
+        color: #7a7878;
+    }
+    h4 {
+        font-size: 21px;
+    }
+    .volunteer {
+        width: 422px;
+        margin: 0 auto;
+        margin-bottom: 98px;        
+        h4 {
+            margin-bottom: 8px;
+            text-align: center;            
+        }
+        .hr {
+            width: 28px;
+            border: 1px solid @mainRed;
+            margin: 0 auto;
+            margin-bottom: 12px;
+        }
+        .para {
+            text-align: center;
+            line-height: 20px;
+        }
+    }
+    .terms {
+        width: 290px;
+        position: relative;        
+        h5 {
+            margin-bottom: 22px;
+        }
+        .content {
+            line-height: 23px;
+            height: 46px;
+            overflow: hidden;
+        }
+        &>div {
+            width: 290px;
+        }
+        .more_info {     
+            overflow: hidden;
+            cursor: pointer;             
+            .word {  
+                font-size: 12px;
+                transform: scale(0.87);
+                width: 39px;
+                text-align: right;
+            }  
+            .arrow {
+                width: 0;
+                height: 0;
+                border: 6px solid transparent;
+                border-top: 8px solid #adabab;  
+                position: relative; 
+                top: 6px;
+                left: 2px;
+            }      
+            &:after {
+                content: '';
+                width: 0;
+                height: 0;
+                border: 5px solid transparent;
+                border-top: 7px solid white;  
+                position: relative;
+                left: 13px;
+                top: 5px;
+                float: right;                
+            }
+            
+            
+        }        
+        .protocol {
+            position: absolute;  
+            background-color: white;            
+            overflow: hidden;       
+            .content {
+                max-height: 240px;  
+            }   
+        }
+        .rights {
+            position: absolute;
+            left: 0;
+            top: 122px;            
+            background-color: white;                    
+            overflow: hidden;
+            .content {
+                max-height: 120px;    
+            }
+        }
+        .more_condition {
+            position: absolute;
+            left: 0;
+            top: 240px;            
+            background-color: white;
+            h5 {
+                margin-bottom: 15px;
+            }
+            p {
+                height: 0;
+                overflow: hidden;
+            }
+        }
+        .active {
+            height: auto;
+            z-index: 1;
+            .content {
+                height: auto;
+                overflow-y: scroll; 
+            }
+            .more_info {
+                .arrow {                   
+                    top: -1px;
+                    border: 6px solid transparent;
+                    border-bottom: 8px solid #adabab;  
+                }
+                &:after {                                       
+                    top: 2px;
+                    border: 5px solid transparent;
+                    border-bottom: 7px solid white; 
+                }
+            }
+        }
+    }
+    form {
+        width: 645px;
+        * {
+            background-color: #ededee;
+        }
+        input {
+            width: 295px;
+            height: 41px;
+        }
+        input,textarea,button {
+            padding-left: 16px;
+            margin-bottom: 15px;
+        }
+        .name,.phone_number {
+            margin-right: 14px;
+
+        }
+        textarea {
+            width: 624px;
+            height: 105px;
+            resize: none;
+            border: none;
+            padding-top: 15px;
+            outline: none;
+            color: #7a7878;
+        }
+        button {
+            width: 640px;
+            height: 41px;
+            font-weight: bold;            
+        }
+    }
+}
+#part_contact {
+    background-color: #33363f;
+    color: white;
+    margin-top: 140px;
+    height: 181px;
+    padding: 87px 382px 92px;
+    overflow: hidden;
+    h4 {
+        font-size: 21px;
+        font-weight: normal;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    p {
+        font-size: 12px;
+        line-height: 20px;
+        width: 470px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    form {
+        margin-top: 25px;
+        .email {
+            font-size: 16px;
+            height: 41px;
+            width: 420px;
+            padding-left: 10px;
+            color: #aaaaaa;            
+        }
+        .submit {
+            color: white;
+            background-color: #6f7178;
+            font-size: 16px;
+            margin-left: -5px;
+            height: 41px;
+            width: 80px;
+            position: relative;
+            top: 2px;
+        }
+    }
+    .social_web {
+        width: 224px;   
+        margin: 0 auto;     
+        margin-top: 36px;
+        overflow: hidden;
+        div {            
+            float: left;
+            width: 28px;
+            height: 28px;
+            margin: 0 14px;
+            overflow: hidden;
+            position: relative;
+        }
+        div:after {
+            position: absolute;
+            content: '';
+            width: 28px;
+            height: 28px;
+            background-color: #33363f;
+            opacity: 0.4;
+            filter: alpha(opacity=40);
+        }
+        div:hover:after {
+            cursor: pointer;
+            position: absolute;
+            content: '';
+            width: 28px;
+            height: 28px;
+            background-color: #33363f;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+        .qq {                
+            background: url(../images/social_web.jpg) no-repeat left top;
+        }
+        .microblog {                
+            background: url(../images/social_web.jpg) no-repeat -52px 0;
+        }
+        .pigeon {                
+            background: url(../images/social_web.jpg) no-repeat -109px 0;
+        }
+        .planet {                
+            background: url(../images/social_web.jpg) no-repeat -156px 0;
+        }
+    }
+}
+#footer {
+    height: 28px;
+    padding: 28px 38px 0 100px;
+    background-color: #303039;
+    color: white;
+    font-size: 12px;
 }
