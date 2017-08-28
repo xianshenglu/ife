@@ -2,6 +2,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: '微软雅黑';
 }
 .float_left {
   float: left;
@@ -18,10 +19,15 @@ button,
   background-color: white;
   border: none;
   outline: none;
+  vertical-align: middle;
 }
 input {
   border: none;
   outline: none;
+  vertical-align: middle;
+}
+a {
+  text-decoration: none;
 }
 #homepage {
   width: 1280px;
@@ -29,8 +35,12 @@ input {
   overflow: hidden;
 }
 #header {
+  width: 1280px;
   height: 58px;
   overflow: hidden;
+  position: fixed;
+  background-color: white;
+  z-index: 2;
 }
 #header .title {
   margin-left: 48px;
@@ -50,17 +60,30 @@ input {
 }
 #header ul li {
   font-size: 14px;
-  padding: 15px 16px 20px 20px;
   margin: 0 5px;
   border-bottom: 4px solid transparent;
   color: black;
   font-weight: normal;
+  height: 54px;
+}
+#header ul li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 15px 16px 20px 20px;
+  color: black;
+}
+#header ul li a:visited {
+  color: black;
 }
 #header ul li:hover,
 #header ul li.active {
-  color: #e85460;
   border-bottom: 4px solid #e85460;
   cursor: pointer;
+}
+#header ul li:hover a,
+#header ul li.active a {
+  color: #e85460;
 }
 #header .login {
   font-size: 14px;
@@ -180,15 +203,17 @@ input {
 }
 #part_search form input {
   height: 36px;
+  line-height: 36px;
   width: 225px;
   padding-left: 8px;
   outline: none;
   border: 1px solid transparent;
+  color: #949494;
 }
 #part_search form .select {
   display: inline-block;
   position: relative;
-  color: #bdbdd;
+  color: #949494;
   border: 1px solid transparent;
 }
 #part_search form .select img {
@@ -500,7 +525,7 @@ input {
 #part_volunteer input,
 #part_volunteer .more_info {
   font-size: 12px;
-  color: #7a7878;
+  color: #949494;
 }
 #part_volunteer h4 {
   font-size: 21px;
@@ -611,6 +636,14 @@ input {
   height: auto;
   overflow-y: scroll;
 }
+#part_volunteer .terms .active .content {
+  height: auto;
+  overflow-y: scroll;
+}
+#part_volunteer .terms .active .no_more {
+  height: 0;
+  overflow: hidden;
+}
 #part_volunteer .terms .active .more_info .arrow {
   top: -1px;
   border: 6px solid transparent;
@@ -630,6 +663,7 @@ input {
 #part_volunteer form input {
   width: 295px;
   height: 41px;
+  line-height: 41px;
 }
 #part_volunteer form input,
 #part_volunteer form textarea,
@@ -648,7 +682,8 @@ input {
   border: none;
   padding-top: 15px;
   outline: none;
-  color: #7a7878;
+  color: #949494;
+  overflow-y: hidden;
 }
 #part_volunteer form button {
   width: 640px;
@@ -678,12 +713,14 @@ input {
 }
 #part_contact form {
   margin-top: 25px;
+  width: 510px;
 }
 #part_contact form .email {
   font-size: 16px;
   height: 41px;
   width: 420px;
   padding-left: 10px;
+  line-height: 41px;
   color: #aaaaaa;
 }
 #part_contact form .submit {
@@ -694,7 +731,7 @@ input {
   height: 41px;
   width: 80px;
   position: relative;
-  top: 2px;
+  /* top: 2px; */
 }
 #part_contact .social_web {
   width: 224px;
@@ -702,7 +739,7 @@ input {
   margin-top: 36px;
   overflow: hidden;
 }
-#part_contact .social_web div {
+#part_contact .social_web > div {
   float: left;
   width: 28px;
   height: 28px;
@@ -710,7 +747,7 @@ input {
   overflow: hidden;
   position: relative;
 }
-#part_contact .social_web div:after {
+#part_contact .social_web div > span {
   position: absolute;
   content: '';
   width: 28px;
@@ -719,12 +756,8 @@ input {
   opacity: 0.4;
   filter: alpha(opacity=40);
 }
-#part_contact .social_web div:hover:after {
+#part_contact .social_web div:hover span {
   cursor: pointer;
-  position: absolute;
-  content: '';
-  width: 28px;
-  height: 28px;
   background-color: #33363f;
   opacity: 0;
   filter: alpha(opacity=0);
@@ -747,4 +780,10 @@ input {
   background-color: #303039;
   color: white;
   font-size: 12px;
+}
+#footer a {
+  color: white;
+}
+#footer a:visited {
+  color: white;
 }

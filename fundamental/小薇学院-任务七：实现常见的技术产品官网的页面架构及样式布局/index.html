@@ -2,23 +2,24 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<title>小薇学院-任务七：实现常见的技术产品官网的页面架构及样式布局</title>
 	<link rel="stylesheet" href="less/style.css" />		
 	<script type="text/javascript" src="js/js.js"></script>
 </head>
 <body>
-	<div id="homepage">
+	<div id="homepage">	
 		<div id="header">
 			<div class="title float_left">
 				<img src="images/new_world_icon.jpg" alt="" class="float_left"/>
 				<span class="float_left">新世界</span>
 			</div>
 			<ul class="float_left">
-				<li class="float_left active active" id="home">首页</li>
-				<li class="float_left" id="activity">最新活动</li>
-				<li class="float_left" id="project">项目介绍</li>
-				<li class="float_left" id="community">爱心社区</li>
-				<li class="float_left" id="about_community">关于社区</li>
+				<li class="float_left active active" id="home"><a href="#homepage">首页</a></li>
+				<li class="float_left" id="activity"><a href="#part_question">最新活动</a></li>
+				<li class="float_left" id="project"><a href="#part_chapter">关注世界</a></li>
+				<li class="float_left" id="community"><a href="#part_volunteer">爱心志愿</a></li>
+				<li class="float_left" id="about_community"><a href="#part_contact">联系我们</a></li>
 			</ul>
 			<div class="login float_left">
 				<img src="images/login.jpg" alt="" class="float_left"/>
@@ -99,7 +100,14 @@
 			</div>
 			<div class="photo_words active">
 				<div class="words">
-					<div class="title">上海活动<span class="justify"></span></div>
+					<span class="title">
+						<!-- 兼容IE8 -->
+						<span>上</span>
+						<span>海</span>
+						<span>活</span>
+						<span>动</span>
+						<span class="justify"></span>
+					</span>
 					<div class="introduction">夜上海景观探索</div>
 				</div>
 				<div class="photo"><img src="images/act2.jpg" alt="" /></div>
@@ -205,7 +213,7 @@
 				<input type="text" class="age" name="age" placeholder="年龄：" />
 				<input type="text" class="phone_number" name="phone_number" placeholder="联系方式：" />
 				<input type="text" class="address" name="address" placeholder="联系地址：" />
-				<textarea class="life_wanted" name="life_wanted" placeholder="请简单描述您梦想的生活" ></textarea>
+				<textarea type="text" class="life_wanted" name="life_wanted" placeholder="请简单描述您梦想的生活" ></textarea>
 				<button class="submit" type="button">提交申请</button>
 			</form>
 		</div>
@@ -217,15 +225,15 @@
 				<input type="button" class="submit" value="提 交" />
 			</form>
 			<div class="social_web">
-				<div class="qq"></div>
-				<div class="microblog"></div>
-				<div class="pigeon"></div>
-				<div class="planet"></div>
+				<div class="qq"><span></span></div>
+				<div class="microblog"><span></span></div>
+				<div class="pigeon"><span></span></div>
+				<div class="planet"><span></span></div>
 			</div>
 		</div>
 		<div id="footer">
 			<div class="title float_left">@2016新世界</div>
-			<div class="back_to_top float_right">Back to top</div>
+			<div class="back_to_top float_right"><a href="#top_pic">Back to top</a></div>
 		</div>
 	</div>	
 </body>

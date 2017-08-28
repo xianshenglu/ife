@@ -1,9 +1,11 @@
 /*定义变量*/
 @mainRed:#e85460;
 
+//默认样式
 * {
 	margin: 0;
 	padding: 0;
+    font-family: '微软雅黑';
 }
 .float_left {
 	float: left;
@@ -19,19 +21,31 @@ button,.try {
     background-color: white;    
     border:none;
     outline: none;
+    vertical-align: middle;
 }
 input {
     border:none;    
     outline: none;
+    //兼容IE8
+    vertical-align: middle;
 }
+a {
+    text-decoration: none;
+}
+
+// 详细样式
 #homepage {
 	width: 1280px;
 	margin: 0 auto;
-	overflow: hidden;
+	overflow: hidden;    
 }
 #header {
+    width: 1280px;
     height: 58px;
     overflow: hidden;
+    position: fixed;
+    background-color: white;
+    z-index: 2;
     .title {
         margin-left: 48px;
         font-size: 20px;
@@ -49,16 +63,28 @@ input {
         margin-left: 514px;
         li {
             font-size: 14px;
-            padding: 15px 16px 20px 20px;
             margin: 0 5px;
             border-bottom: 4px solid transparent;
             color: black;
-            font-weight: normal;
+            font-weight: normal;   
+            height: 54px; 
+            a {
+                display: block;
+                width: 100%;
+                height: 100%;
+                padding: 15px 16px 20px 20px;
+                color: black;
+            }
+            a:visited {
+                color: black;
+            }
         }
-        li:hover,li.active {
-            color: @mainRed;
+        li:hover,li.active {            
             border-bottom: 4px solid @mainRed;            
             cursor: pointer;
+            a {
+                color: @mainRed;
+            }
         }        
     }
     .login {
@@ -182,16 +208,17 @@ input {
         }
         input {
             height: 36px;
+            line-height: 36px;
             width: 225px;
             padding-left: 8px;
             outline: none;
             border: 1px solid transparent;
+            color: #949494;
         }
         .select {
-            display: inline-block;
-            
+            display: inline-block;            
             position: relative;
-            color: #bdbdd;
+            color: #949494;
             border: 1px solid transparent;
             img {
                 width: 20px;
@@ -511,7 +538,7 @@ input {
     }
     p,input,.more_info {
         font-size: 12px;
-        color: #7a7878;
+        color: #949494;
     }
     h4 {
         font-size: 21px;
@@ -619,10 +646,20 @@ input {
             height: auto;
             z-index: 1;
             .content:not(.no_more) {
-                //FF overflow-y: scroll; 即使高度为 0 还是会自动分一个 scroll;
+                //FF overflow-y: scroll; 即使高度为 0 还是会自动分一个 scroll;所以把 no_more 去掉
                 height: auto;
                 overflow-y: scroll; 
             }
+            // IE8 不能识别 :not 选择器
+            .content {
+                height: auto;
+                overflow-y: scroll; 
+            }
+            .no_more {
+                height: 0;
+                overflow: hidden;
+            }
+
             .more_info {
                 .arrow {                   
                     top: -1px;
@@ -645,6 +682,7 @@ input {
         input {
             width: 295px;
             height: 41px;
+            line-height: 41px;
         }
         input,textarea,button {
             padding-left: 16px;
@@ -661,7 +699,9 @@ input {
             border: none;
             padding-top: 15px;
             outline: none;
-            color: #7a7878;
+            color: #949494;
+            // IE8 默认带有垂直滚动条
+            overflow-y: hidden;
         }
         button {
             width: 640px;
@@ -692,11 +732,13 @@ input {
     }
     form {
         margin-top: 25px;
+        width: 510px;
         .email {
             font-size: 16px;
             height: 41px;
             width: 420px;
             padding-left: 10px;
+            line-height: 41px;
             color: #aaaaaa;            
         }
         .submit {
@@ -707,7 +749,7 @@ input {
             height: 41px;
             width: 80px;
             position: relative;
-            top: 2px;
+            /* top: 2px; */
         }
     }
     .social_web {
@@ -715,7 +757,7 @@ input {
         margin: 0 auto;     
         margin-top: 36px;
         overflow: hidden;
-        div {            
+        &>div {            
             float: left;
             width: 28px;
             height: 28px;
@@ -723,21 +765,18 @@ input {
             overflow: hidden;
             position: relative;
         }
-        div:after {
+        div>span {
             position: absolute;
             content: '';
             width: 28px;
             height: 28px;
             background-color: #33363f;
             opacity: 0.4;
-            filter: alpha(opacity=40);
+            filter: alpha(opacity=40);            
+
         }
-        div:hover:after {
-            cursor: pointer;
-            position: absolute;
-            content: '';
-            width: 28px;
-            height: 28px;
+        div:hover span {
+            cursor: pointer;            
             background-color: #33363f;
             opacity: 0;
             filter: alpha(opacity=0);
@@ -762,4 +801,10 @@ input {
     background-color: #303039;
     color: white;
     font-size: 12px;
+    a {
+        color: white;
+    }
+    a:visited {
+        color: white;
+    }
 }
