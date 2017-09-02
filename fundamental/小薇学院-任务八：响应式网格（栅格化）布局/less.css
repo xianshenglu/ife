@@ -1,0 +1,12 @@
+.container-fluid {
+  margin: 10px;
+}
+.container-fluid .row div {
+  padding: 10px;
+  overflow: hidden;
+}
+.container-fluid .row div div {
+  border: 1px solid #999;
+  background-color: #eee;
+  height: 50px;
+}
