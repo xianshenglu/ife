@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "UTF-8" />
+	<title>斌斌学院-任务七：JavaScript和树（一）</title>
+	<link rel = "stylesheet" href = "less.css" />
+</head>
+<body>
+	<div class = "container">
+		<div>
+			<div>
+				<div></div>
+				<div></div>
+			</div>
+			<div>
+				<div></div>
+				<div></div>
+			</div>
+		</div>
+		<div>
+			<div>
+				<div></div>
+				<div></div>
+			</div>
+			<div>
+				<div></div>
+				<div></div>
+			</div>
+		</div>
+	</div>
+	<form action = "" class = "btns">
+		<button type = "button" id = "btn_left">前序</button>
+		<button type = "button" id = "btn_middle">中序</button>
+		<button type = "button" id = "btn_right">后序</button>
+	</form>
+	<script>
+		window.onload = function(){
+			var container = document.getElementsByClassName('container')[0],		
+			    btns = document.getElementsByClassName('btns')[0],
+			    eleArr = [],
+			    timer;
+			btns.addEventListener('click',traversal,false);
+
+			//指定要遍历的元素
+			function traversal(event){
+				change(event,container);
+			}
+
+			//遍历过程
+			function change(event,traversalEle){
+				var targetId = event.target.id;
+				var traversalWaysBtn=['btn_left','btn_middle','btn_right'];
+
+				if (traversalWaysBtn.indexOf(targetId) > -1) {
+
+					//初始化
+					initial();					
+
+					//判断点的是哪个方法，调用对应函数
+					if (targetId === 'btn_left') {
+						getNodeDLR(traversalEle);
+					}else if(targetId === 'btn_middle'){				
+						getNodeLDR(traversalEle);						
+					}else if(targetId === 'btn_right'){					
+						getNodeLRD(traversalEle);					
+					}
+
+					//展示			
+					show();
+				}
+			}
+
+			//初始化
+			function initial(){	
+				eleArr = [];											
+				var div = document.getElementsByTagName('div');
+				for (var i = 0; i < div.length; i++) {
+					div[i].style.backgroundColor = '#fff';
+				}
+			}
+
+			//前序遍历
+			function getNodeDLR(data){				
+				if (data) {
+					eleArr.push(data);
+					getNodeDLR(data.firstElementChild);
+					getNodeDLR(data.lastElementChild);					
+				}
+			}
+
+			//中序遍历
+			function getNodeLDR(data){
+				
+				if (data) {
+					getNodeLDR(data.firstElementChild);
+					eleArr.push(data);
+					getNodeLDR(data.lastElementChild);					
+				}
+			}
+
+			//后序遍历
+			function getNodeLRD(data){
+				
+				if (data) {
+					getNodeLRD(data.firstElementChild);
+					getNodeLRD(data.lastElementChild);					
+					eleArr.push(data);
+				}
+			}	
+						
+			//展示
+			function show(){
+				var j = 0;	
+				clearInterval(timer);				
+				if (eleArr) {
+					timer = setInterval(function(){					
+						if(j < eleArr.length) {				
+							eleArr[j].style.backgroundColor = 'pink';
+							if (eleArr[j-1]) {
+								eleArr[j-1].style.backgroundColor = '#fff';
+							}
+							j++;										
+						}else {
+							clearInterval(timer);		
+						}
+					},500);
+				}
+			}			
+		};
+	</script>
+</body>
+</html>
