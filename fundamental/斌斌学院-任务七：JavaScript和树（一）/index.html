@@ -83,8 +83,8 @@
 			function getNodeDLR(data){				
 				if (data) {
 					eleArr.push(data);
-					getNodeDLR(data.firstElementChild);
-					getNodeDLR(data.lastElementChild);					
+					arguments.callee(data.firstElementChild);
+					arguments.callee(data.lastElementChild);					
 				}
 			}
 
@@ -92,9 +92,9 @@
 			function getNodeLDR(data){
 				
 				if (data) {
-					getNodeLDR(data.firstElementChild);
+					arguments.callee(data.firstElementChild);
 					eleArr.push(data);
-					getNodeLDR(data.lastElementChild);					
+					arguments.callee(data.lastElementChild);					
 				}
 			}
 
@@ -102,8 +102,8 @@
 			function getNodeLRD(data){
 				
 				if (data) {
-					getNodeLRD(data.firstElementChild);
-					getNodeLRD(data.lastElementChild);					
+					arguments.callee(data.firstElementChild);
+					arguments.callee(data.lastElementChild);					
 					eleArr.push(data);
 				}
 			}	
