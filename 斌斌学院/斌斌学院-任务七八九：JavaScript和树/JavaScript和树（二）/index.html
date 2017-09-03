@@ -2,36 +2,45 @@
 <html>
 <head>
 	<meta charset = "UTF-8" />
-	<title>斌斌学院-任务七：JavaScript和树（一）</title>
+	<title>斌斌学院-任务七：JavaScript和树（二）</title>
 	<link rel = "stylesheet" href = "less.css" />
 </head>
 <body>
-	<div class = "container">
-		<div>
-			<div>
-				<div></div>
-				<div></div>
+	<div>
+	<div class = "container">super
+		<div>code
+			<div>apple
+				<div>pear</div>
+				<div>pig</div>
+				<div>cola</div>
+				<div>soccer</div>
 			</div>
+			<div>phone</div>
 			<div>
-				<div></div>
-				<div></div>
-			</div>
-		</div>
-		<div>
-			<div>
-				<div></div>
-				<div></div>
-			</div>
-			<div>
-				<div></div>
-				<div></div>
+				<div>book</div>
+				<div>school</div>
 			</div>
 		</div>
+		<div>note
+			<div>human
+				<div>code</div>
+				<div>operate</div>
+				<div>man</div>
+			</div>
+			<div>program
+				<div>bement
+					<div>cot</div>
+				</div>
+				<div>glass</div>
+			</div>
+		</div>
+		<div>fish</div>
+	</div>
 	</div>
 	<form action = "" class = "btns">
-		<button type = "button" id = "btn_left">前序</button>
-		<button type = "button" id = "btn_middle">中序</button>
-		<button type = "button" id = "btn_right">后序</button>
+		<input  type = "text" id = "search" placeholder="请输入查询内容" />
+		<button type = "button" id = "btn_left">查询-前序</button>		
+		<button type = "button" id = "btn_right">查询-后序</button>
 	</form>
 	<script>
 		window.onload = function(){
@@ -59,8 +68,6 @@
 					//判断点的是哪个方法，调用对应函数
 					if (targetId === 'btn_left') {
 						getNodeDLR(traversalEle);
-					}else if(targetId === 'btn_middle'){				
-						getNodeLDR(traversalEle);						
 					}else if(targetId === 'btn_right'){					
 						getNodeLRD(traversalEle);					
 					}
@@ -84,17 +91,7 @@
 				if (data) {
 					eleArr.push(data);
 					arguments.callee(data.firstElementChild);
-					arguments.callee(data.lastElementChild);					
-				}
-			}
-
-			//中序遍历
-			function getNodeLDR(data){
-				
-				if (data) {
-					arguments.callee(data.firstElementChild);
-					eleArr.push(data);
-					arguments.callee(data.lastElementChild);					
+					arguments.callee(data.nextElementSibling);					
 				}
 			}
 
@@ -103,15 +100,18 @@
 				
 				if (data) {
 					arguments.callee(data.firstElementChild);
-					arguments.callee(data.lastElementChild);					
 					eleArr.push(data);
+					arguments.callee(data.nextElementSibling);					
 				}
-			}	
+			}
+
+			//中序无法区分
 						
 			//展示
 			function show(){
 				var j = 0;	
-				clearInterval(timer);				
+				clearInterval(timer);	
+				var searchValue=document.getElementById('search').value;
 				if (eleArr) {
 					timer = setInterval(function(){					
 						if(j < eleArr.length) {				
@@ -119,8 +119,13 @@
 							if (eleArr[j-1]) {
 								eleArr[j-1].style.backgroundColor = '#fff';
 							}
-							j++;										
+							console.log(eleArr[j]);
+							if (eleArr[j].innerHTML==searchValue) {
+								clearInterval(timer);												
+							}							
+							j++;			
 						}else {
+							alert('对不起，没有找到 '+searchValue+' !');
 							clearInterval(timer);		
 						}
 					},500);

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "UTF-8" />
+	<title>斌斌学院-任务七：JavaScript和树（三）</title>
+	<link rel = "stylesheet" href = "less.css" />
+</head>
+<body>
+	<div>
+		<div class = "container">super
+			<div>code
+				<div>apple
+					<div>pear</div>
+					<div>pig</div>
+					<div>cola</div>
+					<div>soccer</div>
+				</div>
+				<div>phone</div>
+				<div>
+					<div>book</div>
+					<div>school</div>
+				</div>
+			</div>
+			<div>note
+				<div>human
+					<div>code</div>
+					<div>operate</div>
+					<div>man</div>
+				</div>
+				<div>program
+					<div>bement
+						<div>cot</div>
+					</div>
+					<div>glass</div>
+				</div>
+			</div>
+			<div>fish</div>
+		</div>
+	</div>
+	<form action = "" class = "btns">
+		<input  type = "text" id = "newNode" placeholder="请输入增加的节点" />
+		<button type = "button" id = "appendBtn">增加节点</button>		
+		<button type = "button" id = "deleteBtn">删除节点</button>
+	</form>
+	<script>
+		window.onload = function(){
+			var container = document.getElementsByClassName('container')[0],		
+			btns = document.getElementsByClassName('btns')[0],
+			newNode= document.getElementById('newNode'),					
+			pinkEle;	
+			
+			container.addEventListener('click',showBgc,false);
+
+			function showBgc(event){				
+				pinkEle=document.getElementsByClassName('pink')[0];				
+				var target=event.target;
+				if (pinkEle) {
+					pinkEle.className='';	
+				}
+				target.className='pink';				
+			}
+
+			btns.addEventListener("click",changeNodes,false);
+
+			function changeNodes(event){
+				var target=event.target,
+				pinkEle=document.getElementsByClassName('pink')[0];	
+				if (pinkEle) {
+					if (target.id==='appendBtn') {						
+						pinkEle.innerHTML=pinkEle.innerHTML+'<div>'+newNode.value+"</div>";
+					}else if(target.id==='deleteBtn'){
+						pinkEle.parentNode.removeChild(pinkEle);
+					}
+
+				}
+			}
+
+
+
+
+		};
+	</script>
+</body>
+</html>

@@ -20,6 +20,9 @@ body .container > div {
   height: 100px;
   line-height: 100px;
 }
+body .container .pink {
+  background-color: pink;
+}
 body .btns {
   width: 60%;
   margin: 0 auto;
