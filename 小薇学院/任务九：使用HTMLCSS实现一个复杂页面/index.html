@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>任务九：使用HTML/CSS实现一个复杂页面</title>
+	<link rel="stylesheet" href="less.css" />
+</head>
+<body>
+
+	<div class="container">
+		<div class="header">
+			<div class="square float-left">
+				<div class="lit-square"></div>
+			</div>
+			<div class="login float-right pointer">登录</div>
+			<div class="login-icon float-right pointer"></div>
+			<input type="text" class="float-right" />
+			<div class="search-icon  float-right"></div>
+		</div>
+		<div class="con-left float-left">
+			<div class="user">
+				<div class="user-image pointer float-left"><img src="images/google.png" alt="" /></div>
+				<div class="username float-left">ABC123</div>
+				<div class="fav pointer float-left">
+					<div class="fav-num">110</div>
+					收藏
+				</div>
+				<div class="hr float-left"></div>
+				<div class="fans pointer float-left">
+					<div class="fans-num">313</div>
+					粉丝
+				</div>
+			</div>
+			<ul class="choices ul-level1">
+				<li class="li-level1 active"><div class="img"><div class="filter"></div><img src="images/report.png" alt="icon" /></div><span class="pointer">个人报表</span>
+					<ul class="ul-level2">
+						<li class="li-level2 active"><div class="arrow"></div><div class="img"><div class="filter"></div><img src="images/file.png" alt="icon" /></div><span class="pointer">文件一</span>
+							<ul class="doc">
+								<li class="li-level3 active"><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档1</span></li>
+								<li><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档2</span></li>
+							</ul>
+						</li>
+						<li class="li-level2"><div class="arrow"></div><div class="img"><div class="filter"></div><img src="images/file.png" alt="icon" /></div><span class="pointer">文件二</span>
+							<ul class="doc hidden">
+								<li class="li-level3"><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档1</span></li>
+								<li><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档2</span></li>
+							</ul>
+						</li>
+						<li class="li-level2"><div class="arrow"></div><div class="img"><div class="filter"></div><img src="images/file.png" alt="icon" /></div><span class="pointer">文件三</span>
+							<ul class="doc hidden">
+								<li class="li-level3"><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档1</span></li>
+								<li><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档2</span></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li class="li-level1"><div class="img"><div class="filter"></div><img src="images/report.png" alt="icon" /></div><span class="pointer">个人收藏</span>
+					<ul class="ul-level2 hidden">
+						<li class="li-level2 "><div class="arrow"></div><div class="img"><div class="filter"></div><img src="images/file.png" alt="icon" /></div><span class="pointer">文件一</span>
+							<ul class="doc hidden">
+								<li class="li-level3"><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档1</span></li>
+								<li><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档2</span></li>
+							</ul>
+						</li>
+						<li class="li-level2"><div class="arrow"></div><div class="img"><div class="filter"></div><img src="images/file.png" alt="icon" /></div><span class="pointer">文件二</span>
+							<ul class="doc hidden">
+								<li class="li-level3"><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档1</span></li>
+								<li><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档2</span></li>
+							</ul>
+						</li>
+						<li class="li-level2"><div class="arrow"></div><div class="img"><div class="filter"></div><img src="images/file.png" alt="icon" /></div><span class="pointer">文件三</span>
+							<ul class="doc hidden">
+								<li class="li-level3"><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档1</span></li>
+								<li><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档2</span></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li class="li-level1"><div class="img"><div class="filter"></div><img src="images/report.png" alt="icon" /></div><span class="pointer">我的分享</span>
+					<ul class="ul-level2 hidden">
+						<li class="li-level2 "><div class="arrow"></div><div class="img"><div class="filter"></div><img src="images/file.png" alt="icon" /></div><span class="pointer">文件一</span>
+							<ul class="doc hidden">
+								<li class="li-level3"><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档1</span></li>
+								<li><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档2</span></li>
+							</ul>
+						</li>
+						<li class="li-level2"><div class="arrow"></div><div class="img"><div class="filter"></div><img src="images/file.png" alt="icon" /></div><span class="pointer">文件二</span>
+							<ul class="doc hidden">
+								<li class="li-level3"><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档1</span></li>
+								<li><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档2</span></li>
+							</ul>
+						</li>
+						<li class="li-level2"><div class="arrow"></div><div class="img"><div class="filter"></div><img src="images/file.png" alt="icon" /></div><span class="pointer">文件三</span>
+							<ul class="doc hidden">
+								<li class="li-level3"><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档1</span></li>
+								<li><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档2</span></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li class="li-level1"><div class="img"><div class="filter"></div><img src="images/report.png" alt="icon" /></div><span class="pointer">图库</span>
+					<ul class="ul-level2 hidden">
+						<li class="li-level2 "><div class="arrow"></div><div class="img"><div class="filter"></div><img src="images/file.png" alt="icon" /></div><span class="pointer">文件一</span>
+							<ul class="doc hidden">
+								<li class="li-level3"><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档1</span></li>
+								<li><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档2</span></li>
+							</ul>
+						</li>
+						<li class="li-level2"><div class="arrow"></div><div class="img"><div class="filter"></div><img src="images/file.png" alt="icon" /></div><span class="pointer">文件二</span>
+							<ul class="doc hidden">
+								<li class="li-level3"><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档1</span></li>
+								<li><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档2</span></li>
+							</ul>
+						</li>
+						<li class="li-level2"><div class="arrow"></div><div class="img"><div class="filter"></div><img src="images/file.png" alt="icon" /></div><span class="pointer">文件三</span>
+							<ul class="doc hidden">
+								<li class="li-level3"><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档1</span></li>
+								<li><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档2</span></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li class="li-level1"><div class="img"><div class="filter"></div><img src="images/report.png" alt="icon" /></div><span class="pointer">成长记录</span>
+					<ul class="ul-level2 hidden">
+						<li class="li-level2 "><div class="arrow"></div><div class="img"><div class="filter"></div><img src="images/file.png" alt="icon" /></div><span class="pointer">文件一</span>
+							<ul class="doc hidden">
+								<li class="li-level3"><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档1</span></li>
+								<li><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档2</span></li>
+							</ul>
+						</li>
+						<li class="li-level2"><div class="arrow"></div><div class="img"><div class="filter"></div><img src="images/file.png" alt="icon" /></div><span class="pointer">文件二</span>
+							<ul class="doc hidden">
+								<li class="li-level3"><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档1</span></li>
+								<li><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档2</span></li>
+							</ul>
+						</li>
+						<li class="li-level2"><div class="arrow"></div><div class="img"><div class="filter"></div><img src="images/file.png" alt="icon" /></div><span class="pointer">文件三</span>
+							<ul class="doc hidden">
+								<li class="li-level3"><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档1</span></li>
+								<li><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档2</span></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li class="li-level1"><div class="img"><div class="filter"></div><img src="images/report.png" alt="icon" /></div><span class="pointer">账户信息</span>
+					<ul class="ul-level2 hidden">
+						<li class="li-level2 "><div class="arrow"></div><div class="img"><div class="filter"></div><img src="images/file.png" alt="icon" /></div><span class="pointer">文件一</span>
+							<ul class="doc hidden">
+								<li class="li-level3"><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档1</span></li>
+								<li><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档2</span></li>
+							</ul>
+						</li>
+						<li class="li-level2"><div class="arrow"></div><div class="img"><div class="filter"></div><img src="images/file.png" alt="icon" /></div><span class="pointer">文件二</span>
+							<ul class="doc hidden">
+								<li class="li-level3"><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档1</span></li>
+								<li><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档2</span></li>
+							</ul>
+						</li>
+						<li class="li-level2"><div class="arrow"></div><div class="img"><div class="filter"></div><img src="images/file.png" alt="icon" /></div><span class="pointer">文件三</span>
+							<ul class="doc hidden">
+								<li class="li-level3"><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档1</span></li>
+								<li><div class="img"><div class="filter"></div><img src="images/doc.png" alt="icon" /></div><span class="pointer">文档2</span></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="con-path">
+			<span class="li-level0 pointer">C站</span><span class="slash">/</span>
+			<span class="li-level1 pointer">个人报表</span><span class="slash">/</span>
+			<span class="li-level2 pointer">文件一</span><span class="slash">/</span>
+			<span class="li-level3 pointer active">文档一</span>
+		</div>
+		<div class="con-right">
+			<form class="search">
+				<div class="list">
+					<div class="label">查询项</div>
+					<div class="select">
+						<div id="list" class="select-default pointer">第一项<span class="arrow"></span></div>
+						<ul class="">
+							<li class="option pointer">第一项</li>
+							<li class="option pointer">第二项</li>
+							<li class="option pointer">第三项</li>
+							<li class="option pointer">第四项</li>
+							<li class="option pointer">第五项</li>
+						</ul>
+					</div>
+				</div>
+				<div class="dealer">
+					<div class="buyer">
+						<div class="label">买方</div>
+						<div class="select">
+							<div id="buyer" class="select-default pointer">A<span class="arrow"></span></div>
+							<ul class="">
+								<li class="option pointer">A</li>
+								<li class="option pointer">AA</li>
+								<li class="option pointer">AAA</li>
+							</ul>
+						</div>
+						<div class="right-arrow"></div>
+						<div class="hr"></div>
+					</div>
+					<div class="change">换</div>
+					<div class="seller">
+						<div class="label">卖方</div>
+						<div class="select">
+							<div id="seller" class="select-default pointer">B<span class="arrow"></span></div>
+							<ul class="">
+								<li class="option pointer">B</li>
+								<li class="option pointer">BB</li>
+								<li class="option pointer">BBB</li>
+							</ul>
+						</div>
+						<div class="right-arrow"></div>
+						<div class="hr"></div>
+					</div>
+				</div>
+				<div class="details">
+					<div class="date-chosen">
+						<div class="label">日期</div>
+						<div class="select">
+							<div id="date-chosen" class="select-default pointer">2016-4-1</div>
+						</div>
+					</div>
+					<div class="time-consuming">
+						<div class="label">总耗时</div>
+						<div class="select">
+							<div id="time-consuming" class="select-default pointer">8天<span class="arrow"></span></div>
+							<ul class="">
+								<li class="option pointer">8天</li>
+								<li class="option pointer">80天</li>
+								<li class="option pointer">800天</li>
+							</ul>
+						</div>
+					</div>
+					<div class="participants-number">
+						<div class="label">人数</div>
+						<div class="select">
+							<div id="participants-number" class="select-default pointer">10人<span class="arrow"></span></div>
+							<ul class="">
+								<li class="option pointer">10人</li>
+								<li class="option pointer">100人</li>
+								<li class="option pointer">1000人</li>
+							</ul>
+						</div>
+					</div>
+					<div class="transactions">
+						<div class="label">成交项</div>
+						<div class="select">
+							<div id="transactions" class="select-default pointer">10项<span class="arrow"></span></div>
+							<ul class="">
+								<li class="option pointer">10项</li>
+								<li class="option pointer">100项</li>
+								<li class="option pointer">1000项</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<button id="search-btn" class="pointer">搜索</button>
+			</form>
+			<div class="history-price">
+				<div class="left-arrow pointer float-left"></div>
+				<div class="quote-all float-left">
+					<ul class="float-left">
+						<li class="quote-single float-left pointer active">
+							<div class="time">10:00 am</div>
+							<div class="quote">
+								<div class="icon"></div>
+								<div class="price">1200</div>
+							</div>
+						</li>
+						<li class="quote-single float-left pointer">
+							<div class="time">10:00 am</div>
+							<div class="quote">
+								<div class="icon"></div>
+								<div class="price">1200</div>
+							</div>
+						</li>
+						<li class="quote-single float-left pointer">
+							<div class="time">10:00 am</div>
+							<div class="quote">
+								<div class="icon"></div>
+								<div class="price">1200</div>
+							</div>
+						</li>
+						<li class="quote-single float-left pointer">
+							<div class="time">10:00 am</div>
+							<div class="quote">
+								<div class="icon"></div>
+								<div class="price">1200</div>
+							</div>
+						</li>
+						<li class="quote-single float-left pointer">
+							<div class="time">10:00 am</div>
+							<div class="quote">
+								<div class="icon"></div>
+								<div class="price">1200</div>
+							</div>
+						</li>
+						<li class="quote-single float-left pointer">
+							<div class="time">10:00 am</div>
+							<div class="quote">
+								<div class="icon"></div>
+								<div class="price">1200</div>
+							</div>
+						</li>
+						<li class="quote-single float-left pointer">
+							<div class="time">10:00 am</div>
+							<div class="quote">
+								<div class="icon"></div>
+								<div class="price">1200</div>
+							</div>
+						</li>
+						<li class="quote-single float-left pointer">
+							<div class="time">10:00 am</div>
+							<div class="quote">
+								<div class="icon"></div>
+								<div class="price">1200</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="right-arrow pointer float-left"></div>
+				<div class="history-search float-left pointer">历史查询</div>
+			</div>
+			<h4>2016年4月份统计</h4>
+			<div class="statistics">
+				<div class="vol float-left">
+					<div class="number">11111111</div>
+					<div class="description">成交量</div>
+				</div>
+				<div class="vol float-left">
+					<div class="number">11111111</div>
+					<div class="description">成交量</div>
+				</div>
+				<div class="vol float-left">
+					<div class="number">11111111</div>
+					<div class="description">成交量</div>
+				</div>
+				<div class="vol float-left">
+					<div class="number">11111111</div>
+					<div class="description">成交量</div>
+				</div>
+			</div>
+			<div class="project">
+				<div class="list">
+					<h5>第一组项目</h5>
+					<ul>
+						<li class="active float-left">
+						<div class="number">项目一</div>
+						<div class="table">
+						<table cellspacing="0">
+							<tr>
+								<td class="active">
+									<div class="td">购买材料一</div>
+									<div class="details">
+										<h5>第一组项目</h5>
+										<div class="content">
+											<dl class="item-name">
+												<dt>标题</dt>
+												<dd>购买材料一</dd>
+											</dl>
+											<dl class="item-price">
+												<dt>价格</dt>
+												<dd>158</dd>
+											</dl>
+											<dl class="item-leader">
+												<dt>负责人</dt>
+												<dd>小A</dd>
+											</dl>
+											<dl class="item-description">
+												<dt>详细描述</dt>
+												<dd>该项目目前负责人是。。。</dd>
+											</dl>
+											<dl class="agreement">
+												<input type="checkbox" checked="true" />
+												<input type="text" value="遵守保密协议" disabled="true" />
+												<button class="float-right">搜索</button>												
+											</dl>
+										</div>
+									</div>
+								</td>
+								<td>购买材料一</td>
+								<td>购买材料一</td>
+								<td>购买材料一</td>
+							</tr>
+							<tr>
+								<td>购买材料一</td>
+								<td>购买材料一</td>
+								<td>购买材料一</td>
+								<td>购买材料一</td>
+							</tr>
+							<tr>
+								<td>购买材料一</td>
+								<td>购买材料一</td>
+								<td>购买材料一</td>
+								<td>购买材料一</td>
+							</tr>
+							<tr>
+								<td>购买材料一</td>
+								<td>购买材料一</td>
+								<td>购买材料一</td>
+								<td>购买材料一</td>
+							</tr>
+							<tr>
+								<td>购买材料一</td>
+								<td>购买材料一</td>
+								<td>购买材料一</td>
+								<td>购买材料一</td>
+							</tr>
+							<tr>
+								<td>购买材料一</td>
+								<td>购买材料一</td>
+								<td>购买材料一</td>
+								<td>购买材料一</td>
+							</tr>
+						</table>
+						</div>
+						</li>
+						<li class="float-left"><div class="number">项目二</div><div class="table">
+						<table cellspacing="0">
+							<tr>
+								<td class="active">
+									<div class="td">购买材料二</div>
+									<div class="details">
+										<h5>第一组项目</h5>
+										<div class="content">
+											<dl class="item-name">
+												<dt>标题</dt>
+												<dd>购买材料二</dd>
+											</dl>
+											<dl class="item-price">
+												<dt>价格</dt>
+												<dd>158</dd>
+											</dl>
+											<dl class="item-leader">
+												<dt>负责人</dt>
+												<dd>小A</dd>
+											</dl>
+											<dl class="item-description">
+												<dt>详细描述</dt>
+												<dd>该项目目前负责人是。。。</dd>
+											</dl>
+											<dl class="agreement">
+												<input type="checkbox" checked="true" />
+												<input type="text" value="遵守保密协议" disabled="true" />
+												<button class="float-right">搜索</button>												
+											</dl>
+										</div>
+									</div>
+								</td>
+								<td>购买材料二</td>
+								<td>购买材料二</td>
+								<td>购买材料二</td>
+							</tr>
+							<tr>
+								<td>购买材料二</td>
+								<td>购买材料二</td>
+								<td>购买材料二</td>
+								<td>购买材料二</td>
+							</tr>
+							<tr>
+								<td>购买材料二</td>
+								<td>购买材料二</td>
+								<td>购买材料二</td>
+								<td>购买材料二</td>
+							</tr>
+							<tr>
+								<td>购买材料二</td>
+								<td>购买材料二</td>
+								<td>购买材料二</td>
+								<td>购买材料二</td>
+							</tr>
+							<tr>
+								<td>购买材料二</td>
+								<td>购买材料二</td>
+								<td>购买材料二</td>
+								<td>购买材料二</td>
+							</tr>
+							<tr>
+								<td>购买材料二</td>
+								<td>购买材料二</td>
+								<td>购买材料二</td>
+								<td>购买材料二</td>
+							</tr>
+						</table>
+						</div></li>
+						<li class="float-left"><div class="number">项目三</div><div class="table">
+						<table cellspacing="0">
+							<tr>
+								<td class="active">
+									<div class="td">购买材料三</div>
+									<div class="details">
+										<h5>第一组项目</h5>
+										<div class="content">
+											<dl class="item-name">
+												<dt>标题</dt>
+												<dd>购买材料三</dd>
+											</dl>
+											<dl class="item-price">
+												<dt>价格</dt>
+												<dd>158</dd>
+											</dl>
+											<dl class="item-leader">
+												<dt>负责人</dt>
+												<dd>小A</dd>
+											</dl>
+											<dl class="item-description">
+												<dt>详细描述</dt>
+												<dd>该项目目前负责人是。。。</dd>
+											</dl>
+											<dl class="agreement">
+												<input type="checkbox" checked="true" />
+												<input type="text" value="遵守保密协议" disabled="true" />
+												<button class="float-right">搜索</button>												
+											</dl>
+										</div>
+									</div>
+								</td>
+								<td>购买材料三</td>
+								<td>购买材料三</td>
+								<td>购买材料三</td>
+							</tr>
+							<tr>
+								<td>购买材料三</td>
+								<td>购买材料三</td>
+								<td>购买材料三</td>
+								<td>购买材料三</td>
+							</tr>
+							<tr>
+								<td>购买材料三</td>
+								<td>购买材料三</td>
+								<td>购买材料三</td>
+								<td>购买材料三</td>
+							</tr>
+							<tr>
+								<td>购买材料三</td>
+								<td>购买材料三</td>
+								<td>购买材料三</td>
+								<td>购买材料三</td>
+							</tr>
+							<tr>
+								<td>购买材料三</td>
+								<td>购买材料三</td>
+								<td>购买材料三</td>
+								<td>购买材料三</td>
+							</tr>
+							<tr>
+								<td>购买材料三</td>
+								<td>购买材料三</td>
+								<td>购买材料三</td>
+								<td>购买材料三</td>
+							</tr>
+						</table>
+						</div></li>
+						<li class="float-left"><div class="number">项目四</div><div class="table">
+						<table cellspacing="0">
+							<tr>
+								<td class="active">
+									<div class="td">购买材料四</div>
+									<div class="details">
+										<h5>第一组项目</h5>
+										<div class="content">
+											<dl class="item-name">
+												<dt>标题</dt>
+												<dd>购买材料四</dd>
+											</dl>
+											<dl class="item-price">
+												<dt>价格</dt>
+												<dd>158</dd>
+											</dl>
+											<dl class="item-leader">
+												<dt>负责人</dt>
+												<dd>小A</dd>
+											</dl>
+											<dl class="item-description">
+												<dt>详细描述</dt>
+												<dd>该项目目前负责人是。。。</dd>
+											</dl>
+											<dl class="agreement">
+												<input type="checkbox" checked="true" />
+												<input type="text" value="遵守保密协议" disabled="true" />
+												<button class="float-right">搜索</button>												
+											</dl>
+										</div>
+									</div>
+								</td>
+								<td>购买材料四</td>
+								<td>购买材料四</td>
+								<td>购买材料四</td>
+							</tr>
+							<tr>
+								<td>购买材料四</td>
+								<td>购买材料四</td>
+								<td>购买材料四</td>
+								<td>购买材料四</td>
+							</tr>
+							<tr>
+								<td>购买材料四</td>
+								<td>购买材料四</td>
+								<td>购买材料四</td>
+								<td>购买材料四</td>
+							</tr>
+							<tr>
+								<td>购买材料四</td>
+								<td>购买材料四</td>
+								<td>购买材料四</td>
+								<td>购买材料四</td>
+							</tr>
+							<tr>
+								<td>购买材料四</td>
+								<td>购买材料四</td>
+								<td>购买材料四</td>
+								<td>购买材料四</td>
+							</tr>
+							<tr>
+								<td>购买材料四</td>
+								<td>购买材料四</td>
+								<td>购买材料四</td>
+								<td>购买材料四</td>
+							</tr>
+						</table>
+						</div></li>
+						<li class="float-left"><div class="number">项目五</div><div class="table">
+						<table cellspacing="0">
+							<tr>
+								<td class="active">
+									<div class="td">购买材料五</div>
+									<div class="details">
+										<h5>第一组项目</h5>
+										<div class="content">
+											<dl class="item-name">
+												<dt>标题</dt>
+												<dd>购买材料五</dd>
+											</dl>
+											<dl class="item-price">
+												<dt>价格</dt>
+												<dd>158</dd>
+											</dl>
+											<dl class="item-leader">
+												<dt>负责人</dt>
+												<dd>小A</dd>
+											</dl>
+											<dl class="item-description">
+												<dt>详细描述</dt>
+												<dd>该项目目前负责人是。。。</dd>
+											</dl>
+											<dl class="agreement">
+												<input type="checkbox" checked="true" />
+												<input type="text" value="遵守保密协议" disabled="true" />
+												<button class="float-right">搜索</button>												
+											</dl>
+										</div>
+									</div>
+								</td>
+								<td>购买材料五</td>
+								<td>购买材料五</td>
+								<td>购买材料五</td>
+							</tr>
+							<tr>
+								<td>购买材料五</td>
+								<td>购买材料五</td>
+								<td>购买材料五</td>
+								<td>购买材料五</td>
+							</tr>
+							<tr>
+								<td>购买材料五</td>
+								<td>购买材料五</td>
+								<td>购买材料五</td>
+								<td>购买材料五</td>
+							</tr>
+							<tr>
+								<td>购买材料五</td>
+								<td>购买材料五</td>
+								<td>购买材料五</td>
+								<td>购买材料五</td>
+							</tr>
+							<tr>
+								<td>购买材料五</td>
+								<td>购买材料五</td>
+								<td>购买材料五</td>
+								<td>购买材料五</td>
+							</tr>
+							<tr>
+								<td>购买材料五</td>
+								<td>购买材料五</td>
+								<td>购买材料五</td>
+								<td>购买材料五</td>
+							</tr>
+						</table>
+						</div></li>
+					</ul>
+				</div>
+				<div class="details"></div>
+			</div>
+			<div class="calendar">
+				<h5>日历</h5>
+				<div class="date-details">
+					<div class="select">
+						<div id="year" class="select-default pointer">2016年</div>
+						<ul class="">
+							<li class="option pointer">2013年</li>
+							<li class="option pointer">2014年</li>
+							<li class="option pointer">2015年</li>
+							<li class="option pointer">2016年</li>
+							<li class="option pointer">2017年</li>
+						</ul>
+					</div>	
+					<div class="select">
+						<div id="month" class="select-default pointer">9月</div>
+						<ul class="">
+							<li class="option pointer">8月</li>
+							<li class="option pointer">9月</li>
+							<li class="option pointer">10月</li>
+							<li class="option pointer">11月</li>
+							<li class="option pointer">12月</li>
+						</ul>
+					</div>	
+					<div class="select">
+					<div id="specify-date" class="select-default pointer">标注日期</div>
+						<ul class="">
+							<li class="option pointer">2日</li>
+							<li class="option pointer">3日</li>
+							<li class="option pointer">4日</li>
+							<li class="option pointer">5日</li>
+							<li class="option pointer">6日</li>
+						</ul>
+					</div>				
+					<div id="back-today">返回今天</div>
+					<div class="day">
+						<div>一</div>
+						<div>二</div>
+						<div>三</div>
+						<div>四</div>
+						<div>五</div>
+						<div>六</div>
+						<div>日</div>
+					</div>
+					<div class="single-date">
+						<div class="date-number"><div></div><div></div></div>
+						<div class="date-number"><div></div><div></div></div>
+						<div class="date-number"><div></div><div></div></div>
+						<div class="date-number"><div></div><div></div></div>
+						<div class="date-number festival"><div>1</div><div>愚人节</div></div>
+						<div class="date-number weekend"><div>2</div><div>廿六</div></div>
+						<div class="date-number weekend"><div>3</div><div>廿七</div></div>
+						<div class="date-number"><div>4</div><div>廿六</div></div>
+						<div class="date-number active"><div>5</div><div>廿五</div></div>
+						<div class="date-number"><div>6</div><div>廿六</div></div>
+						<div class="date-number festival"><div>7</div><div>清明节</div></div>
+						<div class="date-number"><div>8</div><div>廿六</div></div>
+						<div class="date-number weekend"><div>9</div><div>廿五</div></div>
+						<div class="date-number weekend"><div>10</div><div>廿六</div></div>
+						<div class="date-number"><div>11</div><div>廿五</div></div>
+						<div class="date-number"><div>12</div><div>廿六</div></div>
+						<div class="date-number"><div>13</div><div>廿五</div></div>
+						<div class="date-number active"><div>14</div><div>廿六</div></div>
+						<div class="date-number"><div>15</div><div>廿五</div></div>
+						<div class="date-number weekend"><div>16</div><div>廿六</div></div>
+						<div class="date-number weekend"><div>17</div><div>廿五</div></div>
+						<div class="date-number"><div>18</div><div>廿六</div></div>
+						<div class="date-number"><div>19</div><div>廿五</div></div>
+						<div class="date-number"><div>20</div><div>廿六</div></div>
+						<div class="date-number"><div>21</div><div>廿五</div></div>
+						<div class="date-number"><div>22</div><div>廿六</div></div>
+						<div class="date-number weekend"><div>23</div><div>廿五</div></div>
+						<div class="date-number weekend"><div>24</div><div>廿六</div></div>
+						<div class="date-number"><div>25</div><div>廿五</div></div>
+						<div class="date-number"><div>26</div><div>廿六</div></div>
+						<div class="date-number active"><div>27</div><div>廿五</div></div>
+						<div class="date-number"><div>28</div><div>廿六</div></div>
+						<div class="date-number"><div>29</div><div>廿五</div></div>
+						<div class="date-number weekend"><div>30</div><div>廿六</div></div>
+
+					</div>
+				</div>
+			</div>			
+			<div class="rank-list">
+				<h5>汽车行业排行榜</h5>
+				<table cellspacing="0">
+					<thead>
+						<th>排名</th>
+						<th>品牌</th>
+						<th>搜索指数</th>
+					</thead>
+					<tr>
+						<td>1</td>
+						<td>大众</td>
+						<td>111111111</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>大众</td>
+						<td>111111111</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>大众</td>
+						<td>111111111</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>大众</td>
+						<td>111111111</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>大众</td>
+						<td>111111111</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>大众</td>
+						<td>111111111</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>大众</td>
+						<td>111111111</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>大众</td>
+						<td>111111111</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>大众</td>
+						<td>111111111</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>大众</td>
+						<td>111111111</td>
+					</tr>
+					
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
