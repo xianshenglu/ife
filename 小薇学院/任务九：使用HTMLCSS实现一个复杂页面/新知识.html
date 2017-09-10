@@ -9,6 +9,11 @@
 	http://blog.csdn.net/q121516340/article/details/51483439
 
 三、inline-block 只要视觉上有空隙，实际上浏览器就认为有空隙,这个时候如果点击的是空隙区域，浏览器会认为你点的是父元素，而不是实际上已经覆盖的元素；
+用 inline-block 最好加上 vertical-align:middle 因为在IE8情况下，可以避免很多问题，可以理解为，现代浏览器认为理所当然的，IE8需要指定才会正常布局；
 
 四、即使父元素由于子元素浮动或者绝对定位坍缩了，当鼠标滑过子元素时，父元素仍然被滑过，触发冒泡是按照html代码结构的，而不是按照图形上占据的结果来看的；
-伪类上的冒泡
+伪类上的冒泡;
+
+五、伪类兼容IE8，last-child=first-child+ele+ele+...
+
+六、table的td边距不是通过CSS控制，，，cell-spacing 特性

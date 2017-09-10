@@ -123,6 +123,9 @@ li {
 		.user {
 			overflow: hidden;
 			margin-bottom: 20px;
+			.name-photo {
+				overflow: hidden;
+			}
 			.user-image {
 				width: 59px;
 				height: 59px;
@@ -320,9 +323,11 @@ li {
 			padding: 15px 0 15px 30px;
 			&>div {
 				height: 56px;
+				vertical-align: middle;
 			}
-			* {
+			div {
 				display: inline-block;
+				vertical-align: middle;
 			}
 			ul,li {
 				display: block;
@@ -390,7 +395,6 @@ li {
 			}
 			.list {
 				position: relative;
-				top:-30px;
 				margin-right: 36px;
 				.select {
 					width: 58px;
@@ -418,7 +422,7 @@ li {
 						width: 14px;
 						position: relative;
 						left:2px;
-						top:-3px;
+						top:0;
 					}
 				}
 				.change {
@@ -434,34 +438,33 @@ li {
 					&:before {
 						content: '';
 						width: 0;
-						height: 4px;
+						height: 6px;
 						border: 1px solid #aaaaaa;
 						display: block;
 						position: absolute;
-						right: 7px;
-						top: -6px;
+						right: 6px;
+						top: -8px;
 					}
 					&:after {
 						content: '';
 						width: 0;
-						height: 4px;
+						height: 6px;
 						border: 1px solid #aaaaaa;
 						display: block;
 						position: absolute;					
-						right: 7px;
+						right: 6px;
 						top: 16px;
 					}
 				}
 			}
 			.details {
-				/* position: relative; */
 				width: 297px;
 				margin-right: 30px;
 				&>div {
 					margin-bottom: 5px;
 				}				
 				.date-chosen,.participants-number {
-					margin-right: 12px;
+					margin-right: 11px;
 				}
 				.date-chosen,.transactions {
 					.select {
@@ -481,8 +484,7 @@ li {
 				text-align: center;
 				color: white;
 				background-color: #228ac1;
-				position: relative;
-				top: -15px;
+				position: relative;				
 				border-radius: 5px;
 			}
 		}
@@ -597,6 +599,7 @@ li {
 								font-size: 21px;
 								color:#ec6500;
 								position: relative;
+								margin-left: -1px;
 								&:before {
 									content: '';
 									display: block;
@@ -661,7 +664,7 @@ li {
 					right: 14px;
 				}
 			}
-			.vol:nth-child(1) {					
+			.vol:first-child {					
 				border-left: 3px solid #43b29d;					
 				&:after {					
 					background-color: #43b29d;
@@ -680,6 +683,26 @@ li {
 				}
 			}
 			.vol:nth-child(4) {					
+				border-left: 3px solid #e1cd46;
+				margin-right: 0;
+				&:after {					
+					background-color: #e1cd46;
+				}
+			}
+			//兼容IE8
+			.vol:first-child + div {					
+				border-left: 3px solid #398ac1;
+				&:after {					
+					background-color: #398ac1;
+				}	
+			}
+			.vol:first-child + div + div {					
+				border-left: 3px solid #cf4b36;
+				&:after {					
+					background-color: #cf4b36;
+				}
+			}
+			.vol:first-child + div + div + div {					
 				border-left: 3px solid #e1cd46;
 				margin-right: 0;
 				&:after {					
@@ -957,7 +980,7 @@ li {
 					border-bottom:1px solid #e1e2e2;
 					div {
 						display: inline-block;
-						width: 41px;
+						width: 40px;
 						height: 30px;		
 						line-height: 30px;
 						text-align: center;				
@@ -967,8 +990,8 @@ li {
 					.date-number {
 						display: inline-block;
 						margin: 1px -1px;
-						width: 41px;
-						height: 41px;
+						width: 40px;
+						height: 40px;
 						vertical-align: middle;
 						border: 1px solid transparent;
 						text-align: center;						
@@ -982,7 +1005,7 @@ li {
 						border-color: #f4c11c;
 					}
 					.festival {
-						div:last-child {
+						div:first-child+div {
 							color:#cd3539;
 						}
 					}
@@ -1018,6 +1041,11 @@ li {
 						padding-left:30px;
 						width: 260px;
 					}
+					&:first-child+th+th {
+						text-align: left;
+						padding-left:30px;
+						width: 260px;
+					}
 				}
 				td:nth-child(3) {
 					text-align: left;
@@ -1042,11 +1070,34 @@ li {
 						top:13px;								
 					}
 				}
-				tr:last-child {
+				td:first-child+td+td {
+					text-align: left;
+					padding-left:30px;
+					width: 260px;
+					position: relative;					
+					&:before,&:after {
+						content: '';
+						display: block;
+						position: absolute;
+						left: 104px;						
+						height: 0;
+					}
+					&:before {
+						width: 168px;
+						border-top:4px solid #dddddd;								
+						top:13px;								
+					}
+					&:after {
+						border-top:4px solid #ec6d51;	
+						width: 130px;												
+						top:13px;								
+					}
+				}
+				.last-tr {
 					td {
 						border-bottom: none;						
 					}
-				}
+				}				
 			}
 		}
 

@@ -115,6 +115,9 @@ li {
   overflow: hidden;
   margin-bottom: 20px;
 }
+.container .con-left .user .name-photo {
+  overflow: hidden;
+}
 .container .con-left .user .user-image {
   width: 59px;
   height: 59px;
@@ -303,9 +306,11 @@ li {
 }
 .container .con-right .search > div {
   height: 56px;
+  vertical-align: middle;
 }
-.container .con-right .search * {
+.container .con-right .search div {
   display: inline-block;
+  vertical-align: middle;
 }
 .container .con-right .search ul,
 .container .con-right .search li {
@@ -370,7 +375,6 @@ li {
 }
 .container .con-right .search .list {
   position: relative;
-  top: -30px;
   margin-right: 36px;
 }
 .container .con-right .search .list .select {
@@ -404,7 +408,7 @@ li {
   width: 14px;
   position: relative;
   left: 2px;
-  top: -3px;
+  top: 0;
 }
 .container .con-right .search .dealer .change {
   position: absolute;
@@ -420,25 +424,24 @@ li {
 .container .con-right .search .dealer .change:before {
   content: '';
   width: 0;
-  height: 4px;
+  height: 6px;
   border: 1px solid #aaaaaa;
   display: block;
   position: absolute;
-  right: 7px;
-  top: -6px;
+  right: 6px;
+  top: -8px;
 }
 .container .con-right .search .dealer .change:after {
   content: '';
   width: 0;
-  height: 4px;
+  height: 6px;
   border: 1px solid #aaaaaa;
   display: block;
   position: absolute;
-  right: 7px;
+  right: 6px;
   top: 16px;
 }
 .container .con-right .search .details {
-  /* position: relative; */
   width: 297px;
   margin-right: 30px;
 }
@@ -447,7 +450,7 @@ li {
 }
 .container .con-right .search .details .date-chosen,
 .container .con-right .search .details .participants-number {
-  margin-right: 12px;
+  margin-right: 11px;
 }
 .container .con-right .search .details .date-chosen .select,
 .container .con-right .search .details .transactions .select {
@@ -465,7 +468,6 @@ li {
   color: white;
   background-color: #228ac1;
   position: relative;
-  top: -15px;
   border-radius: 5px;
 }
 .container .con-right .history-price {
@@ -582,6 +584,7 @@ li {
   font-size: 21px;
   color: #ec6500;
   position: relative;
+  margin-left: -1px;
 }
 .container .con-right .history-price .quote-all ul .quote-single .quote .price:before {
   content: '';
@@ -640,10 +643,10 @@ li {
   top: 12px;
   right: 14px;
 }
-.container .con-right .statistics .vol:nth-child(1) {
+.container .con-right .statistics .vol:first-child {
   border-left: 3px solid #43b29d;
 }
-.container .con-right .statistics .vol:nth-child(1):after {
+.container .con-right .statistics .vol:first-child:after {
   background-color: #43b29d;
 }
 .container .con-right .statistics .vol:nth-child(2) {
@@ -663,6 +666,25 @@ li {
   margin-right: 0;
 }
 .container .con-right .statistics .vol:nth-child(4):after {
+  background-color: #e1cd46;
+}
+.container .con-right .statistics .vol:first-child + div {
+  border-left: 3px solid #398ac1;
+}
+.container .con-right .statistics .vol:first-child + div:after {
+  background-color: #398ac1;
+}
+.container .con-right .statistics .vol:first-child + div + div {
+  border-left: 3px solid #cf4b36;
+}
+.container .con-right .statistics .vol:first-child + div + div:after {
+  background-color: #cf4b36;
+}
+.container .con-right .statistics .vol:first-child + div + div + div {
+  border-left: 3px solid #e1cd46;
+  margin-right: 0;
+}
+.container .con-right .statistics .vol:first-child + div + div + div:after {
   background-color: #e1cd46;
 }
 .container .con-right .project {
@@ -926,7 +948,7 @@ li {
 }
 .container .con-right .calendar .date-details .day div {
   display: inline-block;
-  width: 41px;
+  width: 40px;
   height: 30px;
   line-height: 30px;
   text-align: center;
@@ -934,8 +956,8 @@ li {
 .container .con-right .calendar .date-details .single-date .date-number {
   display: inline-block;
   margin: 1px -1px;
-  width: 41px;
-  height: 41px;
+  width: 40px;
+  height: 40px;
   vertical-align: middle;
   border: 1px solid transparent;
   text-align: center;
@@ -946,7 +968,7 @@ li {
 .container .con-right .calendar .date-details .single-date .active {
   border-color: #f4c11c;
 }
-.container .con-right .calendar .date-details .single-date .festival div:last-child {
+.container .con-right .calendar .date-details .single-date .festival div:first-child + div {
   color: #cd3539;
 }
 .container .con-right .rank-list {
@@ -982,6 +1004,11 @@ li {
   padding-left: 30px;
   width: 260px;
 }
+.container .con-right .rank-list table th:first-child + th + th {
+  text-align: left;
+  padding-left: 30px;
+  width: 260px;
+}
 .container .con-right .rank-list table td:nth-child(3) {
   text-align: left;
   padding-left: 30px;
@@ -1006,6 +1033,30 @@ li {
   width: 130px;
   top: 13px;
 }
-.container .con-right .rank-list table tr:last-child td {
+.container .con-right .rank-list table td:first-child + td + td {
+  text-align: left;
+  padding-left: 30px;
+  width: 260px;
+  position: relative;
+}
+.container .con-right .rank-list table td:first-child + td + td:before,
+.container .con-right .rank-list table td:first-child + td + td:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 104px;
+  height: 0;
+}
+.container .con-right .rank-list table td:first-child + td + td:before {
+  width: 168px;
+  border-top: 4px solid #dddddd;
+  top: 13px;
+}
+.container .con-right .rank-list table td:first-child + td + td:after {
+  border-top: 4px solid #ec6d51;
+  width: 130px;
+  top: 13px;
+}
+.container .con-right .rank-list table .last-tr td {
   border-bottom: none;
 }
