@@ -989,6 +989,10 @@ li {
   width: 450px;
   height: 274px;
 }
+.container .con-right .rank-list table tr:hover {
+  cursor: pointer;
+  background-color: #f4f5f6;
+}
 .container .con-right .rank-list table th,
 .container .con-right .rank-list table td {
   border-right: 1px solid #c5c6c6;
