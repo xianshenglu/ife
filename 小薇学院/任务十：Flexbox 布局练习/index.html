@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<title>index</title>
+	<style>
+	* {
+		padding:0;
+		margin:0;
+	}
+	html,body,.flex-container {
+		height: 100%;
+	}
+	body {
+		padding:20px;		
+	}
+	.flex-container {
+		display: flex;
+		align-content: center;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-between;		
+		align-items: center;
+		align-content: space-around;
+	}
+	li {
+		width: 150px;
+		padding:20px;
+		border: 1px solid red;
+		list-style-type: none;
+		order: 1;		
+	}
+	li:nth-child(1) {
+		height: 120px;
+	}
+	li:nth-child(2) {
+		height: 100px;
+	}
+	li:nth-child(3) {
+		height: 40px;
+	}
+	li:nth-child(4) {
+		height: 200px;
+		border-color: blue;
+	}
+	@media screen and (max-width: 644px) {
+		.flex-container {
+			flex-wrap: wrap;
+		}
+		li:nth-child(4) {			
+			border-color: green;
+			order:0;
+		}
+	}
+</style>
+</head>
+<body>
+	<div class="flex-container">
+		<li class="flex-item"></li>
+		<li class="flex-item"></li>
+		<li class="flex-item"></li>
+		<li class="flex-item"></li>
+	</div>
+</body>
+</html>	
