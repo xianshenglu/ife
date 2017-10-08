@@ -1,0 +1,75 @@
+.container {
+	width: 800px;
+	margin:0 auto;
+	.task1 {
+		width: 400px;
+		margin:0 auto;
+		margin-bottom: 10px;
+		table {
+			margin:0 auto;
+			tbody>tr:nth-child(2n) {
+				background-color: #cccccc;
+			}
+			thead>tr:first-child {
+				background-color: black;
+				color: white;
+			}
+			tbody>tr:nth-child(1),tbody>tr:nth-child(2),tbody>tr:nth-child(3) {
+				color: red;
+			}
+		}		
+	}
+	.task2 {
+		width: 400px;
+		margin:0 auto;
+		margin-bottom: 10px;
+		input {
+			margin:0 auto;
+			display: block;
+			width: 200px;
+			transition: width 1s;
+		}
+		input:focus {
+			width: 400px;			
+		}
+	}	
+	.task3 {
+		width: 400px;
+		height: 200px;
+		background-color: #008100;
+		margin: 0 auto;
+		margin-bottom: 10px;
+		position: relative;	
+		div {
+			width: 40px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			position: absolute;
+			bottom: 0;
+			right: 0;		
+			z-index: 1;
+			background-color: rgba(255,255,255,0.5);
+			color:white;	
+		}
+		div:nth-child(2) {
+			right: 40px;
+			margin: 0 2px;
+		}
+		div:nth-child(3) {
+			right: 84px;
+		}
+		span {
+			display: block;
+			width: 0%;
+			height: 100%;
+			background-color: rgb(0, 0, 253);		
+			transition: width 2s;	
+		}
+	}
+	.task3:hover {
+		span {
+			width: 100%;
+		}
+	}		
+}

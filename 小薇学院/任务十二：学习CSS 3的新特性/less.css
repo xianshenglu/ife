@@ -1,0 +1,75 @@
+.container {
+  width: 800px;
+  margin: 0 auto;
+}
+.container .task1 {
+  width: 400px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+.container .task1 table {
+  margin: 0 auto;
+}
+.container .task1 table tbody > tr:nth-child(2n) {
+  background-color: #cccccc;
+}
+.container .task1 table thead > tr:first-child {
+  background-color: black;
+  color: white;
+}
+.container .task1 table tbody > tr:nth-child(1),
+.container .task1 table tbody > tr:nth-child(2),
+.container .task1 table tbody > tr:nth-child(3) {
+  color: red;
+}
+.container .task2 {
+  width: 400px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+.container .task2 input {
+  margin: 0 auto;
+  display: block;
+  width: 200px;
+  transition: width 1s;
+}
+.container .task2 input:focus {
+  width: 400px;
+}
+.container .task3 {
+  width: 400px;
+  height: 200px;
+  background-color: #008100;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  position: relative;
+}
+.container .task3 div {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: white;
+}
+.container .task3 div:nth-child(2) {
+  right: 40px;
+  margin: 0 2px;
+}
+.container .task3 div:nth-child(3) {
+  right: 84px;
+}
+.container .task3 span {
+  display: block;
+  width: 0%;
+  height: 100%;
+  background-color: #0000fd;
+  transition: width 2s;
+}
+.container .task3:hover span {
+  width: 100%;
+}
