@@ -1,0 +1,252 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  letter-spacing: 0.04rem;
+  font-weight: normal;
+}
+.inline-block {
+  display: inline-block;
+}
+button {
+  border: none;
+  outline: none;
+}
+body {
+  font-family: '微软雅黑';
+  height: 39.44rem;
+  width: 10rem;
+}
+.flex-container {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #f5f5f5;
+}
+.flex-container .header {
+  background-color: #91d4da;
+  color: white;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  height: 1.14rem;
+  line-height: 1.14rem;
+  position: relative;
+}
+.flex-container .header button {
+  background-color: #91d4da;
+  color: white;
+  font-size: 0.48rem;
+  height: 1.14rem;
+  line-height: 1.14rem;
+  position: absolute;
+  margin-left: 0.75rem;
+  text-align: left;
+}
+.flex-container .header button:before {
+  content: '';
+  border: 0.29rem solid transparent;
+  border-right: 0.29rem solid white;
+  position: absolute;
+  left: -0.7rem;
+  top: 0.24rem;
+}
+.flex-container .header button:after {
+  content: '';
+  border: 0.29rem solid transparent;
+  border-right: 0.29rem solid #91d4da;
+  position: absolute;
+  left: -0.6rem;
+  top: 0.24rem;
+}
+.flex-container .header h4 {
+  width: 100%;
+  text-align: center;
+  font-size: 0.48rem;
+}
+.flex-container .nav {
+  width: 100%;
+  height: 6.64rem;
+  position: relative;
+  font-size: 0.4rem;
+  background-color: #fff;
+}
+.flex-container .nav > div {
+  width: 20%;
+  height: 20%;
+  text-align: center;
+  margin-right: -0.2rem;
+  overflow: hidden;
+}
+.flex-container .nav > div h4 {
+  height: 100%;
+  line-height: 1.16rem;
+  border-bottom: 0.1rem solid transparent;
+}
+.flex-container .nav > div h4:hover,
+.flex-container .nav > div h4.active {
+  border-color: #91d4da;
+}
+.flex-container .nav > div img {
+  width: 100%;
+  height: 81%;
+  position: absolute;
+  top: 20%;
+  left: 0;
+}
+.flex-container .tag {
+  height: 2.95rem;
+  width: 100%;
+  padding: 0.44rem 0.3rem 0;
+  background-color: #fff;
+}
+.flex-container .tag > div {
+  width: 1.88rem;
+  margin-right: -0.34em;
+  text-align: center;
+  border-bottom: 0.01rem solid #8a8686;
+}
+.flex-container .tag > div > div {
+  width: 1.24rem;
+  height: 1.24rem;
+  background-color: #00c8d6;
+  margin: 0 auto;
+  margin-bottom: -0.2rem;
+  border-radius: 0.62rem;
+}
+.flex-container .tag > div > div > img {
+  height: 50%;
+  width: 50%;
+  vertical-align: middle;
+  margin-bottom: 25%;
+}
+.flex-container .tag > div span {
+  font-size: 0.36rem;
+}
+.flex-container .muti-colu {
+  height: 4.18rem;
+  width: 100%;
+  background-color: #fff;
+  padding: 0.4rem 0.35rem;
+  margin-bottom: 0.33rem;
+  position: relative;
+  top: -0.05rem;
+}
+.flex-container .muti-colu > div {
+  width: 3.08rem;
+  height: 3.4rem;
+  margin-right: -0.34rem;
+}
+.flex-container .muti-colu > div img {
+  width: 2.2rem;
+  height: 1.8rem;
+  margin: 0 0 -0.1rem 0.44rem;
+}
+.flex-container .muti-colu > div h1,
+.flex-container .muti-colu > div h4 {
+  width: 100%;
+  text-align: center;
+}
+.flex-container .muti-colu > div h1 {
+  font-size: 0.46rem;
+  margin-bottom: 0.2rem;
+}
+.flex-container .muti-colu > div h4 {
+  font-size: 0.35rem;
+}
+.flex-container .muti-colu > div:nth-child(2) {
+  border-left: 0.01rem solid #8a8686;
+  border-right: 0.01rem solid #8a8686;
+}
+.flex-container .module {
+  height: 6.62rem;
+  width: 100%;
+  background-color: #fff;
+  padding: 0 0.35rem;
+  margin-bottom: 0.4rem;
+}
+.flex-container .module h3 {
+  width: 100%;
+  height: 1.18rem;
+  line-height: 1.18rem;
+  border-bottom: 0.01rem solid #8a8686;
+  font-size: 0.47rem;
+  margin-bottom: 0.4rem;
+}
+.flex-container .module .img {
+  width: 2.36rem;
+  height: 4.75rem;
+  float: left;
+}
+.flex-container .module .img img {
+  height: 2.22rem;
+  display: block;
+  border: 0.01rem solid #f8a718;
+  margin-bottom: 0.25rem;
+}
+.flex-container .module .con {
+  width: 6.9rem;
+  height: 4.75rem;
+}
+.flex-container .module .con span {
+  width: 3.2rem;
+  height: 1rem;
+  line-height: 1rem;
+  margin: 0 0 0.25rem 0.25rem;
+  font-size: 0.35rem;
+  text-align: center;
+  background-color: #f8f8f8;
+  float: left;
+}
+.flex-container .article {
+  height: 2.48rem;
+  width: 100%;
+  margin-bottom: 0.2rem;
+  padding: 0.25rem 0.3rem;
+  background-color: #fff;
+  position: relative;
+}
+.flex-container .article img {
+  float: left;
+  width: 2.8rem;
+  height: 2rem;
+}
+.flex-container .article h3,
+.flex-container .article .info {
+  float: left;
+  margin-left: 0.25rem;
+}
+.flex-container .article h3 {
+  width: 6rem;
+  font-size: 0.44rem;
+  margin-bottom: 0.3rem;
+}
+.flex-container .article .info {
+  position: absolute;
+  left: 3.05rem;
+  bottom: 0.12rem;
+}
+.flex-container .article .info span {
+  color: #c5c5c5;
+  font-size: 0.35rem;
+  margin-bottom: 0.25rem;
+}
+.flex-container .article:last-child {
+  height: 4.2rem;
+}
+.flex-container .article:last-child h3 {
+  width: 100%;
+  margin-left: 0;
+}
+.flex-container .article:last-child img:nth-child(3) {
+  margin: 0 0.05rem;
+}
+.flex-container .article:last-child img {
+  width: 3.1rem;
+  height: 2.06rem;
+}
+.flex-container .article:last-child .info {
+  left: 0.3rem;
+  margin-left: 0;
+}
