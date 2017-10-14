@@ -8,6 +8,7 @@
   padding: 0;
 }
 .container table {
+  border-collapse: collapse;
   float: left;
 }
 .container table th {
@@ -17,53 +18,32 @@
   text-align: center;
 }
 .container table tbody td {
+  box-sizing: border-box;
   border: 1px solid #d4d4d4;
   width: 40px;
   height: 40px;
   overflow: hidden;
 }
-.container table tbody .up,
-.container table tbody .right,
-.container table tbody .down,
-.container table tbody .left {
+.container table tbody #up {
   background-color: red;
   position: relative;
-  transition: transform 0.1s;
+  left: 0;
+  top: 0;
+  transition: transform,top,left 1s,1s,1s;
 }
-.container table tbody .up:before,
-.container table tbody .right:before,
-.container table tbody .down:before,
-.container table tbody .left:before {
+.container table tbody #up:before {
   content: '';
   position: absolute;
   background-color: blue;
 }
-.container table tbody .up:before {
+.container table tbody #up:before {
   top: 0;
   left: 0;
   width: 100%;
   height: 30%;
 }
-.container table tbody .up {
+.container table tbody #up {
   transform: rotate(0deg);
-}
-.container table tbody .right:before {
-  top: 0;
-  right: 0;
-  width: 30%;
-  height: 100%;
-}
-.container table tbody .down:before {
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 30%;
-}
-.container table tbody .left:before {
-  top: 0;
-  left: 0;
-  width: 30%;
-  height: 100%;
 }
 .container .row-th th {
   border-bottom: 1px solid transparent;
