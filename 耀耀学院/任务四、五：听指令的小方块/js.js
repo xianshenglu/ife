@@ -35,7 +35,7 @@ window.onload=function () {
 			}
 			
 			return ele;
-		},
+		},//根据当前的角度，计算出最近的角度，对应要求的方向
 		getBestAngle:function(ele,targetDirection,presentAngle){
 			var presentDirection=funObj.getDirection(ele).direction;
 			
@@ -76,7 +76,7 @@ window.onload=function () {
 
 			}
 		},
-		getTra:function(ele,eleWidth,eleHight,eleX,eleY,columns,rows,order){
+		getMove:function(ele,eleWidth,eleHight,eleX,eleY,columns,rows,order){
 			
 			ele=funObj.getDirection(ele);
 			var eleLeft=isNaN(parseInt(ele.style.left))?0:(parseInt(ele.style.left)),
@@ -147,9 +147,8 @@ window.onload=function () {
 		order=input.value;
 
 		if (e.keyCode===13||event.type==='click') {
-			funObj.getTra(tarEle,tarEleWidth,tarEleHight,tarEleX,tarEleY,columns,rows,order);
-			tarEle.style.transform='rotate('+targetAngle+'deg)';			
-			console.log(targetAngle);
+			funObj.getMove(tarEle,tarEleWidth,tarEleHight,tarEleX,tarEleY,columns,rows,order);
+			tarEle.style.transform='rotate('+targetAngle+'deg)';	
 		}
 
 	}
