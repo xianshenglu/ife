@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    div {
+        width: 110px;
+        background: pink;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="div" draggable="true" >ss</div>
+
+    <script>
+    window.onload = function() {
+        var div = document.getElementsByClassName('div')[0];
+        
+        div.ondragstart=function(event){
+        	event.dataTransfer.setData('text/plain',null)
+        };
+        div.ondrag=function alr(event){
+        	alert();
+        };
+
+    };
+    </script>
+</body>
+
+</html>
