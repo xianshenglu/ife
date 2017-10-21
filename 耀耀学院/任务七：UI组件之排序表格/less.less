@@ -8,34 +8,41 @@
         height: 50px;
         margin: 0 auto;
         text-align: center;
-    }    
+    }
 }
+
 * {
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
 }
+
 #jsTable {
     height: 200px;
     width: 850px;
-    border-collapse: collapse;
-    th,td {
+    /* 在FF和IE中，此设置会导致th背景色覆盖th边框色；  */
+    /* border-collapse: collapse;*/
+    border-right: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    th,
+    td {
         text-align: center;
         vertical-align: middle;
-        border: 2px solid lightgrey;
+        border: 1px solid lightgrey;
         box-sizing: border-box;
         height: 50px;
-        width: 170px;        
+        width: 170px;
     }
     th {
         background: #5b5b5b;
-        color:white;
+        color: white;
         position: relative;
-        .ascending,.descending {            
-            border:10px solid transparent;
+        .ascending,
+        .descending {
+            border: 10px solid transparent;
             position: absolute;
             right: 10px;
             width: 0;
-            height: 0;            
+            height: 0;
         }
         .ascending {
             top: 0;
@@ -48,6 +55,6 @@
     }
     td {
         background: white;
-        color:black; 
+        color: black;
     }
 }

@@ -1,24 +1,24 @@
 window.onload = function() {
     var table = {
             //sortable属性决定了是否可以排序，也就是是否加小箭头
-            "th": [ 
+            "th": [
                 { "value": '姓名' },
-                { "value": '语文', "sortable": false }, 
+                { "value": '语文', "sortable": false },
                 { "value": '数学', "sortable": false },
                 { "value": '英语', "sortable": false },
                 { "value": '总分', "sortable": false }
             ],
             //表格内容
-            "tbody": [ 
+            "tbody": [
                 ['李四', 80, 90, 100, 280],
                 ['张三', 80, 70, 90, 240],
                 ['王五', 99, 99, 100, 298]
             ],
             //排序方法
-            "sortFun": function(a, b) { 
+            "sortFun": function(a, b) {
                 if (a < b) {
                     return -1;
-                } else {
+                } else if (a >= b) {
                     return 1;
                 }
             }
@@ -55,10 +55,11 @@ window.onload = function() {
     var tableEle;
     tableEle = document.createElement('table');
     tableEle.id = "jsTable";
+    tableEle.cellSpacing = 0;
     tableEle.innerHTML = thHtml + tbodyHtml;
     document.body.appendChild(tableEle);
 
-    tableEle.onclick = function(event, sortFun) {
+    tableEle.onclick = function(event) {
         event = event || window.event;
         var target = event.target || event.srcElement,
             isSortBtn = (target.className === 'ascending') || (target.className === 'descending');
@@ -74,13 +75,12 @@ window.onload = function() {
             }
 
             if (target.className === 'ascending') {
+                console.log(sortTd);
                 sortTd.sort(sortFun);
-                sortTh[sortThIndex].sortable = 'ascending';
+                console.log(sortTd);
             } else if (target.className === 'descending') {
                 sortTd.sort(sortFun).reverse();
-                sortTh[sortThIndex].sortable = 'descending';
             }
-
             //倒叙遍历，倒叙添加新项
 
             for (var i = sortTd.length - 1; i >= 0; i--) {
