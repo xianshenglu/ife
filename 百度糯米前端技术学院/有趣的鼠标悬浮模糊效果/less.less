@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.backgroundImageFilter,
+.container {
+    width: 360px;
+    height: 300px;
+    border: 1px solid transparent;
+}
+.container {
+    margin: 0 auto;
+    position: relative;
+    .backgroundImageFilter {
+        position: absolute;
+        background-image: url(images/bear.png);
+        background-repeat: no-repeat;
+        background-size: 100% 80%;
+        background-position: center;
+        z-index: -1;
+        transition: filter 1s;
+    }
+    .inline-block {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: -4px;
+    }
+    .top-border,
+    .bottom-border {
+        border: 6px solid transparent;
+        width: 0px;
+        height: 0;
+        margin: 0 auto;
+        transition: width,border-color 1s,1s;
+    }
+    .left-border,
+    .right-border {
+        border: 3px solid transparent;
+        height: 0px;
+        width: 0;
+        transition: height,border-color 1s,1s;
+    }
+    .top-border {
+        margin-top: 65px;
+    }
+    .left-border {
+        margin-left: 9px;
+    }
+
+    .content {
+        visibility: hidden;
+        width: 329px;
+        height: 100px;
+        padding: 20px 0;
+        position: relative;        
+        text-align: center;
+        .head {
+            font-size: 25px;
+            margin: 10px 0;
+        }
+        .signUp {
+            font-size: 20px;
+        }
+    }
+    &:hover {
+        .backgroundImageFilter {            
+            filter: blur(10px);
+            -webkit-filter: blur(10px);
+        }
+        .content {
+            visibility: visible;
+        }
+        .top-border,
+        .bottom-border {
+            border-color: #f9efe5;
+            width: 330px;
+        }
+        .left-border,
+        .right-border {
+            border-color: #f9efe5;
+            height: 134px;
+        }
+        .head,
+        .signUp {
+            background-image: -webkit-linear-gradient(left, #b672a2, #4783c8 25%, #80b7d0 50%, #74b391 75%, #e26799);            
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-background-size: 50% 50%;
+            -webkit-animation: masked-animation 4s infinite linear;
+        }
+        @-webkit-keyframes masked-animation {
+            0% {
+                background-position: 0% 0;
+            }
+            100% {
+                background-position: 100% 0;
+            }
+        }
+    }
+}
