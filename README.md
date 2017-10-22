@@ -12,4 +12,4 @@ such as : https://jimmystephen.github.io/cssSummary/absolute&float_Comparison.ht
 
 all of the files in here can be found origin in ife http://ife.baidu.com/course/all 
 
-所有的文件都能在百度前端技术学院找到原型
+所有的文件都能在2017百度前端技术学院找到原型
