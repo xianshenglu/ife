@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>chrome-safari支持</title>
+    <style>
+    input[type=radio] {
+        position: relative;
+        width: 16px;
+        height: 1px;
+    }
+
+    input[type=radio]:before,
+    input[type=radio]:after {
+        position: absolute;
+        display: block;
+        content: '';
+        border-radius: 50%;
+        transition: .3s all esae;
+    }
+
+    input[type=radio]:before {
+        top: 0;
+        left: 0;
+        width: 15px;
+        height: 15px;
+        border: 3px solid #ccc;
+    }
+
+    input[type=radio]:after {
+        top: 5px;
+        left: 5px;
+        width: 11px;
+        height: 11px;
+        background-color: #fff;
+    }
+
+    input[type=radio]:checked:before {
+        border-color: #27AE60;
+    }
+
+    input[type=radio]:checked:after {
+        background-color: #27AE60;
+    }
+    </style>
+</head>
+
+<body>
+    <input type="radio" name="demo"></input>
+    <input type="radio" name="demo"></input>
+</body>
+
+</html>

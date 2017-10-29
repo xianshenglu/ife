@@ -1,0 +1,102 @@
+.container {
+	input {
+		visibility: hidden;
+	}
+    .pseudo {
+        input[type='radio'] {
+            &+label {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border: 2px solid #dcdcdc;
+                border-radius: 7px;
+                background: white;
+            }
+            &:checked {
+                &+label {
+                    position: relative;
+                    border: 2px solid #da493e;
+
+                    &:before {
+                        position: absolute;
+                        top: 3px;
+                        left: 3px;
+                        display: block;
+                        width: 0;
+                        height: 0;
+                        content: '';
+                        border: 2px solid #da493e;
+                        border-radius: 2px;
+                    }
+                }
+            }
+        }
+        input[type='checkbox'] {
+            &+label {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border: 2px solid #dcdcdc;
+                border-radius: 2px;
+            }
+            &:checked {
+                &+label {
+                    position: relative;
+                    border: 2px solid #da493e;
+
+                    &:before,
+                    &:after {
+                        position: absolute;
+                        display: block;
+                        height: 2px;
+                        content: '';
+                        background: #da493e;
+                    }
+                    &:before {
+                        top: 4px;
+                        left: 1px;
+                        width: 4px;
+                        transform: rotate(45deg);
+                    }
+                    &:after {
+                        top: 4px;
+                        left: 3px;
+                        width: 7px;
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+        }
+    }
+    .sprite {
+        input[type='radio'] {
+            &+label {
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                background: pink;
+                background: url(images/sprit.png) left top ;
+            }
+            &:checked {
+            	&+label {
+            		background: url(images/sprit.png) 67px top ;		
+            	}
+            }
+        }
+
+        input[type="checkbox"] {
+        	&+label {
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                background: pink;
+                background: url(images/sprit.png) left 16px ;
+            }	
+            &:checked {
+            	&+label {
+            		background: url(images/sprit.png) 67px 16px ;		
+            	}
+            }
+        }
+    }
+}
