@@ -1,0 +1,1 @@
+body{margin:0;padding:0}body .container{width:100%;height:1000px;background:#fefefe}body .container *{margin:0;padding:0}body .container ul{position:absolute;display:none;border:1px solid #000}body .container ul li{line-height:30px;min-width:100px;height:30px;padding-left:30px;list-style:none;border-bottom:1px solid silver}body .container ul li:last-child{border-bottom:none}

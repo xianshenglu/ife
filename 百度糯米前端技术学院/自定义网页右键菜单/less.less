@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    padding: 0;
+    .container {
+        width: 100%;
+        height: 1000px;
+        background: #fefefe;
+        & * {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            position: absolute;
+            display: none;
+            border: 1px solid black;
+            li {
+                line-height: 30px;
+                min-width: 100px;
+                height: 30px;
+                padding-left: 30px;
+                list-style: none;
+                border-bottom: 1px solid silver;
+            }
+            li:last-child {
+            	border-bottom: none;	
+            }
+        }
+    }
+}
