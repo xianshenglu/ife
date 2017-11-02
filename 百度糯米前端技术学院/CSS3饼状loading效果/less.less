@@ -1,93 +1,111 @@
 .container {
+    width: 200px;
+    height: 200px;
+    background: white;
+    border: 1px solid black;
     .round {
-        width: 36px;
-        height: 36px;
-        border: 2px solid red;
-        border-radius: 20px;
         position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 46px;
+        height: 46px;
+        border: 2px solid #fe4b9d;
+        border-radius: 25px;
         &:after {
             position: absolute;
-            left: -4px;
+            z-index: 1;
             top: -4px;
+            left: -4px;
+            width: 28px;
+            height: 28px;
             content: '';
-            width: 24px;
-            height: 24px;
-            border-top-left-radius: 24px;
             background: white;
-        }
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
+            animation: rotate 2s linear infinite;
+            transform-origin: bottom right;
+            @keyframes rotate {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
             }
-            to {
-                transform: rotate(360deg);
-            }
         }
-        animation: rotate 1s linear infinite;
     }
-    .round2 {
-        width: 40px;
-        height: 40px;
-
-        border-radius: 40px;
-        background: #ff2a8c;
+    .round2,
+    .round3 {
         position: relative;
+        top: 50%;
+        //这里不是50%，注意注意，因为每个round只是半圆，实际上半圆要移动100%
+        transform: translateY(-100%);
+        margin: 0 auto;
+        z-index: 2;
+        overflow: hidden;
+        width: 40px;
+        height: 20px;
+        background: #ff2a8c;
         &:after {
-            content: '';
             display: block;
             width: 40px;
             height: 20px;
+            content: '';
+            transform: rotate(360deg);
             background: pink;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
-            position: absolute;
-            top: 20px;
+        }
+    }
+    .round2 {
+        border-top-left-radius: 40px;
+        border-top-right-radius: 40px;
+        &:after {
+            transform-origin: bottom;
+            animation: rollTwo 4s linear infinite;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            @keyframes rollTwo {
+                0% {
+                    transform: rotate(0deg);
+                }
+                25% {
+                    transform: rotate(180deg);
+                }
+                50% {
+                    transform: rotate(180deg);
+                }
+                75% {
+                    transform: rotate(360deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
         }
     }
     .round3 {
-        width: 40px;
-        height: 20px;
-        background: pink;	
-        border-top-left-radius: 40px;
-        border-top-right-radius: 40px;
-        position: relative;
-        top: -40px;
-        transform-origin: bottom;
-        transform:rotate(180deg);     		
-       /*  @keyframes roll {
-       	0% {        	
-       		transform:rotate(0deg);
-       	}
-       	100% {
-       		transform:rotate(180deg);
-       	}        
-       }
-       animation : roll linear 2s ; */
+        border-bottom-right-radius: 40px;
+        border-bottom-left-radius: 40px;
+        &:after {
+            transform-origin: top;
+            animation: rollThr 4s linear infinite;
+            border-bottom-right-radius: 40px;
+            border-bottom-left-radius: 40px;
+            @keyframes rollThr {
+                0% {
+                    transform: rotate(0deg);
+                }
+                25% {
+                    transform: rotate(0deg);
+                }
+                50% {
+                    transform: rotate(180deg);
+                }
+                75% {
+                    transform: rotate(180deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+        }
     }
-    .round4 {
-    	width: 40px;
-    			        height: 20px;
-    			        background: silver;
-    			        border-bottom-left-radius: 40px;
-    			        border-bottom-right-radius: 40px;
-    			        position: relative;
-    			        top: -40px;
-    			        transform-origin: top;
-    			        transform:rotate(0deg);	
-    			        overflow: hidden;
-      /*  @keyframes roll {
-      0% {        		
-      	transform:rotate(0deg);
-      }
-      	50% {
-      		transform:rotate(0deg);
-      	}
-      	100% {
-      		transform:rotate(180deg);	
-      	}
-      
-      }
-      animation : roll linear 4s ; */
-    }
-
 }
