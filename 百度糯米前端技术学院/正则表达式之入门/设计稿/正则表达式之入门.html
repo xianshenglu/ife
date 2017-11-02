@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://ife.baidu.com/course/detail/id/29 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="renderer" content="webkit"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="keywords" content="百度, 百度前端, 百度前端学院, 百度前端技术学院, 前端, 前端开发, web前端, 前端开发工程师, CSS, JavaScript, HTML, Web标准"><meta name="description" content="百度前端技术学院是面向大学生的前端技术学习平台，由百度创办的免费前端技术学习实践、交流、分享平台"><link rel="shortcut icon" href="http://ife.baidu.com/2017/asset/common/img/favicon_24c70cf.ico" type="image/x-icon"><link rel="icon" href="http://ife.baidu.com/2017/asset/common/img/favicon_24c70cf.ico" type="image/x-icon"><link rel="bookmark" href="http://ife.baidu.com/2017/asset/common/img/favicon_24c70cf.ico" type="image/x-icon">
+
+
+
+
+
+
+<title>正则表达式之入门</title>
+<link href="./正则表达式之入门_files/courseDetail_6ae08d0.css" rel="stylesheet">
+<script src="./正则表达式之入门_files/hm.js.下载"></script><script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?d422e3cabaaaa7445e54622b97472bab";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+
+
+
+</head><body><div id="viewport"><header><nav class="navbar navbar-default nav-wrapper" role="navigation"><div class="container-fluid"><div class="navbar-header"><button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand ife-pic" href="http://ife.baidu.com/"><img alt="Brand" src="./正则表达式之入门_files/logo_a3b4064.png"></a></div><div id="navbar" class="navbar-collapse collapse"><ul class="nav navbar-nav nav-center"><li class="nav-menu "><a class="menu-path" href="http://ife.baidu.com/">首页</a></li><li class="nav-menu "><a class="menu-path" href="http://ife.baidu.com/course/all">所有课程</a></li><li class="nav-menu "><a class="menu-path" href="http://ife.baidu.com/note/list?isElite=1">精选笔记</a></li><li class="nav-menu "><a class="menu-path" href="http://ife.baidu.com/user/rank">学霸榜单</a></li><li class="nav-menu"><a class="menu-tieba" target="_blank" href="http://tieba.baidu.com/f?kw=%E7%99%BE%E5%BA%A6%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF%E5%AD%A6%E9%99%A2&amp;ie=utf-8">学院贴吧</a></li><li class="nav-special begin"><a href="https://openapi.baidu.com/oauth/2.0/authorize?client_id=89XtMi6980UVMb5iMiRAL27g&amp;response_type=code&amp;redirect_uri=http%3A%2F%2Fife.baidu.com%2Fuser%2Fsignin&amp;scope=&amp;state=48f37c7a45c4a10e6c6ca44162a5a154&amp;display=page" class="nav-btn">登录</a></li></ul></div></div></nav>
+</header><p style="display:none">百度前端技术学院是一个为大学生创办的免费的前端技术实践、分享、交流平台。由百度校园招聘组、百度校园品牌部、百度前端技术部以及多个百度的前端团队联合创办。学院组织了一批百度在职工程师，精心编写了数十个实践编码任务，将技术知识点系统有机地串联在各个充满趣味与挑战的任务中，同学们通过实际地编码练习来掌握知识，再辅以互相评价、学习笔记等方式，加深对于学习内容的理解。在过去的三年中，百度前端技术学院累积吸引了上万名同学参加，并且有数十名同学在学习后，顺利加入了百度，成为了百度的前端工程师。</p>
+<main class="course-detail-main"><div class="course-detail-wrap card"><div class="course-basic-wrap row"><div class="course-img-wrap col-md-5"><div class="course-img" style="background-image: url(http://gss0.baidu.com/9rkZbzqaKgQUohGko9WTAnF6hhy/mms-res/fed/ife/ife_tutor/课程配图.3fb31f3e5af7e8d7.jpg)"></div></div><div class="course-info col-md-7"><div class="course-title-wrap row"><h2 class="course-title col-md-9 col-xs-6">正则表达式之入门</h2><span class="level-tag course-level col-md-3 col-xs-6"><i class="top-slash"></i><i class="bottom-slash"></i>普通</span></div><div class="course-from"><a href="http://ife.baidu.com/mentor/detail/id/25"><i class="icon-course-teacher"></i>熊承彬</a><span class="separator"></span><a href="http://ife.baidu.com/college/detail/id/8"><i class="icon-course-college"></i>百度糯米前端技术学院</a></div><button disabled="" type="button" class="start-learn-btn ife-main-btn btn" data-loading-text="请求中...">课程已结束</button><p class="course-info-item course-status"><span class="key">人数</span>有<em>607</em>人在学习该课程，有<em>262</em>人已经完成该课程</p><p class="course-info-item course-learn-time"><span class="key">时间</span>平均用时<em>2.4</em>天</p></div></div><h3 class="course-descr-title">课程概述</h3><div class="md-content-wrap course-descr"><p class="deadline-tip">作业提交截止时间：04-24</p><h1 id="-">任务目的</h1>
+<ol>
+<li>掌握JavaScript正则表达式编写规则</li>
+<li>了解JavaScript中的正则表达式的特殊字符</li>
+<li>了解JavaScript提供的正则表达式相关方法</li>
+<li>能用正则表达式做一些简单文本或者数字校验</li>
+</ol>
+<h1 id="-">任务描述</h1>
+<ol>
+<li>编写一个判断给定数字是否为手机号码的正则表达式，测试用例参照但不限于：<pre><code><span class="hljs-symbol">18812011232 </span> // 测试结果应该为 true
+<span class="hljs-symbol">18812312 </span>    // false
+<span class="hljs-symbol">12345678909 </span> // false
+</code></pre></li>
+<li>编写一个判断输入的字符串是否有相邻重复单词的正则表达式，测试用例可以参考但不限于：<pre><code>foo foo <span class="hljs-built_in">bar</span>       <span class="hljs-comment">// true</span>
+foo <span class="hljs-built_in">bar</span> foo       <span class="hljs-comment">// false  有重复单词但是不相邻</span>
+foo  barbar <span class="hljs-built_in">bar</span>   <span class="hljs-comment">// false</span>
+</code></pre></li>
+</ol>
+<h1 id="-">任务注意事项</h1>
+<ol>
+<li>完成任务之后，可以对比别人的实现方案，但不建议未尝试就直接搜索答案</li>
+<li>在正则表达式的世界中，一个问题往往不止一种方案，可以尝试多种方法</li>
+</ol>
+<h1 id="-">参考资料</h1>
+<ol>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">MDN Regular Expressions</a>: 了解JavaScript中正则表达式的基本知识</li>
+<li><a href="http://deerchao.net/tutorials/regex/regex-1.htm">正则表达式30分钟入门教程</a>: 30分钟入门</li>
+</ol>
+</div></div><div class="card learn-result-wrap work-info-wrap"><div class="others-work-info learn-result"><div class="title">学员提交的作业 (<span class="count">262</span>)</div><table class="table table-bordered table-responsive"><thead><tr><th>学员名称</th><th>提交时间</th><th>提交的代码</th><th>预览效果</th><th>评价数</th><th>平均得分</th><th>操作</th></tr></thead><tbody>
+            <tr><td class="submitter"><a href="http://ife.baidu.com/user/profile/id/44"><img class="user-photo" src="./正则表达式之入门_files/0f5be79eb3746f6d6f72726f778901">刘二</a></td>
+            <td>2017-04-24 22:25</td>
+            <td><a href="http://www.baidu.com/" target="_blank">点击查看</a></td>
+            <td><span class="none-tip">无</span></td>
+            <td><span class="none-tip">0</span></td>
+            <td><span class="none-tip">-</span></td>
+            <td><a href="http://ife.baidu.com/work/detail/id/4438">去评价获取积分</a></td></tr>
+        
+            <tr><td class="submitter"><a href="http://ife.baidu.com/user/profile/id/8325"><img class="user-photo" src="./正则表达式之入门_files/43e06d656e68616c9f01">孟浩</a></td>
+            <td>2017-04-24 16:51</td>
+            <td><a href="https://github.com/menhal/menhal.github.io/tree/master/tasks/2017/task_29" target="_blank">点击查看</a></td>
+            <td><a href="http://menhal.github.io/tasks/2017/task_29/" target="_blank">点击查看</a></td>
+            <td><span class="none-tip">0</span></td>
+            <td><span class="none-tip">-</span></td>
+            <td><a href="http://ife.baidu.com/work/detail/id/2847">去评价获取积分</a></td></tr>
+        
+            <tr><td class="submitter"><a href="http://ife.baidu.com/user/profile/id/8311"><img class="user-photo" src="./正则表达式之入门_files/1897e8b4aae78cabe5afa5e890bd592a">刘畅</a></td>
+            <td>2017-04-24 10:11</td>
+            <td><a href="https://github.com/Torero2016/IFE2017" target="_blank">点击查看</a></td>
+            <td><span class="none-tip">无</span></td>
+            <td><span class="none-tip">0</span></td>
+            <td><span class="none-tip">-</span></td>
+            <td><a href="http://ife.baidu.com/work/detail/id/39872">去评价获取积分</a></td></tr>
+        
+            <tr><td class="submitter"><a href="http://ife.baidu.com/user/profile/id/4239"><img class="user-photo" src="./正则表达式之入门_files/579ee4b88de78ea9e6b8b8e6888fe5ada6e6b8b8e6888fe222">周灏</a></td>
+            <td>2017-04-24 00:12</td>
+            <td><a href="https://github.com/Catsuger/my-ife2017/tree/gh-pages/Task45" target="_blank">点击查看</a></td>
+            <td><span class="none-tip">无</span></td>
+            <td><span class="none-tip">0</span></td>
+            <td><span class="none-tip">-</span></td>
+            <td><a href="http://ife.baidu.com/work/detail/id/39828">去评价获取积分</a></td></tr>
+        
+            <tr><td class="submitter"><a href="http://ife.baidu.com/user/profile/id/1261"><img class="user-photo" src="./正则表达式之入门_files/7053657261736572677265617474ad">王娟</a></td>
+            <td>2017-04-23 23:04</td>
+            <td><a href="https://github.com/wj704/wj704.github.io/blob/master/ife2017/task7/index.html" target="_blank">点击查看</a></td>
+            <td><a href="http://wj704.github.io/ife2017/task7/index.html" target="_blank">点击查看</a></td>
+            <td><span class="none-tip">0</span></td>
+            <td><span class="none-tip">-</span></td>
+            <td><a href="http://ife.baidu.com/work/detail/id/38828">去评价获取积分</a></td></tr>
+        
+            <tr><td class="submitter"><a href="http://ife.baidu.com/user/profile/id/9200"><img class="user-photo" src="./正则表达式之入门_files/a3bfe7bbbf32342e3a">李家振</a></td>
+            <td>2017-04-23 22:20</td>
+            <td><a href="https://www.github.com/" target="_blank">点击查看</a></td>
+            <td><span class="none-tip">无</span></td>
+            <td><span class="none-tip">0</span></td>
+            <td><span class="none-tip">-</span></td>
+            <td><a href="http://ife.baidu.com/work/detail/id/39765">去评价获取积分</a></td></tr>
+        
+            <tr><td class="submitter"><a href="http://ife.baidu.com/user/profile/id/6466"><img class="user-photo" src="./正则表达式之入门_files/12eee59b9be58fb6e88d89363131313231d820">胡春桥</a></td>
+            <td>2017-04-23 22:16</td>
+            <td><a href="https://github.com/chunqiaohu/ife/tree/master/task4/task4-5" target="_blank">点击查看</a></td>
+            <td><span class="none-tip">无</span></td>
+            <td><span class="none-tip">0</span></td>
+            <td><span class="none-tip">-</span></td>
+            <td><a href="http://ife.baidu.com/work/detail/id/39750">去评价获取积分</a></td></tr>
+        
+            <tr><td class="submitter"><a href="http://ife.baidu.com/user/profile/id/9257"><img class="user-photo" src="./正则表达式之入门_files/d2e4e6a999e5ad90e58d81e585abe593a53b35">方振</a></td>
+            <td>2017-04-23 19:26</td>
+            <td><a href="https://github.com/Fxb1rd/ife2017/blob/master/normal/task3/index.html" target="_blank">点击查看</a></td>
+            <td><a href="http://htmlpreview.github.io/?https://github.com/Fxb1rd/ife2017/blob/master/normal/task3/index.html" target="_blank">点击查看</a></td>
+            <td><span class="none-tip">0</span></td>
+            <td><span class="none-tip">-</span></td>
+            <td><a href="http://ife.baidu.com/work/detail/id/39702">去评价获取积分</a></td></tr>
+        
+            <tr><td class="submitter"><a href="http://ife.baidu.com/user/profile/id/5732"><img class="user-photo" src="./正则表达式之入门_files/d655707079756578bd29">尤志刚</a></td>
+            <td>2017-04-23 19:22</td>
+            <td><a href="https://coding.net/u/ppyuex/p/ife/git/blob/master/nuomi/RegExp.html" target="_blank">点击查看</a></td>
+            <td><a href="http://ppyuex.coding.me/ife/nuomi/RegExp.html" target="_blank">点击查看</a></td>
+            <td><span class="none-tip">0</span></td>
+            <td><span class="none-tip">-</span></td>
+            <td><a href="http://ife.baidu.com/work/detail/id/39681">去评价获取积分</a></td></tr>
+        
+            <tr><td class="submitter"><a href="http://ife.baidu.com/user/profile/id/8748"><img class="user-photo" src="./正则表达式之入门_files/e2ec6c616e6c6574746572ab1b">刘安宁</a></td>
+            <td>2017-04-23 10:36</td>
+            <td><a href="https://github.com/lanletter/ife4/blob/master/index4-10.html" target="_blank">点击查看</a></td>
+            <td><span class="none-tip">无</span></td>
+            <td><span class="none-tip">0</span></td>
+            <td><span class="none-tip">-</span></td>
+            <td><a href="http://ife.baidu.com/work/detail/id/39586">去评价获取积分</a></td></tr>
+        </tbody></table><p class="work-empty-tip" style="display: none;">暂时没有作业提交~</p><div class="load-more-wrap view-more">
+        <div class="loading-tip"><i class="icon-loading"></i>加载中...</div>
+        <p class="load-none-tip">没有更多了！</p>
+        <span class="load-more-btn">点击加载更多</span>
+    </div></div></div><div class="card learn-result-wrap note-info-wrap"><div class="recm-note-info learn-result"><div class="title">课程优秀学习笔记</div><table class="table table-bordered table-responsive"><thead><tr><th>标题</th><th>发布时间</th><th>浏览量</th><th>点赞量</th></tr></thead><tbody><tr><td class="note-title" title="匹配foo -foo foo居然返回true！？弱鸡debug的辛酸经历"><a href="http://ife.baidu.com/note/detail/id/188">匹配foo -foo foo居然返回true！？弱鸡debug的辛酸经历</a></td><td>2017-02-25 16:07</td><td>833</td><td>14</td></tr><tr><td class="note-title" title="如何带着问题去学习正则"><a href="http://ife.baidu.com/note/detail/id/43">如何带着问题去学习正则</a></td><td>2017-02-24 14:44</td><td>734</td><td>7</td></tr><tr><td class="note-title" title="正则表达式备忘录"><a href="http://ife.baidu.com/note/detail/id/84">正则表达式备忘录</a></td><td>2017-02-24 18:07</td><td>351</td><td>1</td></tr></tbody></table><a class="view-more" href="http://ife.baidu.com/note/list?isElite=1&amp;&amp;courseId=29">点击查看更多课程优秀笔记</a></div></div></main>
+<footer><div class="footer"><div class="footer-wrapper"><p class="first"><span class="contact">IFE微信公众号：</span><span class="footer-content footer-mg">baidu_ife</span><span class="contact">IFE微博：<a target="_blank" class="footer-content" href="http://weibo.com/u/5568860641?topnav=1&amp;wvr=6&amp;topsug=1">Baidu前端技术学院</a></span></p><p class="friend-link"><span class="note footer-text">友情链接:</span><a class="footer-mg" target="_blank" title="百度EFE前端团队" href="http://efe.baidu.com/">百度EFE</a><a class="footer-mg" target="_blank" href="http://campus.baidu.com/">百度校园</a><a class="footer-mg" target="_blank" href="http://talent.baidu.com/external/baidu/campus.html">百度校园招聘</a><a class="footer-mg" target="_blank" href="http://bit.baidu.com/?fr=ife/">百度技术学院</a></p><p class="learn-source"><span class="source footer-text">资源:</span><a class="footer-mg" target="_blank" href="https://github.com/baidu-ife">IFE 2015</a><a class="footer-mg" href="http://ife.baidu.com/2016/static/index.html" target="_blank">IFE 2016</a></p><p class="copyright"><span class="copyright-text"><span>©2017&nbsp;Baidu&nbsp;</span><a href="http://www.baidu.com/duty/" target="_blank">使用百度前必读</a>&nbsp;<a href="http://jianyi.baidu.com/" target="_blank">意见反馈</a>&nbsp;<span>京ICP证030173号&nbsp;</span></span></p></div></div>
+</footer></div><a id="go-top" style="display: none;"><i class="icon-arrow-up"></i></a><script src="./正则表达式之入门_files/esl.js.下载"></script><script>require.config({"baseUrl": "//ife.baidu.com/2017/asset","paths": {"babelHelpers": "babelHelpers"},"packages": [{"name": "vue","location": "../dep/vue","main": "dist/vue.runtime.common"},{"name": "vue-router","location": "../dep/vue-router","main": "dist/vue-router.common"},{"name": "etpl","location": "../dep/etpl/asset","main": "main"},{"name": "saber-emitter","location": "../dep/saber-emitter/asset","main": "emitter"},{"name": "bootstrapValidator","location": "../dep/bootstrapValidator","main": "dist/js/bootstrapValidator"},{"name": "bootstrap-slider","location": "../dep/bootstrap-slider","main": "dist/bootstrap-slider"},{"name": "slick-carousel","location": "../dep/slick-carousel","main": "slick/slick"},{"name": "element-ui","location": "../dep/element-ui","main": "lib/index"},{"name": "simplemde","location": "../dep/simplemde/asset","main": "js/simplemde"},{"name": "codemirror","location": "../dep/codemirror","main": "lib/codemirror"},{"name": "codemirror-spell-checker","location": "../dep/codemirror-spell-checker/asset","main": "js/spell-checker"},{"name": "typo-js","location": "../dep/typo-js","main": "typo"},{"name": "marked","location": "../dep/marked","main": "lib/marked"},{"name": "highlight.js","location": "../dep/highlight.js","main": "lib/index"},{"name": "jquery-editable-select","location": "../dep/jquery-editable-select","main": "dist/jquery-editable-select.min"},{"name": "bootstrap","location": "../dep/bootstrap/js","main": "./dist/js/npm"},{"name": "bce-bos-uploader","location": "../dep/bce-bos-uploader","main": "bce-bos-uploader.bundle.min"},{"name": "echarts","location": "../dep/echarts/lib","main": "echarts"},{"name": "zrender","location": "../dep/zrender","main": "lib/zrender"}],"shim": {"jquery": {"exports": "$"}},"waitSeconds": 5});</script><script src="./正则表达式之入门_files/jquery-1.10.2_d88366fd.js.下载"></script>
+<script src="./正则表达式之入门_files/courseDetail_d2fcb9c.js.下载"></script>
+<script src="./正则表达式之入门_files/course_detail56da3f2c_vendor_503601d.js.下载"></script>
+<script>
+    require(['course/courseDetail'], function (app) {
+        app.init([], {
+            courseId: "29",
+            courseTitle: "\u6b63\u5219\u8868\u8fbe\u5f0f\u4e4b\u5165\u95e8",
+            hasWorkInfo: 0,
+            workInfo: 0        });
+    });
+</script>
+
+
+<span id="sbmarwusasv5"></span></body></html>
