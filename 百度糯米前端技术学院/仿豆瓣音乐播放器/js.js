@@ -28,52 +28,12 @@ window.onload = function() {
     var musicData = {
         raw: {},
         display: [{
-                m4a: "http://ws.stream.qqmusic.qq.com/498307.m4a?fromtag=46",
-                albumname: "遥望",
-                singername: "BEYOND",
-                songname: "海阔天空",
-                albumpic_big: "http://i.gtimg.cn/music/photo/mid_album_300/0/7/004Z88hS1FiU07.jpg",
-                downUrl: "http://dl.stream.qqmusic.qq.com/498307.m4a?vkey=D809D0D4D8347435D3F12BFDE571BB32FD19F3280D39C137F903D684E090FC101B0FFCA006C6297F76FF04D29822DBCBC2E23F13654938C9&guid=2718671044"
-            },
-            {
-                m4a: "http://ws.stream.qqmusic.qq.com/498307.m4a?fromtag=46",
-                albumname: "遥望",
-                singername: "BEYOND",
-                songname: "海阔天空",
-                albumpic_big: "http://i.gtimg.cn/music/photo/mid_album_300/0/7/004Z88hS1FiU07.jpg",
-                downUrl: "http://dl.stream.qqmusic.qq.com/498307.m4a?vkey=D809D0D4D8347435D3F12BFDE571BB32FD19F3280D39C137F903D684E090FC101B0FFCA006C6297F76FF04D29822DBCBC2E23F13654938C9&guid=2718671044"
-            },
-            {
-                m4a: "http://ws.stream.qqmusic.qq.com/498307.m4a?fromtag=46",
-                albumname: "遥望",
-                singername: "BEYOND",
-                songname: "海阔天空",
-                albumpic_big: "http://i.gtimg.cn/music/photo/mid_album_300/0/7/004Z88hS1FiU07.jpg",
-                downUrl: "http://dl.stream.qqmusic.qq.com/498307.m4a?vkey=D809D0D4D8347435D3F12BFDE571BB32FD19F3280D39C137F903D684E090FC101B0FFCA006C6297F76FF04D29822DBCBC2E23F13654938C9&guid=2718671044"
-            },
-            {
-                m4a: "http://ws.stream.qqmusic.qq.com/498307.m4a?fromtag=46",
-                albumname: "遥望",
-                singername: "BEYOND",
-                songname: "海阔天空",
-                albumpic_big: "http://i.gtimg.cn/music/photo/mid_album_300/0/7/004Z88hS1FiU07.jpg",
-                downUrl: "http://dl.stream.qqmusic.qq.com/498307.m4a?vkey=D809D0D4D8347435D3F12BFDE571BB32FD19F3280D39C137F903D684E090FC101B0FFCA006C6297F76FF04D29822DBCBC2E23F13654938C9&guid=2718671044"
-            },
-            {
-                m4a: "http://ws.stream.qqmusic.qq.com/498307.m4a?fromtag=46",
-                albumname: "遥望",
-                singername: "BEYOND",
-                songname: "海阔天空",
-                albumpic_big: "http://i.gtimg.cn/music/photo/mid_album_300/0/7/004Z88hS1FiU07.jpg",
-                downUrl: "http://dl.stream.qqmusic.qq.com/498307.m4a?vkey=D809D0D4D8347435D3F12BFDE571BB32FD19F3280D39C137F903D684E090FC101B0FFCA006C6297F76FF04D29822DBCBC2E23F13654938C9&guid=2718671044"
-            },
-            {
-                m4a: "http://ws.stream.qqmusic.qq.com/498307.m4a?fromtag=46",
-                albumname: "遥望",
-                singername: "BEYOND",
-                songname: "海阔天空",
-                albumpic_big: "http://i.gtimg.cn/music/photo/mid_album_300/0/7/004Z88hS1FiU07.jpg",
-                downUrl: "http://dl.stream.qqmusic.qq.com/498307.m4a?vkey=D809D0D4D8347435D3F12BFDE571BB32FD19F3280D39C137F903D684E090FC101B0FFCA006C6297F76FF04D29822DBCBC2E23F13654938C9&guid=2718671044"
+                m4a: "http://ws.stream.qqmusic.qq.com/101800569.m4a?fromtag=46",
+                albumname: "Fade",
+                singername: "Alan Walker",
+                songname: "Fade",
+                albumpic_big: "http://i.gtimg.cn/music/photo/mid_album_300/I/3/00472CVU4VP4I3.jpg",
+                downUrl: "http://dl.stream.qqmusic.qq.com/101800569.m4a?vkey=E0630A6DCFDD284EC0AA849CBCA2E1680DADC9FEB1525E56DFA2AC9238AEC8E77ED3833383CAB5F95322633C5A8E156FF96C1D672BE206B6&guid=2718671044"
             },
             {
                 m4a: "http://ws.stream.qqmusic.qq.com/498307.m4a?fromtag=46",
@@ -413,7 +373,7 @@ window.onload = function() {
      * @param  {Number} tableHei 音乐表格的实际高度,每发送一次请求更新了列表后都要处理     
      */
     function initializeScroll(tableHei,tableDivHei) {
-
+    	console.log(tableHei);
         tableScroll.style.height = tableHei + 'px';
         if (tableDivHei >= tableHei) {
             tableScrollProgress.style.height = '100%';
@@ -423,6 +383,9 @@ window.onload = function() {
     }
 
     //初始化
+    document.forms[0].elements["keyword"].value='流行音乐';
+    form.onsubmit();
+    document.forms[0].elements["keyword"].value='';
     musicData.initialize();
     initializeScroll(table.offsetHeight,tableDivHei);
 };
