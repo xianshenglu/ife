@@ -1,0 +1,376 @@
+@mainColor: rgba(255, 255, 255, 0.5);
+@preColor: rgba(255, 255, 255, 1);
+@midColor: rgba(255, 255, 255, 0.8);
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    body {
+        font-family: '微软雅黑';
+        font-size: 16px;
+        height: 100%;
+        user-select:none;
+        .fll {
+            float: left;
+        }
+        .flr {
+            float: right;
+        }
+        input,
+        button {
+            border: none;
+            outline: none;
+        }
+        .marginAuto {
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .inline-block {
+            display: inline-block;
+        }
+        td,div {
+        	cursor: default;
+        }
+
+    }
+}
+
+.mask {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background-image: url(http://i.gtimg.cn/music/photo/mid_album_300/I/3/00472CVU4VP4I3.jpg);
+    background-repeat: no-repeat;
+    background-size: 1500px 1000px;
+    filter: blur(100px) brightness(50%);
+    position: absolute;
+    z-index: -1;
+    transition: background 0.5s ease;
+}
+
+.container {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 5px 20px;
+
+    &>a {
+        display: block;
+        width: 25px;
+        height: 25px;
+        background: url(images/sprite.png) no-repeat;
+        background-position: 0px 0px;
+        background-size: 25px 120px;
+    }
+    #login {
+        color: @mainColor;
+        cursor: pointer;
+    }
+    .content {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        box-sizing: border-box;
+        width: 900px;
+        height: 500px;
+        padding-top: 10px;
+        transform: translate(-50%, -50%);
+        form {
+            box-sizing: border-box;
+            width: 700px;
+            height: 50px;
+            margin: 0 auto;
+            color: @mainColor;
+            input {
+                font-size: 16px;
+                width: 640px;
+                height: 30px;
+                padding: 10px 0 10px 10px;
+                vertical-align: middle;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+                color: inherit;
+                background: rgba(255, 255, 255, 0.2);
+            }
+            .btn {
+                position: relative;
+                width: 50px;
+                height: 50px;
+                box-sizing: border-box;
+                vertical-align: middle;
+                color: inherit;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                background: rgba(255, 255, 255, 0.2);
+                &:hover {
+                    cursor: pointer;
+                    background: @mainColor;
+                    &:before,
+                    &:after {
+                        border-color: @mainColor;
+                    }
+                }
+                &:before,
+                &:after {
+                    position: absolute;
+                    display: block;
+                    content: '';
+                    border-color: rgba(255, 255, 255, 0.2);
+                }
+                &:before {
+                    top: 13px;
+                    left: 16px;
+                    width: 13px;
+                    height: 13px;
+                    border: 2px solid;
+                    border-radius: 30px;
+                }
+                &:after {
+                    top: 29px;
+                    left: 28px;
+                    width: 7px;
+                    height: 0;
+                    transform: rotate(45deg);
+                    border: 1px solid;
+                }
+            }
+        }
+        .musicTable {
+            margin-top: 40px;
+            width: 900px;
+            height: 300px;
+            .table {
+                height: 300px;
+                width: 650px;
+                overflow: hidden;
+                overflow-y: scroll;
+                table {
+                    width: 610px;
+                    table-layout: fixed;
+                    tr {
+                        height: 50px;
+                        line-height: 50px;
+                        color: @mainColor;
+                        &:hover {
+                            color: @preColor;
+                        }
+
+                        td {
+                            text-align: left;
+                            border-bottom: 1px solid grey;
+                            white-space: nowrap;
+                            padding-left: 50px;
+                            box-sizing: border-box;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                        td:nth-child(1) {
+                            width: 250px;
+                            cursor: pointer;
+                            padding-left: 0;
+                            a {
+                                padding-left: 50px;
+                                display: block;
+                                width: 100%;
+                                height: 100%;
+                                color: inherit;
+                                text-decoration: none;
+                            }
+                        }
+                        td:nth-child(2) {
+                            width: 150px;
+                        }
+                        td:nth-child(3) {
+                            width: 100px;
+                        }
+                    }
+                }
+            }
+            .songInfo {
+                width: 250px;
+                height: 300px;
+                box-sizing: border-box;
+
+                img {
+                    max-width: 150px;
+                    max-height: 150px;
+                    position: relative;
+                    left: 50%;
+                    transform: translate(-50%, 0);
+                }
+            }
+        }
+        .audioControl {
+            margin-top: 40px;
+            .progressBar {
+                width: 900px;
+                .time {
+                    height: 10px;
+                    font-size: 10px;
+                    width: 550px;
+                    text-align: right;
+                    margin-bottom: 5px;
+                    color: @mainColor;
+                }
+                .timeProgress {
+                    width: 540px;
+                    height: 4px;
+                    background: @mainColor;
+                    position: relative;
+                    cursor: pointer;
+                    vertical-align: middle;
+                    .progressControl {
+                        height: 4px;
+                        width: 0px;
+                        background: @preColor;
+                        position: absolute;
+                        left: 0;
+                        &:after {
+                            content: '';
+                            width: 11px;
+                            height: 11px;
+                            display: block;
+                            background: #fff;
+                            border-radius: 11px;
+                            position: absolute;
+                            left: 100%;
+                            top: -4px;
+                        }
+                    }
+                }
+                .loop,
+                .volume {
+                    width: 20px;
+                    height: 18px;
+                    background: url(images/sprite.png) no-repeat;
+                    background-size: 20px 90px;
+                    vertical-align: middle;
+                    margin-left: 20px;
+                    cursor: pointer;
+                    opacity: 0.8;
+                }
+                .loop {
+                    background-position: 0px -18px;   
+                    &:hover {
+                    	opacity: 1;
+                    }
+                }
+                .volume {
+                    background-position: 0px -72px;
+                    margin-left: 10px;
+                }
+                .volProgress {
+                    width: 50px;
+                    height: 4px;
+                    background: @mainColor;
+                    position: relative;
+                    cursor: pointer;
+                    vertical-align: middle;
+                    visibility: hidden;
+                    .progressControl {
+                        height: 4px;
+                        width: 25px;
+                        background: @preColor;
+                        position: absolute;
+                        left: 0;
+                        cursor: pointer;
+                        &:after {
+                            content: '';
+                            width: 11px;
+                            height: 11px;
+                            display: block;
+                            background: #fff;
+                            border-radius: 11px;
+                            position: absolute;
+                            left: 100%;
+                            top: -4px;
+                        }
+                    }
+                }
+                .musicControl {
+                	width: 150px;
+                	height: 30px;
+                	vertical-align: middle;
+                	margin-left: 28px;
+                    .last,
+                    .next {
+                        width: 20px;
+                        height: 16px;
+                        box-sizing: border-box;
+                        position: relative;
+                        &:before,&:after {
+                        	content: '';
+                        	display: block;
+                        	border: 8px solid transparent;
+                        	position: absolute;
+                        	top: 0;                        	
+                        }                      
+                    }
+                    .last,.next,.pause,.start {
+                        opacity: 0.5;
+                        vertical-align: middle;
+                        cursor: pointer;
+                        &:hover {
+                        	opacity: 1;
+                        }
+
+                    }
+                    .last {
+                        border-left: 2px solid #fff;
+                          &:before {
+                        	border-right: 10px solid #fff;
+                        	left: -8px;
+                        }
+                        &:after {
+                        	border-right: 10px solid #fff;
+                        	left: 2px;
+                        }
+                    }
+                    .next {
+						border-right: 2px solid #fff;  
+						 &:before {
+                        	border-left: 10px solid #fff;
+                        	right: -8px;
+                        }
+                        &:after {
+                        	border-left: 10px solid #fff;
+                        	right: 2px;
+                        }                  	
+                    }
+                    .pause,.start {
+                    	margin: 0 30px;
+                    	border:12px solid transparent;
+                    	border-left: 16px solid #fff;
+                    	position: relative;
+                    }
+                    .start {                    	
+                    	left: 6px;
+                    }
+                    .pause {
+                    	border-color:transparent;
+                    	left: -11px;
+                    	top: -11px;
+                    	&:before,&:after {
+                    		content: '';
+                    		display: block;
+                    		position: absolute;
+                    		left: 0;
+                    		top: 0;
+                    		height: 16px;
+                    		width: 0;
+                    		border: 3px solid #fff;
+                    	}
+                    	&:after {
+                    		left: 9px;
+                    	}
+                    }
+                }
+            }
+        }
+    }
+}
