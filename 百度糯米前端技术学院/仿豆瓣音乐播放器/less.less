@@ -1,6 +1,6 @@
 @mainColor: rgba(255, 255, 255, 0.5);
 @preColor: rgba(255, 255, 255, 1);
-@midColor: rgba(255, 255, 255, 0.8);
+@midColor: rgba(255, 255, 255, 0.75);
 * {
     margin: 0;
     padding: 0;
@@ -144,11 +144,17 @@ html {
             margin-top: 40px;
             width: 900px;
             height: 300px;
-            .table {
+            .scrollMask {
+            	width: 650px;
+            	overflow:hidden;            	
+            }
+            .tableDiv {
                 height: 300px;
-                width: 650px;
-                overflow: hidden;
-                overflow-y: scroll;
+                width: 670px;
+                overflow:hidden; 
+                overflow-y: scroll;  
+                box-sizing: border-box;   
+                position: relative;      
                 table {
                     width: 610px;
                     table-layout: fixed;
@@ -190,7 +196,29 @@ html {
                         }
                     }
                 }
+                .scroll {
+                	width: 2px;
+                	height: 357px;                	               	
+                	background: @mainColor;
+                	position: absolute;
+                	border-radius:100px;
+                	right: 4px;
+                	.progressControl {
+                		position: absolute;
+                		border-radius:100px;
+                		right: -3px;
+                		top: 0;
+                		width: 6px;
+                		height: 50px;                		
+                		background: @midColor;
+                		cursor: pointer;
+                		&:hover {
+                			background: @preColor;
+                		}
+                	}
+                }
             }
+
             .songInfo {
                 width: 250px;
                 height: 300px;
@@ -230,6 +258,7 @@ html {
                         background: @preColor;
                         position: absolute;
                         left: 0;
+                        cursor: pointer;
                         &:after {
                             content: '';
                             width: 11px;

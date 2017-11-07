@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>index</title>
-    <link rel="stylesheet" href="less.css">
+    <link rel="stylesheet" href="less.css">    
     <script src="js.js"></script>
 </head>
 
@@ -22,10 +22,15 @@
                 <input type="hidden" name="showapi_res_gzip" value="0">
             </form>
             <div class="musicTable">
-                <div class="table fll">
-                    <table cellpadding="0" cellspacing="0">
-                        <tbody></tbody>
-                    </table>
+                <div class="scrollMask fll">
+                    <div class="tableDiv fll">
+                        <table cellpadding="0" cellspacing="0" class="fll">
+                            <tbody></tbody>
+                        </table>
+                        <div class="scroll flr">
+                            <div class="progressControl"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="songInfo flr">
                     <img src="images/github.png" alt="">
@@ -41,7 +46,7 @@
                         <div class="progressControl"></div>
                     </div>
                     <div class="loop inline-block"></div>
-                    <div class="volume inline-block"></div>                    
+                    <div class="volume inline-block"></div>
                     <div class="volProgress inline-block">
                         <div class="progressControl"></div>
                     </div>
@@ -55,5 +60,4 @@
         </div>
     </div>
 </body>
-
 </html>

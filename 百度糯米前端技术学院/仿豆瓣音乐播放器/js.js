@@ -3,7 +3,12 @@ window.onload = function() {
     var form = document.forms[0];
     var content = document.getElementsByClassName('content')[0];
     var musicTable = content.getElementsByClassName('musicTable')[0];
-    var table = musicTable.getElementsByClassName('table')[0];
+    var tableDiv = musicTable.getElementsByClassName('tableDiv')[0];
+    var tableDivHei = tableDiv.offsetHeight;
+    var table = tableDiv.getElementsByTagName('table')[0];
+    /*var table.offsetHeight = table.offsetHeight;*///这个地方提前声明了就是0，无法理解
+    var tableScroll = tableDiv.getElementsByClassName('scroll')[0];
+    var tableScrollProgress = tableScroll.getElementsByClassName('progressControl')[0];
     var tbody = musicTable.getElementsByTagName('tbody')[0];
     var trCollection = tbody.getElementsByTagName('tr');
     var trMusicOn;
@@ -98,7 +103,7 @@ window.onload = function() {
 
             }
         },
-        showData: function() {
+        initialize: function() {
             tbody.innerHTML = '';
             var displayList = this.display;
             var albumImgUrl = displayList[0].albumpic_big;
@@ -118,14 +123,14 @@ window.onload = function() {
                 tbody.appendChild(tr);
             }
 
-            table.scrollTop = 0;
+            tableDiv.scrollTop = 0;
 
         }
     };
 
     form.onsubmit = XmlHttp;
 
-    //获取数据
+    //发送异步请求，获取数据
     function XmlHttp(event) {
         var e = event || window.event;
         e.preventDefault();
@@ -148,16 +153,23 @@ window.onload = function() {
             if (xhr.readyState == 4 && xhr.status.toString().match(/200|3\d\d/)) {
                 musicData.raw = JSON.parse(xhr.responseText);
                 musicData.trans();
-                musicData.showData();
+                musicData.initialize();
+                initializeScroll(table.offsetHeight,tableDivHei);
             }
         };
 
         xhr.open(method, url, true);
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.send(postBody);
-    };
+    }
 
-    //媒体预加载
+    /**
+     * 媒体预加载,等下载结束再执行回调,减少中间空档异常情况
+     * @param {String}   tagName   预加载的标签
+     * @param {String}   url       预加载的url
+     * @param {String}   eventType 加载完成触发的事件类型，不一定是onload
+     * @param {Function} fn        加载完成后需要执行的函数
+     */
     function MediaOnLoad(tagName, url, eventType, fn) {
         var ele = document.createElement(tagName);
         ele.src = url;
@@ -176,14 +188,17 @@ window.onload = function() {
 
     };
 
-    //切换音乐,需要切换选中状态、专辑、背景、音乐时长
+    /**
+     * 切换音乐,需要切换选中状态、专辑、背景、音乐时长、播放按钮
+     * @param  {Object} targetTd 音乐所在行的第一个td元素     
+     */
     function musicChange(targetTd) {
         var targetA = targetTd.getElementsByTagName('a')[0];
         var tarImgUrl = targetA.getAttribute("data-img");
         var tarTr = targetTd.parentNode;
         //切换音乐
         audio.src = targetA.href;
-        audio.play();        
+        audio.play();
         //切换选中状态和专辑图片
         for (var i = 0; i < trCollection.length; i++) {
             trCollection[i].style.color = 'rgba(255, 255, 255, 0.5)';
@@ -206,9 +221,10 @@ window.onload = function() {
             audioTime.innerHTML = '00:00/' + audioDur;
         });
         //切换播放按钮
-        var startBtn=  musicControl.getElementsByClassName('start');
+        var startBtn = musicControl.getElementsByClassName('start');
+
         if (startBtn) {
-        	startBtn[0].className=startBtn[0].className.replace(/^start\s+|\s+start\s+|\s+start$/,' pause ');
+            startBtn[0].className = startBtn[0].className.replace(/^start\s+|\s+start\s+|\s+start$/, ' pause ');
         }
 
     }
@@ -251,10 +267,10 @@ window.onload = function() {
 
     };
     /**
-     * [changeProgress description]
-     * @param  {object}   e    事件对象
-     * @param  {object}   that 进度条父对象,一般是绑定鼠标按下事件的对象,是那个完整的进度条，不是正在变化的那个
-     * @param  {Function} fn   鼠标拖动进度条时，对媒体的操作，如：调整音乐的当前播放位置或当前音量     
+     * 切换进度条-根据点击、拖动切换进度条，并执行回调函数
+     * @param  {Object}   e    事件对象
+     * @param  {Object}   that 进度条父对象,一般是绑定鼠标按下事件的对象,是那个完整的进度条，不是正在变化的那个
+     * @param  {Function} fn   鼠标拖动进度条时，执行的回调函数，如：调整音乐的当前播放位置或当前音量     
      */
     function changeProgress(e, obj, fn) {
         var progressClientLeft = obj.getBoundingClientRect().left;
@@ -269,7 +285,11 @@ window.onload = function() {
         document.onmouseup = function() {
             document.onmousemove = null;
         };
-
+        /**
+         * 根据事件对象，执行父函数传递下来的回调函数
+         * @param  {Object} eve 事件对象，一般为鼠标按下事件或鼠标移动事件的对象
+         * @param  {Object} fun 事件发生时执行的回调         
+         */
         function progressDot(eve, fun) {
             progressPer = (eve.clientX - progressClientLeft) / progressWidth;
             if (progressPer <= 0) {
@@ -316,7 +336,9 @@ window.onload = function() {
 
         musicChange(targetTd);
     };
-
+    //滑入滑出需要点亮
+    //点击进度条显示后，滑出也需要点亮
+    //点击进度条消失后，不滑出依旧亮，滑出不亮
     volume.onmousemove = function() {
         this.style.opacity = 1;
     };
@@ -338,48 +360,69 @@ window.onload = function() {
     };
     //上一曲、下一曲、暂停区域
     musicControl.onclick = function() {
-    var e = event || window.event;
-    var tar = e.target || e.srcElement;
-    var clsNameArr = tar.className.split(/\s+/);
-    var isClicked = clsNameArr.indexOf('last') >= 0 || clsNameArr.indexOf('next') >= 0 || clsNameArr.indexOf('start') >= 0||clsNameArr.indexOf('pause') >= 0;
+        var e = event || window.event;
+        var tar = e.target || e.srcElement;
+        var clsNameArr = tar.className.split(/\s+/);
+        var isClicked = clsNameArr.indexOf('last') >= 0 || clsNameArr.indexOf('next') >= 0 || clsNameArr.indexOf('start') >= 0 || clsNameArr.indexOf('pause') >= 0;
 
-    if (isClicked) {
-    	//如果已经选中了音乐了
-        if (trMusicOn) {
+        if (isClicked) {
+            //如果已经选中了音乐了
+            if (trMusicOn) {
 
-            if (clsNameArr.indexOf('last') >= 0) {
-            	//第一首的上一首仍为第一首
-            	if (trMusicOn.previousElementSibling) {
-            		musicChange(trMusicOn.previousElementSibling.children[0]);
-            	}else {
-            		musicChange(trMusicOn.children[0]);
-            	}
+                if (clsNameArr.indexOf('last') >= 0) {
+                    //第一首的上一首仍为第一首
+                    if (trMusicOn.previousElementSibling) {
+                        musicChange(trMusicOn.previousElementSibling.children[0]);
+                    } else {
+                        musicChange(trMusicOn.children[0]);
+                    }
 
-            } else if (clsNameArr.indexOf('next') >= 0) {
-            	//最后一首的下一首仍为最后一首
-            	if (trMusicOn.nextElementSibling) {
-            		musicChange(trMusicOn.nextElementSibling.children[0]);
-            	}else {
-            		musicChange(trMusicOn.children[0]);
-            	}
+                } else if (clsNameArr.indexOf('next') >= 0) {
+                    //最后一首的下一首仍为最后一首
+                    if (trMusicOn.nextElementSibling) {
+                        musicChange(trMusicOn.nextElementSibling.children[0]);
+                    } else {
+                        musicChange(trMusicOn.children[0]);
+                    }
 
-            } else if (clsNameArr.indexOf('pause') >= 0) {
-            	audio.pause();
-            	tar.className=tar.className.replace(/^pause\s+|\s+pause\s+|\s+pause$/,' start ');
-            } else if (clsNameArr.indexOf('start') >= 0) {
-            	audio.play();
-            	tar.className=tar.className.replace(/^start\s+|\s+start\s+|\s+start$/,' pause ');
+                } else if (clsNameArr.indexOf('pause') >= 0) {
+                    audio.pause();
+                    tar.className = tar.className.replace(/^pause\s+|\s+pause\s+|\s+pause$/, ' start ');
+                } else if (clsNameArr.indexOf('start') >= 0) {
+                    audio.play();
+                    tar.className = tar.className.replace(/^start\s+|\s+start\s+|\s+start$/, ' pause ');
+                }
+                //如果根本没有音乐在播放，也就是都没有点击过音乐，从第一首开始
+            } else {
+                musicChange(trCollection[0].children[0]);
+                tar.className = tar.className.replace(/^start\s+|\s+start\s+|\s+start$/, ' pause ');
             }
-            //如果根本没有音乐在播放，也就是都没有点击过音乐，从第一首开始
-        }else {
-        	musicChange(trCollection[0].children[0]);          	
-        	tar.className=tar.className.replace(/^start\s+|\s+start\s+|\s+start$/,' pause ');
+        }
+    };
+
+    //滚动时，调整滚动条高度，滚动条的高度等于，表格每滚动了%(table的%)，滚动条就滚动%(tableDiv的%)
+    tableDiv.onscroll = function() {
+        var e = event || window.event;
+        var tar = e.target || e.srcElement;        
+        var tableScrollProgressTopNeed = tar.scrollTop + tableDivHei * (tar.scrollTop / table.offsetHeight);
+        tableScrollProgress.style.top = tableScrollProgressTopNeed + 'px';
+    };
+
+    /**
+     * 初始化滚动条长度
+     * @param  {Number} tableHei 音乐表格的实际高度,每发送一次请求更新了列表后都要处理     
+     */
+    function initializeScroll(tableHei,tableDivHei) {
+
+        tableScroll.style.height = tableHei + 'px';
+        if (tableDivHei >= tableHei) {
+            tableScrollProgress.style.height = '100%';
+        } else {
+            tableScrollProgress.style.height = tableDivHei * (tableDivHei / tableHei) + 'px';
         }
     }
 
-};
-
     //初始化
-    musicData.showData();
-
+    musicData.initialize();
+    initializeScroll(table.offsetHeight,tableDivHei);
 };
