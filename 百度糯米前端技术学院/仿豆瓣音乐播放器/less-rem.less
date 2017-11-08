@@ -1,0 +1,314 @@
+@media screen and (max-width: 600px) {
+    @mainColor: rgba(255, 255, 255, .5);
+    @preColor: rgba(255, 255, 255, 1);
+    @midColor: rgba(255, 255, 255, .75);
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    html {
+        height: 100%;
+        font-size: 50px;
+        body {
+            font-family: '微软雅黑';
+            font-size: 0.35rem;
+            height: 100%;
+            -webkit-user-select: none; //禁止用户选中文字
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -o-user-select: none;
+            .fll {
+                float: left;
+            }
+            .flr {
+                float: right;
+            }
+            input,
+            button {
+                font-family: '微软雅黑';
+                border: none;
+                outline: none;
+            }
+            .marginAuto {
+                position: static;
+                top: 50%;
+                left: 50%;
+                transform: none;
+            }
+            .inline-block {
+                display: inline-block;
+            }
+        }
+    }
+    .mask {
+        display: none;
+    }
+    .container {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        padding: 0rem;
+        overflow: hidden;
+        background-color: rgba(60, 60, 60, 0.9);
+        .header {
+            height: 4%;
+            &>a {
+                display: block;
+                width: 0.5rem;
+                height: 0.5rem;
+                background: url(images/sprite.png) no-repeat;
+                background-position: 0 0;
+                background-size: 100% 800%;
+                margin-top: 0.2rem;
+                margin-left: 0.2rem;
+            }
+            #login {
+                cursor: pointer;
+                color: @mainColor;
+                margin-top: 0.15rem;
+                margin-right: 0.25rem;
+            }
+        }
+        .content {
+            box-sizing: border-box;
+            width: 100%;
+            height: 95%;
+            padding-top: 0.2rem;
+            overflow: hidden;
+            form {
+                box-sizing: border-box;
+                width: 100%;
+                height: 7%;
+                margin: 0 auto;
+                color: @mainColor;
+                background-color: rgba(255, 255, 255, 0.2);
+                border-radius: 0.25rem;
+                overflow: hidden;
+                input {
+                    box-sizing: border-box;
+                    font-size: 0.35rem;
+                    width: 85%;
+                    height: 100%;
+                    padding-left: 0.5rem;
+                    vertical-align: middle;
+                    color: inherit;
+                    background: rgba(255, 255, 255, .2); //placeholder默认颜色
+                     ::-moz-placeholder {
+                        color: @mainColor;
+                    }
+                    &:-ms-input-placeholder {
+                        color: @mainColor;
+                    }
+                    &::-webkit-input-placeholder {
+                        color: @mainColor;
+                    }
+                }
+                .btn {
+                    box-sizing: border-box;
+                    font-size: 0.35rem;
+                    width: 15%;
+                    height: 100%;
+                    vertical-align: middle;
+                    color: inherit;
+                    float: left;
+                    background-image: url(images/sprite.png);
+                    background-size: 100% 800%;
+                    background-color: rgba(255, 255, 255, 0.2);
+                    background-position: 0 71%;
+                    background-repeat: no-repeat;
+                    position: relative;
+                    left: 0px;
+                }
+            }
+            .musicTable {
+                width: 100%;
+                height: 75%;
+                margin-top: 0.2rem;
+                border-bottom: 1px solid grey;
+                .scrollMask {
+                    overflow: hidden;
+                    width: 100%;
+                    height: 100%;
+                }
+                .tableDiv {
+                    position: relative;
+                    overflow: hidden;
+                    overflow-y: scroll;
+                    box-sizing: border-box;
+                    width: 100%;
+                    height: 100%;
+                    table {
+                        width: 100%;
+                        table-layout: fixed;
+                        tr {
+                            line-height: 1rem;
+                            height: 10%;
+                            color: @mainColor;
+                            td {
+                                overflow: hidden;
+                                box-sizing: border-box;
+                                padding-left: 0.5rem;
+                                text-align: left;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                                border-bottom: 1px solid grey;
+                            }
+                            td:nth-child(1) {
+                                width: 50%;
+                                padding-left: 0.5rem;
+                                cursor: pointer;
+                                a {
+                                    display: block;
+                                    width: 100%;
+                                    height: 100%;
+                                    padding-left: 0rem;
+                                    text-decoration: none;
+                                    color: inherit;
+                                }
+                            }
+                            td:nth-child(2) {
+                                width: 40%;
+                            }
+                            td:nth-child(3) {
+                                width: 0%;
+                                display: none;
+                            }
+                            td:last-child {
+                                border-bottom: none;
+                            }
+                        }
+                    }
+                    .scroll {
+                        position: absolute;
+                        right: 0rem;
+                        width: 0.1rem;
+                        height: 17.85rem;
+                        min-height: 15rem;
+                        border-radius: 100px;
+                        background: @mainColor;
+                        .progressControl {
+                            position: absolute;
+                            top: 0;
+                            right: 0.025rem;
+                            width: 0.1rem;
+                            height: 2.5rem;
+                            cursor: pointer;
+                            border-radius: 100px;
+                            background: @midColor;
+                            &:hover {
+                                background: @preColor;
+                            }
+                        }
+                    }
+                }
+                .songInfo {
+                    display: none;
+                }
+            }
+            .audioControl {
+                margin-top: 0.5rem;
+                height: 12%;
+                .progressBar {
+                    width: 100%;
+                    .timeAndLoop {
+                        width: 100%;
+                        height: 6%;
+
+                        .time {
+                            font-size: 0.1rem;
+                            width: 80%;
+                            height: 1%;
+                            text-align: right;
+                            color: @mainColor;
+                        }
+                        .timeProgress {
+                            margin-top: -5%;
+                            position: relative;
+                            width: 80%;
+                            height: 0.04rem;
+                            cursor: pointer;
+                            vertical-align: middle;
+                            background: @mainColor;
+                            .progressControl {
+                                position: absolute;
+                                left: 0;
+                                width: 0;
+                                height: 0.02rem;
+                                cursor: pointer;
+                                background: @preColor;
+                                &:after {
+                                    position: absolute;
+                                    top: -0.02rem;
+                                    left: 100%;
+                                    display: block;
+                                    width: 0.05rem;
+                                    height: 0.05rem;
+                                    content: '';
+                                    border-radius: 0.2rem;
+                                    background: #fff;
+                                }
+                            }
+                        }
+                        .loop {
+                            position: relative;
+                            margin-top: -5%;
+                            width: 0.5rem;
+                            height: 0.5rem;
+                            left: 0.5rem;
+                            vertical-align: middle;
+                            opacity: .8;
+                            background: url(images/sprite.png) no-repeat;
+                            background-size: 100% 800%;
+                            background-position: 0 14.5%;
+                        }
+                        .default-loop {
+                            background-position: 0 15%;
+                        }
+                        .single-loop {
+                            background-position: 0 29%;
+                        }
+                        .random-loop {
+                            background-position: 0 43.5%;
+                        }
+                        .volume {
+                            display: none;
+                        }
+                        .volProgress {
+                            display: none;
+                        }
+                    }
+                    .musicControl {
+                        width: 100%;
+                        height: 6%;
+                        vertical-align: middle;
+                        display: block;
+                        .last,
+                        .next {
+                            display: none;
+                        }
+                        .pause,
+                        .start {
+                            vertical-align: middle;
+                            opacity: .5;
+                            display: block;
+                        }
+                        .pause,
+                        .start {
+                            width: 0.5rem;
+                            height: 0.5rem;
+                            margin: 0 auto;
+                            background-image: url(images/sprite.png);
+                            background-repeat: no-repeat;
+                            background-size: 100% 800%;
+                            background-position: 0 85%;
+                        }
+                        .pause {
+                            background-position: 0 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
