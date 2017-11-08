@@ -1,6 +1,6 @@
-@mainColor: rgba(255, 255, 255, 0.5);
+@mainColor: rgba(255, 255, 255, .5);
 @preColor: rgba(255, 255, 255, 1);
-@midColor: rgba(255, 255, 255, 0.75);
+@midColor: rgba(255, 255, 255, .75);
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +12,11 @@ html {
         font-family: '微软雅黑';
         font-size: 16px;
         height: 100%;
-        user-select:none;
+        -webkit-user-select: none; //禁止用户选中文字
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -o-user-select: none;
         .fll {
             float: left;
         }
@@ -21,36 +25,38 @@ html {
         }
         input,
         button {
+            font-family: '微软雅黑';
             border: none;
             outline: none;
         }
         .marginAuto {
             position: relative;
-            left: 50%;
             top: 50%;
+            left: 50%;
             transform: translate(-50%, -50%);
         }
         .inline-block {
             display: inline-block;
         }
-        td,div {
-        	cursor: default;
+        td,
+        div {
+            cursor: default;
         }
-
     }
 }
 
 .mask {
+    position: absolute;
+    z-index: -1;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
+    transition: all .5s linear;
     background-image: url(http://i.gtimg.cn/music/photo/mid_album_300/I/3/00472CVU4VP4I3.jpg);
     background-repeat: no-repeat;
     background-size: 1500px 1000px;
+
     filter: blur(100px) brightness(50%);
-    position: absolute;
-    z-index: -1;
-    transition: background 0.5s ease;
 }
 
 .container {
@@ -64,12 +70,12 @@ html {
         width: 25px;
         height: 25px;
         background: url(images/sprite.png) no-repeat;
-        background-position: 0px 0px;
+        background-position: 0 0;
         background-size: 25px 120px;
     }
     #login {
-        color: @mainColor;
         cursor: pointer;
+        color: @mainColor;
     }
     .content {
         position: relative;
@@ -92,21 +98,30 @@ html {
                 height: 30px;
                 padding: 10px 0 10px 10px;
                 vertical-align: middle;
+                color: inherit;
                 border-top-left-radius: 5px;
                 border-bottom-left-radius: 5px;
-                color: inherit;
-                background: rgba(255, 255, 255, 0.2);
+                background: rgba(255, 255, 255, .2); //placeholder默认颜色
+                 ::-moz-placeholder {
+                    color: @mainColor;
+                }
+                &:-ms-input-placeholder {
+                    color: @mainColor;
+                }
+                &::-webkit-input-placeholder {
+                    color: @mainColor;
+                }
             }
             .btn {
                 position: relative;
+                box-sizing: border-box;
                 width: 50px;
                 height: 50px;
-                box-sizing: border-box;
                 vertical-align: middle;
                 color: inherit;
                 border-top-right-radius: 5px;
                 border-bottom-right-radius: 5px;
-                background: rgba(255, 255, 255, 0.2);
+                background: rgba(255, 255, 255, .2);
                 &:hover {
                     cursor: pointer;
                     background: @mainColor;
@@ -120,7 +135,7 @@ html {
                     position: absolute;
                     display: block;
                     content: '';
-                    border-color: rgba(255, 255, 255, 0.2);
+                    border-color: rgba(255, 255, 255, .2);
                 }
                 &:before {
                     top: 13px;
@@ -141,51 +156,51 @@ html {
             }
         }
         .musicTable {
-            margin-top: 40px;
             width: 900px;
             height: 300px;
+            margin-top: 40px;
             .scrollMask {
-            	width: 650px;
-            	overflow:hidden;            	
+                overflow: hidden;
+                width: 650px;
             }
             .tableDiv {
-                height: 300px;
+                position: relative;
+                overflow: hidden;
+                overflow-y: scroll;
+                box-sizing: border-box;
                 width: 670px;
-                overflow:hidden; 
-                overflow-y: scroll;  
-                box-sizing: border-box;   
-                position: relative;      
+                height: 300px;
                 table {
                     width: 610px;
                     table-layout: fixed;
                     tr {
-                        height: 50px;
                         line-height: 50px;
+                        height: 50px;
                         color: @mainColor;
                         &:hover {
                             color: @preColor;
                         }
 
                         td {
-                            text-align: left;
-                            border-bottom: 1px solid grey;
-                            white-space: nowrap;
-                            padding-left: 50px;
-                            box-sizing: border-box;
                             overflow: hidden;
+                            box-sizing: border-box;
+                            padding-left: 50px;
+                            text-align: left;
+                            white-space: nowrap;
                             text-overflow: ellipsis;
+                            border-bottom: 1px solid grey;
                         }
                         td:nth-child(1) {
                             width: 250px;
-                            cursor: pointer;
                             padding-left: 0;
+                            cursor: pointer;
                             a {
-                                padding-left: 50px;
                                 display: block;
                                 width: 100%;
                                 height: 100%;
-                                color: inherit;
+                                padding-left: 50px;
                                 text-decoration: none;
+                                color: inherit;
                             }
                         }
                         td:nth-child(2) {
@@ -197,39 +212,39 @@ html {
                     }
                 }
                 .scroll {
-                	width: 2px;
-                	height: 357px;  
-                	min-height: 300px;              	               	
-                	background: @mainColor;
-                	position: absolute;
-                	border-radius:100px;
-                	right: 4px;
-                	.progressControl {
-                		position: absolute;
-                		border-radius:100px;
-                		right: -3px;
-                		top: 0;
-                		width: 6px;
-                		height: 50px;                		
-                		background: @midColor;
-                		cursor: pointer;
-                		&:hover {
-                			background: @preColor;
-                		}
-                	}
+                    position: absolute;
+                    right: 4px;
+                    width: 2px;
+                    height: 357px;
+                    min-height: 300px;
+                    border-radius: 100px;
+                    background: @mainColor;
+                    .progressControl {
+                        position: absolute;
+                        top: 0;
+                        right: -3px;
+                        width: 6px;
+                        height: 50px;
+                        cursor: pointer;
+                        border-radius: 100px;
+                        background: @midColor;
+                        &:hover {
+                            background: @preColor;
+                        }
+                    }
                 }
             }
 
             .songInfo {
+                box-sizing: border-box;
                 width: 250px;
                 height: 300px;
-                box-sizing: border-box;
 
                 img {
-                    max-width: 150px;
-                    max-height: 150px;
                     position: relative;
                     left: 50%;
+                    max-width: 150px;
+                    max-height: 150px;
                     transform: translate(-50%, 0);
                 }
             }
@@ -239,37 +254,37 @@ html {
             .progressBar {
                 width: 900px;
                 .time {
-                    height: 10px;
                     font-size: 10px;
                     width: 550px;
-                    text-align: right;
+                    height: 10px;
                     margin-bottom: 5px;
+                    text-align: right;
                     color: @mainColor;
                 }
                 .timeProgress {
+                    position: relative;
                     width: 540px;
                     height: 4px;
-                    background: @mainColor;
-                    position: relative;
                     cursor: pointer;
                     vertical-align: middle;
+                    background: @mainColor;
                     .progressControl {
-                        height: 4px;
-                        width: 0px;
-                        background: @preColor;
                         position: absolute;
                         left: 0;
+                        width: 0;
+                        height: 4px;
                         cursor: pointer;
+                        background: @preColor;
                         &:after {
-                            content: '';
+                            position: absolute;
+                            top: -4px;
+                            left: 100%;
+                            display: block;
                             width: 11px;
                             height: 11px;
-                            display: block;
-                            background: #fff;
+                            content: '';
                             border-radius: 11px;
-                            position: absolute;
-                            left: 100%;
-                            top: -4px;
+                            background: #fff;
                         }
                     }
                 }
@@ -277,127 +292,132 @@ html {
                 .volume {
                     width: 20px;
                     height: 18px;
-                    background: url(images/sprite.png) no-repeat;
-                    background-size: 20px 90px;
-                    vertical-align: middle;
                     margin-left: 20px;
                     cursor: pointer;
-                    opacity: 0.8;
+                    vertical-align: middle;
+                    opacity: .8;
+                    background: url(images/sprite.png) no-repeat;
+                    background-size: 20px 90px;
                 }
                 .loop {
-                    background-position: 0px -18px;   
+                    background-position: 0 -18px;
                     &:hover {
-                    	opacity: 1;
+                        opacity: 1;
                     }
                 }
                 .volume {
-                    background-position: 0px -72px;
                     margin-left: 10px;
+                    background-position: 0 -72px;
                 }
                 .volProgress {
+                    position: relative;
+                    visibility: hidden;
                     width: 50px;
                     height: 4px;
-                    background: @mainColor;
-                    position: relative;
                     cursor: pointer;
                     vertical-align: middle;
-                    visibility: hidden;
+                    background: @mainColor;
                     .progressControl {
-                        height: 4px;
-                        width: 25px;
-                        background: @preColor;
                         position: absolute;
                         left: 0;
+                        width: 25px;
+                        height: 4px;
                         cursor: pointer;
+                        background: @preColor;
                         &:after {
-                            content: '';
+                            position: absolute;
+                            top: -4px;
+                            left: 100%;
+                            display: block;
                             width: 11px;
                             height: 11px;
-                            display: block;
-                            background: #fff;
+                            content: '';
                             border-radius: 11px;
-                            position: absolute;
-                            left: 100%;
-                            top: -4px;
+                            background: #fff;
                         }
                     }
                 }
                 .musicControl {
-                	width: 150px;
-                	height: 30px;
-                	vertical-align: middle;
-                	margin-left: 28px;
+                    width: 150px;
+                    height: 30px;
+                    margin-left: 28px;
+                    vertical-align: middle;
                     .last,
                     .next {
+                        position: relative;
+                        box-sizing: border-box;
                         width: 20px;
                         height: 16px;
-                        box-sizing: border-box;
-                        position: relative;
-                        &:before,&:after {
-                        	content: '';
-                        	display: block;
-                        	border: 8px solid transparent;
-                        	position: absolute;
-                        	top: 0;                        	
-                        }                      
-                    }
-                    .last,.next,.pause,.start {
-                        opacity: 0.5;
-                        vertical-align: middle;
-                        cursor: pointer;
-                        &:hover {
-                        	opacity: 1;
+                        &:before,
+                        &:after {
+                            position: absolute;
+                            top: 0;
+                            display: block;
+                            content: '';
+                            border: 8px solid transparent;
                         }
-
+                    }
+                    .last,
+                    .next,
+                    .pause,
+                    .start {
+                        cursor: pointer;
+                        vertical-align: middle;
+                        opacity: .5;
+                        &:hover {
+                            opacity: 1;
+                        }
                     }
                     .last {
                         border-left: 2px solid #fff;
-                          &:before {
-                        	border-right: 10px solid #fff;
-                        	left: -8px;
+                        &:before {
+                            left: -8px;
+                            border-right: 10px solid #fff;
                         }
                         &:after {
-                        	border-right: 10px solid #fff;
-                        	left: 2px;
+                            left: 2px;
+                            border-right: 10px solid #fff;
                         }
                     }
                     .next {
-						border-right: 2px solid #fff;  
-						 &:before {
-                        	border-left: 10px solid #fff;
-                        	right: -8px;
+                        border-right: 2px solid #fff;
+                        &:before {
+                            right: -8px;
+                            border-left: 10px solid #fff;
                         }
                         &:after {
-                        	border-left: 10px solid #fff;
-                        	right: 2px;
-                        }                  	
+                            right: 2px;
+                            border-left: 10px solid #fff;
+                        }
                     }
-                    .pause,.start {
-                    	margin: 0 30px;
-                    	border:12px solid transparent;
-                    	border-left: 16px solid #fff;
-                    	position: relative;
+                    .pause,
+                    .start {
+                        position: relative;
+                        margin: 0 30px;
+                        border: 12px solid transparent;
+                        border-left: 16px solid #fff;
                     }
-                    .start {                    	
-                    	left: 6px;
+                    .start {
+                        left: 6px;
                     }
                     .pause {
-                    	border-color:transparent;
-                    	left: -11px;
-                    	top: -11px;
-                    	&:before,&:after {
-                    		content: '';
-                    		display: block;
-                    		position: absolute;
-                    		left: 0;
-                    		top: 0;
-                    		height: 16px;
-                    		width: 0;
-                    		border: 3px solid #fff;
-                    	}
-                    	&:after {
-                    		left: 9px;
-                    	}
+                        top: -11px;
+                        left: -11px;
+                        border-color: transparent;
+                        &:before,
+                        &:after {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            display: block;
+                            width: 0;
+                            height: 16px;
+                            content: '';
+                            border: 3px solid #fff;
+                        }
+                        &:after {
+                            left: 9px;
+                        }
                     }
                 }
             }
