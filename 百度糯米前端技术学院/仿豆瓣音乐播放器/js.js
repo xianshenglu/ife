@@ -1,6 +1,7 @@
 window.onload = function() {
     var mask = document.getElementsByClassName('mask')[0],
         form = document.forms[0],
+        inputKeyword = form.elements["keyword"],
         btnSubmit = form.getElementsByTagName('button')[0],
         content = document.getElementsByClassName('content')[0],
         musicTable = content.getElementsByClassName('musicTable')[0],
@@ -187,9 +188,32 @@ window.onload = function() {
         var startBtn = musicControl.getElementsByClassName('start');
 
         if (startBtn.length) {
-            startBtn[0].className = startBtn[0].className.replace(/^start\s+|\s+start\s+|\s+start$/, ' pause ');
+            var clsNameArr = startBtn[0].className.split(/\s+/);
+            startBtn[0].className = clsNameUpdate(startBtn[0].className, 'start', 'pause');
         }
 
+    }
+
+    /**
+     * 更新类名
+     * @param  {Object} objClsName	修改前类名
+     * @param  {String} clsNameToDelete 要删的类名
+     * @param  {String} clsNameToAppend 要新加的类名
+     * @return {String}                 修改后的类名
+     */
+    function clsNameUpdate(objClsName, clsNameToDelete, clsNameToAppend) {
+        if (objClsName) {
+            var clsNameArr = objClsName.split(/\s+/);
+            if (clsNameArr.indexOf(clsNameToDelete) >= 0) {
+                clsNameArr.splice(clsNameArr.indexOf(clsNameToDelete), 1, clsNameToAppend);
+                return clsNameArr.join(' ');
+            } else {
+                clsNameArr.push(clsNameToAppend);
+                return clsNameArr.join(' ');
+            }
+        } else {
+            return clsNameToAppend;
+        }
     }
     //切换播放进度条-根据当前播放位置变化调整
     audio.ontimeupdate = function(event) {
@@ -264,15 +288,18 @@ window.onload = function() {
         }
     }
 
-    //切换循坏图标
-    var LoopBacTop = -18;
+    //切换循坏图标    
     loop.onclick = function(event) {
-        if (LoopBacTop >= -36) {
-            LoopBacTop = LoopBacTop - 18;
-        } else {
-            LoopBacTop = -18;
+        var loopClsName = loop.className.split(/\s+/);
+
+        if (loopClsName.indexOf('default-loop') >= 0) {
+            loop.className = clsNameUpdate(loop.className, 'default-loop', 'single-loop');
+        } else if (loopClsName.indexOf('single-loop') >= 0) {
+            loop.className = clsNameUpdate(loop.className, 'single-loop', 'random-loop');
+        } else if (loopClsName.indexOf('random-loop') >= 0) {
+            loop.className = clsNameUpdate(loop.className, 'random-loop', 'default-loop');
         }
-        loop.style.backgroundPosition = '0px ' + LoopBacTop + 'px';
+
     };
 
     //切换音乐循环效果-根据循环图标
@@ -350,10 +377,10 @@ window.onload = function() {
 
                 } else if (clsNameArr.indexOf('pause') >= 0) {
                     audio.pause();
-                    tar.className = tar.className.replace(/^pause\s+|\s+pause\s+|\s+pause$/, ' start ');
+                    tar.className = clsNameUpdate(tar.className, 'pause', 'start');
                 } else if (clsNameArr.indexOf('start') >= 0) {
                     audio.play();
-                    tar.className = tar.className.replace(/^start\s+|\s+start\s+|\s+start$/, ' pause ');
+                    tar.className = clsNameUpdate(tar.className, 'start', 'pause');
                 }
                 //如果根本没有音乐在播放，也就是都没有点击过音乐，从第一首开始
             } else {
@@ -376,7 +403,6 @@ window.onload = function() {
      * @param  {Number} tableHei 音乐表格的实际高度,每发送一次请求更新了列表后都要处理     
      */
     function initializeScroll(tableHei, tableDivHei) {
-        console.log(tableHei);
         tableScroll.style.height = tableHei + 'px';
         if (tableDivHei >= tableHei) {
             tableScrollProgress.style.height = '100%';
@@ -391,4 +417,6 @@ window.onload = function() {
     document.forms[0].elements["keyword"].value = '';
     musicData.initialize();
     initializeScroll(table.offsetHeight, tableDivHei);
+    btnSubmit.style.width = btnSubmit.offsetHeight + 'px';
+    inputKeyword.style.width = form.offsetWidth - btnSubmit.offsetWidth + 'px';
 };
