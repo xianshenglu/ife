@@ -1,105 +1,108 @@
 window.onload = function() {
-    var mask = document.getElementsByClassName('mask')[0];
-    var form = document.forms[0];
-    var content = document.getElementsByClassName('content')[0];
-    var musicTable = content.getElementsByClassName('musicTable')[0];
-    var tableDiv = musicTable.getElementsByClassName('tableDiv')[0];
-    var tableDivHei = tableDiv.offsetHeight;
-    var table = tableDiv.getElementsByTagName('table')[0];
-    /*var table.offsetHeight = table.offsetHeight;*///这个地方提前声明了就是0，无法理解
-    var tableScroll = tableDiv.getElementsByClassName('scroll')[0];
-    var tableScrollProgress = tableScroll.getElementsByClassName('progressControl')[0];
-    var tbody = musicTable.getElementsByTagName('tbody')[0];
-    var trCollection = tbody.getElementsByTagName('tr');
-    var trMusicOn;
-    var songInfo = musicTable.getElementsByClassName('songInfo')[0];
-    var albumImg = songInfo.getElementsByTagName('img')[0];
-    var audioControl = content.getElementsByClassName('audioControl')[0];
-    var progressBar = audioControl.getElementsByClassName('progressBar')[0];
-    var timeProgress = progressBar.getElementsByClassName('timeProgress')[0];
-    var timeProgressControl = timeProgress.getElementsByClassName('progressControl')[0];
-    var audio = audioControl.getElementsByTagName('audio')[0];
-    var audioTime = progressBar.getElementsByClassName('time')[0];
-    var loop = progressBar.getElementsByClassName('loop')[0];
-    var volume = progressBar.getElementsByClassName('volume')[0];
-    var volProgress = progressBar.getElementsByClassName('volProgress')[0];
-    var volProgressControl = volProgress.getElementsByClassName('progressControl')[0];
-    var musicControl = progressBar.getElementsByClassName('musicControl')[0];
-    var musicData = {
-        raw: {},
-        display: [{
-                m4a: "http://ws.stream.qqmusic.qq.com/101800569.m4a?fromtag=46",
-                albumname: "Fade",
-                singername: "Alan Walker",
-                songname: "Fade",
-                albumpic_big: "http://i.gtimg.cn/music/photo/mid_album_300/I/3/00472CVU4VP4I3.jpg",
-                downUrl: "http://dl.stream.qqmusic.qq.com/101800569.m4a?vkey=E0630A6DCFDD284EC0AA849CBCA2E1680DADC9FEB1525E56DFA2AC9238AEC8E77ED3833383CAB5F95322633C5A8E156FF96C1D672BE206B6&guid=2718671044"
-            },
-            {
-                m4a: "http://ws.stream.qqmusic.qq.com/498307.m4a?fromtag=46",
-                albumname: "遥望",
-                singername: "BEYOND",
-                songname: "海阔天空",
-                albumpic_big: "http://i.gtimg.cn/music/photo/mid_album_300/0/7/004Z88hS1FiU07.jpg",
-                downUrl: "http://dl.stream.qqmusic.qq.com/498307.m4a?vkey=D809D0D4D8347435D3F12BFDE571BB32FD19F3280D39C137F903D684E090FC101B0FFCA006C6297F76FF04D29822DBCBC2E23F13654938C9&guid=2718671044"
-            }
-        ],
-        trans: function() {
-            var isData = this.raw.showapi_res_body && this.raw.showapi_res_body.pagebean && this.raw.showapi_res_body.pagebean.contentlist.length;
+    var mask = document.getElementsByClassName('mask')[0],
+        form = document.forms[0],
+        btnSubmit = form.getElementsByTagName('button')[0],
+        content = document.getElementsByClassName('content')[0],
+        musicTable = content.getElementsByClassName('musicTable')[0],
+        tableDiv = musicTable.getElementsByClassName('tableDiv')[0],
+        tableDivHei = tableDiv.offsetHeight,
+        table = tableDiv.getElementsByTagName('table')[0],
+        tableHei = table.offsetHeight, //这个地方tableHei提前声明了就是0，无法理解,所以不能用
+        tableScroll = tableDiv.getElementsByClassName('scroll')[0],
+        tableScrollProgress = tableScroll.getElementsByClassName('progressControl')[0],
+        tbody = musicTable.getElementsByTagName('tbody')[0],
+        trCollection = tbody.getElementsByTagName('tr'),
+        trMusicOn,
+        songInfo = musicTable.getElementsByClassName('songInfo')[0],
+        albumImg = songInfo.getElementsByTagName('img')[0],
+        audioControl = content.getElementsByClassName('audioControl')[0],
+        progressBar = audioControl.getElementsByClassName('progressBar')[0],
+        timeProgress = progressBar.getElementsByClassName('timeProgress')[0],
+        timeProgressControl = timeProgress.getElementsByClassName('progressControl')[0],
+        audio = audioControl.getElementsByTagName('audio')[0],
+        audioTime = progressBar.getElementsByClassName('time')[0],
+        loop = progressBar.getElementsByClassName('loop')[0],
+        volume = progressBar.getElementsByClassName('volume')[0],
+        volProgress = progressBar.getElementsByClassName('volProgress')[0],
+        volProgressControl = volProgress.getElementsByClassName('progressControl')[0],
+        musicControl = progressBar.getElementsByClassName('musicControl')[0],
+        musicData = {
+            raw: {},
+            display: [{
+                    m4a: "http://ws.stream.qqmusic.qq.com/101800569.m4a?fromtag=46",
+                    albumname: "Fade",
+                    singername: "Alan Walker",
+                    songname: "Fade",
+                    albumpic_big: "http://i.gtimg.cn/music/photo/mid_album_300/I/3/00472CVU4VP4I3.jpg",
+                    downUrl: "http://dl.stream.qqmusic.qq.com/101800569.m4a?vkey=E0630A6DCFDD284EC0AA849CBCA2E1680DADC9FEB1525E56DFA2AC9238AEC8E77ED3833383CAB5F95322633C5A8E156FF96C1D672BE206B6&guid=2718671044"
+                },
+                {
+                    m4a: "http://ws.stream.qqmusic.qq.com/498307.m4a?fromtag=46",
+                    albumname: "遥望",
+                    singername: "BEYOND",
+                    songname: "海阔天空",
+                    albumpic_big: "http://i.gtimg.cn/music/photo/mid_album_300/0/7/004Z88hS1FiU07.jpg",
+                    downUrl: "http://dl.stream.qqmusic.qq.com/498307.m4a?vkey=D809D0D4D8347435D3F12BFDE571BB32FD19F3280D39C137F903D684E090FC101B0FFCA006C6297F76FF04D29822DBCBC2E23F13654938C9&guid=2718671044"
+                }
+            ],
+            trans: function() {
+                var isData = this.raw.showapi_res_body && this.raw.showapi_res_body.pagebean && this.raw.showapi_res_body.pagebean.contentlist.length;
 
-            if (isData) {
-                var contentlist = this.raw.showapi_res_body.pagebean.contentlist;
-                this.display = [];
-                for (var j = 0; j < contentlist.length; j++) {
-                    this.display[j] = {
-                        m4a: contentlist[j].m4a,
-                        albumname: contentlist[j].albumname,
-                        singername: contentlist[j].singername,
-                        songname: contentlist[j].songname,
-                        albumpic_big: contentlist[j].albumpic_big,
-                        downUrl: contentlist[j].downUrl
-                    };
+                if (isData) {
+                    var contentlist = this.raw.showapi_res_body.pagebean.contentlist;
+                    this.display = [];
+                    for (var j = 0; j < contentlist.length; j++) {
+                        this.display[j] = {
+                            m4a: contentlist[j].m4a,
+                            albumname: contentlist[j].albumname,
+                            singername: contentlist[j].singername,
+                            songname: contentlist[j].songname,
+                            albumpic_big: contentlist[j].albumpic_big,
+                            downUrl: contentlist[j].downUrl
+                        };
+                    }
+
+                }
+            },
+            initialize: function() {
+                tbody.innerHTML = '';
+                var displayList = this.display,
+                    albumImgUrl = displayList[0].albumpic_big;
+
+                MediaOnLoad('img', albumImgUrl, 'onload', function() {
+                    albumImg.src = albumImgUrl;
+                });
+
+                MediaOnLoad('img', displayList[0].albumpic_big, 'onload', function() {
+                    mask.style.backgroundImage = 'url(' + musicData.display[0].albumpic_big + ')';
+                });
+
+                //添加音乐列表至tbody
+                for (var i = 0; i < displayList.length; i++) {
+                    var tr = document.createElement('tr');
+                    tr.innerHTML = '<td><a href="' + displayList[i].m4a + '" data-img="' + displayList[i].albumpic_big + '">' + this.display[i].songname + '</a></td>' + '<td>' + this.display[i].singername + '</td>' + '<td>' + this.display[i].albumname + '</td>';
+                    tbody.appendChild(tr);
                 }
 
+                tableDiv.scrollTop = 0;
+
             }
-        },
-        initialize: function() {
-            tbody.innerHTML = '';
-            var displayList = this.display;
-            var albumImgUrl = displayList[0].albumpic_big;
+        };
 
-            MediaOnLoad('img', albumImgUrl, 'onload', function() {
-                albumImg.src = albumImgUrl;
-            });
-
-            MediaOnLoad('img', displayList[0].albumpic_big, 'onload', function() {
-                mask.style.backgroundImage = 'url(' + musicData.display[0].albumpic_big + ')';
-            });
-
-            //添加音乐列表至tbody
-            for (var i = 0; i < displayList.length; i++) {
-                var tr = document.createElement('tr');
-                tr.innerHTML = '<td><a href="' + displayList[i].m4a + '" data-img="' + displayList[i].albumpic_big + '">' + this.display[i].songname + '</a></td>' + '<td>' + this.display[i].singername + '</td>' + '<td>' + this.display[i].albumname + '</td>';
-                tbody.appendChild(tr);
-            }
-
-            tableDiv.scrollTop = 0;
-
-        }
+    form.onsubmit = function(event) {
+        var e = event || window.event;
+        XmlHttp(e);
     };
 
-    form.onsubmit = XmlHttp;
-
     //发送异步请求，获取数据
-    function XmlHttp(event) {
-        var e = event || window.event;
+    function XmlHttp(e) {
         e.preventDefault();
-        var formEle = form.elements;
-        var xhr = new XMLHttpRequest();
-        var url = form.action;
-        var method = form.method;
-        var keyword = formEle["keyword"];
-        var postBody = '';
+        var formEle = form.elements,
+            xhr = new XMLHttpRequest(),
+            url = form.action,
+            method = form.method,
+            keyword = formEle["keyword"],
+            postBody = '';
 
         for (var i = 0; i < formEle.length; i++) {
             if (formEle[i].tagName.toLowerCase() === 'input') {
@@ -114,7 +117,7 @@ window.onload = function() {
                 musicData.raw = JSON.parse(xhr.responseText);
                 musicData.trans();
                 musicData.initialize();
-                initializeScroll(table.offsetHeight,tableDivHei);
+                initializeScroll(table.offsetHeight, tableDivHei);
             }
         };
 
@@ -138,8 +141,8 @@ window.onload = function() {
 
     //点击音乐播放，切换音乐
     musicTable.onclick = function(event) {
-        var e = event || window.event;
-        var tar = e.target || e.srcElement;
+        var e = event || window.event,
+            tar = e.target || e.srcElement;
 
         if (tbody.contains(tar) && tar.href) {
             e.preventDefault();
@@ -153,9 +156,9 @@ window.onload = function() {
      * @param  {Object} targetTd 音乐所在行的第一个td元素     
      */
     function musicChange(targetTd) {
-        var targetA = targetTd.getElementsByTagName('a')[0];
-        var tarImgUrl = targetA.getAttribute("data-img");
-        var tarTr = targetTd.parentNode;
+        var targetA = targetTd.getElementsByTagName('a')[0],
+            tarImgUrl = targetA.getAttribute("data-img"),
+            tarTr = targetTd.parentNode;
         //切换音乐
         audio.src = targetA.href;
         audio.play();
@@ -175,15 +178,15 @@ window.onload = function() {
         });
         //切换音乐时长
         MediaOnLoad('audio', audio.src, 'oncanplay', function() {
-            var audioDurM = Math.floor(audio.duration / 60) < 10 ? '0' + Math.floor(audio.duration / 60).toString() : Math.floor(audio.duration / 60);
-            var audioDurS = Math.round(audio.duration % 60) < 10 ? '0' + Math.round(audio.duration % 60).toString() : Math.round(audio.duration % 60);
-            var audioDur = audioDurM + ':' + audioDurS;
+            var audioDurM = Math.floor(audio.duration / 60) < 10 ? '0' + Math.floor(audio.duration / 60).toString() : Math.floor(audio.duration / 60),
+                audioDurS = Math.round(audio.duration % 60) < 10 ? '0' + Math.round(audio.duration % 60).toString() : Math.round(audio.duration % 60),
+                audioDur = audioDurM + ':' + audioDurS;
             audioTime.innerHTML = '00:00/' + audioDur;
         });
         //切换播放按钮
         var startBtn = musicControl.getElementsByClassName('start');
 
-        if (startBtn) {
+        if (startBtn.length) {
             startBtn[0].className = startBtn[0].className.replace(/^start\s+|\s+start\s+|\s+start$/, ' pause ');
         }
 
@@ -191,21 +194,21 @@ window.onload = function() {
     //切换播放进度条-根据当前播放位置变化调整
     audio.ontimeupdate = function(event) {
         //进度条
-        var e = event || window.event;
-        var tar = e.target || e.srcElement;
-        var percent = 100 * tar.currentTime / this.duration;
+        var e = event || window.event,
+            tar = e.target || e.srcElement,
+            percent = 100 * tar.currentTime / this.duration;
         timeProgressControl.style.width = percent + '%';
         //时间戳
-        var audioPreM = Math.floor(tar.currentTime / 60) < 10 ? '0' + Math.floor(tar.currentTime / 60).toString() : Math.floor(tar.currentTime / 60);
-        var audioPreS = Math.round(tar.currentTime % 60) < 10 ? '0' + Math.round(tar.currentTime % 60).toString() : Math.round(tar.currentTime % 60);
-        var audioPre = audioPreM + ':' + audioPreS + '/';
+        var audioPreM = Math.floor(tar.currentTime / 60) < 10 ? '0' + Math.floor(tar.currentTime / 60).toString() : Math.floor(tar.currentTime / 60),
+            audioPreS = Math.round(tar.currentTime % 60) < 10 ? '0' + Math.round(tar.currentTime % 60).toString() : Math.round(tar.currentTime % 60),
+            audioPre = audioPreM + ':' + audioPreS + '/';
         audioTime.innerHTML = audioTime.innerHTML.replace(/[\d:]+?\//, audioPre);
     };
     //切换音量进度条-根据当前音量变化调整
     audio.onvolumechange = function(event) {
-        var e = event || window.event;
-        var tar = e.target || e.srcElement;
-        var percent = 100 * tar.volume;
+        var e = event || window.event,
+            tar = e.target || e.srcElement,
+            percent = 100 * tar.volume;
         volProgressControl.style.width = percent + '%';
     };
 
@@ -233,8 +236,8 @@ window.onload = function() {
      * @param  {Function} fn   鼠标拖动进度条时，执行的回调函数，如：调整音乐的当前播放位置或当前音量     
      */
     function changeProgress(e, obj, fn) {
-        var progressClientLeft = obj.getBoundingClientRect().left;
-        var progressWidth = obj.offsetWidth;
+        var progressClientLeft = obj.getBoundingClientRect().left,
+            progressWidth = obj.offsetWidth;
 
         progressDot(e, fn);
         document.onmousemove = function(event) {
@@ -274,8 +277,8 @@ window.onload = function() {
 
     //切换音乐循环效果-根据循环图标
     audio.onended = function(event) {
-        var displayList = this.display;
-        var targetTd;
+        var displayList = this.display,
+            targetTd;
         //顺序播放，没有下一个回到第一个
         if (LoopBacTop === -18) {
 
@@ -319,11 +322,11 @@ window.onload = function() {
         }
     };
     //上一曲、下一曲、暂停区域
-    musicControl.onclick = function() {
-        var e = event || window.event;
-        var tar = e.target || e.srcElement;
-        var clsNameArr = tar.className.split(/\s+/);
-        var isClicked = clsNameArr.indexOf('last') >= 0 || clsNameArr.indexOf('next') >= 0 || clsNameArr.indexOf('start') >= 0 || clsNameArr.indexOf('pause') >= 0;
+    musicControl.onclick = function(event) {
+        var e = event || window.event,
+            tar = e.target || e.srcElement,
+            clsNameArr = tar.className.split(/\s+/),
+            isClicked = clsNameArr.indexOf('last') >= 0 || clsNameArr.indexOf('next') >= 0 || clsNameArr.indexOf('start') >= 0 || clsNameArr.indexOf('pause') >= 0;
 
         if (isClicked) {
             //如果已经选中了音乐了
@@ -361,10 +364,10 @@ window.onload = function() {
     };
 
     //滚动时，调整滚动条高度，滚动条的高度等于，表格每滚动了%(table的%)，滚动条就滚动%(tableDiv的%)
-    tableDiv.onscroll = function() {
-        var e = event || window.event;
-        var tar = e.target || e.srcElement;        
-        var tableScrollProgressTopNeed = tar.scrollTop + tableDivHei * (tar.scrollTop / table.offsetHeight);
+    tableDiv.onscroll = function(event) {
+        var e = event || window.event,
+            tar = e.target || e.srcElement,
+            tableScrollProgressTopNeed = tar.scrollTop + tableDivHei * (tar.scrollTop / table.offsetHeight);
         tableScrollProgress.style.top = tableScrollProgressTopNeed + 'px';
     };
 
@@ -372,8 +375,8 @@ window.onload = function() {
      * 初始化滚动条长度
      * @param  {Number} tableHei 音乐表格的实际高度,每发送一次请求更新了列表后都要处理     
      */
-    function initializeScroll(tableHei,tableDivHei) {
-    	console.log(tableHei);
+    function initializeScroll(tableHei, tableDivHei) {
+        console.log(tableHei);
         tableScroll.style.height = tableHei + 'px';
         if (tableDivHei >= tableHei) {
             tableScrollProgress.style.height = '100%';
@@ -383,9 +386,9 @@ window.onload = function() {
     }
 
     //初始化
-    document.forms[0].elements["keyword"].value='流行音乐';
-    form.onsubmit();
-    document.forms[0].elements["keyword"].value='';
+    document.forms[0].elements["keyword"].value = 'bad romance';
+    btnSubmit.click();
+    document.forms[0].elements["keyword"].value = '';
     musicData.initialize();
-    initializeScroll(table.offsetHeight,tableDivHei);
+    initializeScroll(table.offsetHeight, tableDivHei);
 };
