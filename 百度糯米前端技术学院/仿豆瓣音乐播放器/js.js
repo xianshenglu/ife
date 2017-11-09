@@ -87,11 +87,13 @@ window.onload = function() {
                 });
 
                 //添加音乐列表至tbody
+                var fragment=document.createDocumentFragment();
                 for (var i = 0; i < displayList.length; i++) {
                     var tr = document.createElement('tr');
                     tr.innerHTML = '<td><a href="' + displayList[i].m4a + '" data-img="' + displayList[i].albumpic_big + '">' + this.display[i].songname + '</a></td>' + '<td>' + this.display[i].singername + '</td>' + '<td>' + this.display[i].albumname + '</td>';
-                    tbody.appendChild(tr);
+                	fragment.appendChild(tr);
                 }
+                    tbody.appendChild(fragment);
 
                 tableDiv.scrollTop = 0;
 
