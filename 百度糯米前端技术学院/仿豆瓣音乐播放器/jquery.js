@@ -107,12 +107,7 @@ window.onload = function() {
     //发送异步请求，获取数据
     function XmlHttp(e) {
         e.preventDefault();
-<<<<<<< HEAD
         var formEle = $(form).find('input'),
-=======
-        var formEle = form.find('input'),
-            xhr = new XMLHttpRequest(),
->>>>>>> origin/master
             url = form.action,
             method = form.method,
             postBody = '';
@@ -166,8 +161,8 @@ window.onload = function() {
      * 切换音乐,需要切换选中状态、专辑、背景、音乐时长、播放按钮
      * @param  {Object} targetTd 音乐所在行的第一个td元素     
      */
-    function musicChange(targetTd) {
-        console.log(targetTd);
+    function musicChange(targetTd) {//bug!!!
+        /*console.log(targetTd);*/
         var targetA = $(targetTd).find('a')[0],
             tarImgUrl = targetA.getAttribute("data-img"),
             tarTr = targetTd.parentNode;
@@ -182,7 +177,7 @@ window.onload = function() {
 
         tarTr.style.color = 'rgba(255, 255, 255, 1)';
         tarTr.id = 'trMusicOn';
-        trMusicOn = $('#trMusicOn');
+        trMusicOn = $('#trMusicOn')[0];
         albumImg.src = tarImgUrl;
         //切换背景
         MediaOnLoad('img', tarImgUrl, 'onload', function() {
@@ -356,7 +351,7 @@ window.onload = function() {
                     //第一首的上一首仍为第一首
                     if ($(trMusicOn).prev().length) {
                         musicChange($(trMusicOn).prev()[0].children[0]);
-                    } else {
+                    } else {     
                         musicChange(trMusicOn.children[0]);
                     }
 
@@ -406,24 +401,12 @@ window.onload = function() {
         }
     }
 
-    document.onclick=function(){
-
-    };
-    
-
     //初始化
     inputKeyword.value = 'bad romance';
     btnSubmit.click();
     inputKeyword.value = '';
     musicData.initialize();
-<<<<<<< HEAD
     initializeScroll(table.offsetHeight, tableDivHei);
     btnSubmit.style.width = btnSubmit.offsetHeight + 'px';
     inputKeyword.style.width = form.offsetWidth - btnSubmit.offsetWidth + 'px';
 };
-=======
-    initializeScroll(table.outerHeight, tableDivHei);
-    btnSubmit.width(btnSubmit.offsetHeight + 'px');
-    inputKeyword.width(form.offsetWidth - btnSubmit.offsetWidth + 'px');
-});
->>>>>>> origin/master
