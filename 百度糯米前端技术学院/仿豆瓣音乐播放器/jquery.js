@@ -107,7 +107,12 @@ window.onload = function() {
     //发送异步请求，获取数据
     function XmlHttp(e) {
         e.preventDefault();
+<<<<<<< HEAD
         var formEle = $(form).find('input'),
+=======
+        var formEle = form.find('input'),
+            xhr = new XMLHttpRequest(),
+>>>>>>> origin/master
             url = form.action,
             method = form.method,
             postBody = '';
@@ -411,7 +416,14 @@ window.onload = function() {
     btnSubmit.click();
     inputKeyword.value = '';
     musicData.initialize();
+<<<<<<< HEAD
     initializeScroll(table.offsetHeight, tableDivHei);
     btnSubmit.style.width = btnSubmit.offsetHeight + 'px';
     inputKeyword.style.width = form.offsetWidth - btnSubmit.offsetWidth + 'px';
 };
+=======
+    initializeScroll(table.outerHeight, tableDivHei);
+    btnSubmit.width(btnSubmit.offsetHeight + 'px');
+    inputKeyword.width(form.offsetWidth - btnSubmit.offsetWidth + 'px');
+});
+>>>>>>> origin/master
