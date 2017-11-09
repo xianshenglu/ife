@@ -112,7 +112,6 @@ window.onload = function() {
             xhr = new XMLHttpRequest(),
             url = form.action,
             method = form.method,
-            keyword = formEle["keyword"],
             postBody = '';
 
         for (var i = 0; i < formEle.length; i++) {
@@ -225,6 +224,7 @@ window.onload = function() {
             return clsNameToAppend;
         }
     }
+    
     //切换播放进度条-根据当前播放位置变化调整
     audio.ontimeupdate = function(event) {
         //进度条
@@ -336,6 +336,7 @@ window.onload = function() {
 
         musicChange(targetTd);
     };
+
     //滑入滑出需要点亮
     //点击进度条显示后，滑出也需要点亮
     //点击进度条消失后，不滑出依旧亮，滑出不亮
@@ -358,6 +359,7 @@ window.onload = function() {
             };
         }
     };
+
     //上一曲、下一曲、暂停区域
     musicControl.onclick = function(event) {
         var e = event || window.event,
@@ -422,9 +424,9 @@ window.onload = function() {
     }
 
     //初始化
-    document.forms[0].elements["keyword"].value = 'bad romance';
+    inputKeyword.value = 'bad romance';
     btnSubmit.click();
-    document.forms[0].elements["keyword"].value = '';
+    inputKeyword.value = '';
     musicData.initialize();
     initializeScroll(table.offsetHeight, tableDivHei);
     btnSubmit.style.width = btnSubmit.offsetHeight + 'px';
