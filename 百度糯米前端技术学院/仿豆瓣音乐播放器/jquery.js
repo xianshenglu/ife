@@ -401,6 +401,11 @@ window.onload = function() {
         }
     }
 
+    document.onclick=function(){
+
+    };
+    
+
     //初始化
     inputKeyword.value = 'bad romance';
     btnSubmit.click();
