@@ -105,7 +105,7 @@ $(window).load(function() {
     //发送异步请求，获取数据
     function XmlHttp(e) {
         e.preventDefault();
-        var formEle = form.children(),
+        var formEle = form.find('input'),
             xhr = new XMLHttpRequest(),
             url = form.action,
             method = form.method,
