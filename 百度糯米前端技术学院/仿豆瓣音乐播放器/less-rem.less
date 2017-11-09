@@ -42,37 +42,25 @@
         }
     }
     .mask {
-        /* display: none; */
+        display: none;
+    }    
+    .mask-mobile {
         position: absolute;
         z-index: -1;
         box-sizing: border-box;
         width: 100%;
         height: 100%;
         transition: all .5s linear;
-        background-image: url(http://i.gtimg.cn/music/photo/mid_album_300/I/3/00472CVU4VP4I3.jpg);
+        background-image: url(http://i.gtimg.cn/music/photo/mid_album_300/Q/b/003ofdY71zy1Qb.jpg);
         background-repeat: no-repeat;
         background-size: 100% 100%;
         filter: blur(100px) brightness(50%);
-    }
-    .mask-mobile {
-        /*  position: absolute;
-       z-index: -1;
-       box-sizing: border-box;
-       width: 100%;
-       height: 100%;
-       transition: all .5s linear;
-       background-image: url(http://i.gtimg.cn/music/photo/mid_album_300/I/3/00472CVU4VP4I3.jpg);
-       background-repeat: no-repeat;
-       background-size: 100% 100%;
-       filter: blur(10px) brightness(50%); */
     }
     .container {
         box-sizing: border-box;
         width: 100%;
         height: 100%;
-        padding: 0rem;
         overflow: hidden;
-        /* background-color: rgba(60, 60, 60, 0.9); */
         .header {
             height: 4%;
             &>a {
@@ -102,6 +90,7 @@
                 box-sizing: border-box;
                 width: 100%;
                 height: 7%;
+                min-height: 0.6rem;
                 margin: 0 auto;
                 color: @mainColor;
                 background-color: rgba(255, 255, 255, 0.2);
@@ -202,6 +191,7 @@
                         }
                     }
                     .scroll {
+                        display: none;
                         position: absolute;
                         right: 0rem;
                         width: 0.1rem;

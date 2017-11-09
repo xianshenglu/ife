@@ -30,6 +30,14 @@ window.onload = function() {
         musicData = {
             raw: {},
             display: [{
+                    m4a: "http://ws.stream.qqmusic.qq.com/1194015.m4a?fromtag=46",
+                    albumname: "iTunes Essentials",
+                    singername: "Lady Gaga",
+                    songname: "Bad Romance",
+                    albumpic_big: "http://i.gtimg.cn/music/photo/mid_album_300/b/7/002EUxmL0GK0b7.jpg",
+                    downUrl: "http://dl.stream.qqmusic.qq.com/1194015.m4a?vkey=1830B62A242503CC017B3EBC2B93AFC058F279FDC57ACD42ECDA9012EB644425FC24B3322F9445B4202B9B47DBA6C50A8D8FA5AB5334FFF9&guid=2718671044"
+                },
+                {
                     m4a: "http://ws.stream.qqmusic.qq.com/101800569.m4a?fromtag=46",
                     albumname: "Fade",
                     singername: "Alan Walker",
