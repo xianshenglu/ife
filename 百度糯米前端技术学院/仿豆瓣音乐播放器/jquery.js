@@ -1,32 +1,32 @@
-$(window).load(function() {
-    var mask = $('.mask').eq(0),
-        form = $('form').eq(0),
-        inputKeyword = form.find('[name=keyword]').eq(0),
-        btnSubmit = form.find('button').eq(0),
-        content = $('.content').eq(0),
-        musicTable = content.find('.musicTable').eq(0),
-        tableDiv = musicTable.find('.tableDiv').eq(0),
-        tableDivHei = tableDiv.outerHeight,
-        table = tableDiv.find('table').eq(0),
-        tableHei = table.outerHeight, //这个地方tableHei提前声明了就是0，无法理解,所以不能用
-        tableScroll = tableDiv.find('.scroll').eq(0),
-        tableScrollProgress = tableScroll.find('.progressControl').eq(0),
-        tbody = musicTable.find('tbody').eq(0),
-        trCollection = tbody.find('tr'),
+window.onload = function() {
+    var mask = $(document).find('.mask')[0],
+        form = document.forms[0],
+        inputKeyword = form.elements["keyword"],
+        btnSubmit = $(form).find('button')[0],
+        content = $(document).find('.content')[0],
+        musicTable = $(content).find('.musicTable')[0],
+        tableDiv = $(musicTable).find('.tableDiv')[0],
+        tableDivHei = tableDiv.offsetHeight,
+        table = $(tableDiv).find('table')[0],
+        tableHei = table.offsetHeight, //这个地方tableHei提前声明了就是0，无法理解,所以不能用
+        tableScroll = $(tableDiv).find('.scroll')[0],
+        tableScrollProgress = $(tableScroll).find('.progressControl')[0],
+        tbody = $(musicTable).find('tbody')[0],
+        trCollection = tbody.getElementsByTagName('tr'),
         trMusicOn,
-        songInfo = musicTable.find('.songInfo').eq(0),
-        albumImg = songInfo.find('img').eq(0),
-        audioControl = content.find('.audioControl').eq(0),
-        progressBar = audioControl.find('.progressBar').eq(0),
-        timeProgress = progressBar.find('.timeProgress').eq(0),
-        timeProgressControl = progressBar.find('.progressControl').eq(0),
-        audio = audioControl.find('audio').eq(0),
-        audioTime = progressBar.find('.time').eq(0),
-        loop = progressBar.find('.loop').eq(0),
-        volume = progressBar.find('.volume').eq(0),
-        volProgress = progressBar.find('.volProgress').eq(0),
-        volProgressControl = volProgress.find('.progressControl').eq(0),
-        musicControl = progressBar.find('.musicControl').eq(0),
+        songInfo = $(musicTable).find('.songInfo')[0],
+        albumImg = $(songInfo).find('img')[0],
+        audioControl = $(content).find('.audioControl')[0],
+        progressBar = $(audioControl).find('.progressBar')[0],
+        timeProgress = $(progressBar).find('.timeProgress')[0],
+        timeProgressControl = $(timeProgress).find('.progressControl')[0],
+        audio = $(audioControl).find('audio')[0],
+        audioTime = $(progressBar).find('.time')[0],
+        loop = $(progressBar).find('.loop')[0],
+        volume = $(progressBar).find('.volume')[0],
+        volProgress = $(progressBar).find('.volProgress')[0],
+        volProgressControl = $(volProgress).find('.progressControl')[0],
+        musicControl = $(progressBar).find('.musicControl')[0],
         musicData = {
             raw: {},
             display: [{
@@ -74,7 +74,7 @@ $(window).load(function() {
                 }
             },
             initialize: function() {
-                tbody.html('');
+                $(tbody).html('');
                 var displayList = this.display,
                     albumImgUrl = displayList[0].albumpic_big;
 
@@ -83,7 +83,7 @@ $(window).load(function() {
                 });
 
                 MediaOnLoad('img', displayList[0].albumpic_big, 'onload', function() {
-                    mask.css('background-image', 'url(' + musicData.display[0].albumpic_big + ')');
+                    $(mask).css('background-image', 'url(' + musicData.display[0].albumpic_big + ')');
                 });
 
                 //添加音乐列表至tbody               
@@ -92,21 +92,22 @@ $(window).load(function() {
                     var tr = '<tr><td><a href="' + obj.m4a + '" data-img="' + obj.albumpic_big + '">' + obj.songname + '</a></td>' + '<td>' + obj.singername + '</td>' + '<td>' + obj.albumname + '</td></tr>';
                     fragment = fragment + tr;
                 });
-                tbody.append(fragment);
+                $(tbody).append(fragment);
 
-                tableDiv.scrollTop(0);
+                $(tableDiv).scrollTop(0);
+
             }
         };
 
-    form.submit(function(event) {
-        XmlHttp(event);
-    });
+    form.onsubmit = function(event) {
+        var e = event || window.event;
+        XmlHttp(e);
+    };
 
     //发送异步请求，获取数据
     function XmlHttp(e) {
         e.preventDefault();
-        var formEle = form.children,
-            xhr = new XMLHttpRequest(),
+        var formEle = $(form).find('input'),
             url = form.action,
             method = form.method,
             postBody = '';
@@ -117,11 +118,17 @@ $(window).load(function() {
 
         postBody = postBody.replace(/&/, '');
 
-        $.post(url, postBody, function(data) {
-            musicData.raw = JSON.parse(data);
-            musicData.trans();
-            musicData.initialize();
-            initializeScroll(table.outerHeight, tableDivHei);
+        $.ajax({
+            type: method,
+            url: url,
+            data: postBody,
+            success: function(data) {
+                musicData.raw = data;
+                musicData.trans();
+                musicData.initialize();
+                initializeScroll(table.offsetHeight, tableDivHei);
+            },
+            dataType: 'json'
         });
     }
 
@@ -155,25 +162,26 @@ $(window).load(function() {
      * @param  {Object} targetTd 音乐所在行的第一个td元素     
      */
     function musicChange(targetTd) {
-        var targetA = targetTd.getElementsByTagName('a')[0],
+        console.log(targetTd);
+        var targetA = $(targetTd).find('a')[0],
             tarImgUrl = targetA.getAttribute("data-img"),
             tarTr = targetTd.parentNode;
         //切换音乐
         audio.src = targetA.href;
         audio.play();
         //切换选中状态和专辑图片
-        for (var i = 0; i < trCollection.length; i++) {
-            trCollection[i].style.color = 'rgba(255, 255, 255, 0.5)';
-            trCollection[i].id = '';
-        }
+        $.each(trCollection, function(index, obj) {
+            obj.style.color = 'rgba(255, 255, 255, 0.5)';
+            obj.id = '';
+        });
 
         tarTr.style.color = 'rgba(255, 255, 255, 1)';
         tarTr.id = 'trMusicOn';
-        trMusicOn = document.getElementById('trMusicOn');
+        trMusicOn = $('#trMusicOn');
         albumImg.src = tarImgUrl;
         //切换背景
         MediaOnLoad('img', tarImgUrl, 'onload', function() {
-            mask.style.backgroundImage = 'url(' + tarImgUrl + ')';
+            $(mask).css('backgroundImage', 'url(' + tarImgUrl + ')');
         });
         //切换音乐时长
         MediaOnLoad('audio', audio.src, 'oncanplay', function() {
@@ -183,36 +191,15 @@ $(window).load(function() {
             audioTime.innerHTML = '00:00/' + audioDur;
         });
         //切换播放按钮
-        var startBtn = musicControl.getElementsByClassName('start');
+        var startBtn = $(musicControl).find('.start');
 
         if (startBtn.length) {
-            var clsNameArr = startBtn[0].className.split(/\s+/);
-            startBtn[0].className = clsNameUpdate(startBtn[0].className, 'start', 'pause');
+            $(startBtn[0]).removeClass('start');
+            $(startBtn[0]).addClass('pause');
         }
 
     }
 
-    /**
-     * 更新类名
-     * @param  {Object} objClsName  修改前类名
-     * @param  {String} clsNameToDelete 要删的类名
-     * @param  {String} clsNameToAppend 要新加的类名
-     * @return {String}                 修改后的类名
-     */
-    function clsNameUpdate(objClsName, clsNameToDelete, clsNameToAppend) {
-        if (objClsName) {
-            var clsNameArr = objClsName.split(/\s+/);
-            if (clsNameArr.indexOf(clsNameToDelete) >= 0) {
-                clsNameArr.splice(clsNameArr.indexOf(clsNameToDelete), 1, clsNameToAppend);
-                return clsNameArr.join(' ');
-            } else {
-                clsNameArr.push(clsNameToAppend);
-                return clsNameArr.join(' ');
-            }
-        } else {
-            return clsNameToAppend;
-        }
-    }
     //切换播放进度条-根据当前播放位置变化调整
     audio.ontimeupdate = function(event) {
         //进度条
@@ -258,7 +245,7 @@ $(window).load(function() {
      * @param  {Function} fn   鼠标拖动进度条时，执行的回调函数，如：调整音乐的当前播放位置或当前音量     
      */
     function changeProgress(e, obj, fn) {
-        var progressClientLeft = obj.getBoundingClientRect().left,
+        var progressClientLeft = $(obj).offset().left,
             progressWidth = obj.offsetWidth;
 
         progressDot(e, fn);
@@ -291,11 +278,14 @@ $(window).load(function() {
         var loopClsName = loop.className.split(/\s+/);
 
         if (loopClsName.indexOf('default-loop') >= 0) {
-            loop.className = clsNameUpdate(loop.className, 'default-loop', 'single-loop');
+            $(loop).removeClass('default-loop');
+            $(loop).addClass('single-loop');
         } else if (loopClsName.indexOf('single-loop') >= 0) {
-            loop.className = clsNameUpdate(loop.className, 'single-loop', 'random-loop');
+            $(loop).removeClass('single-loop');
+            $(loop).addClass('random-loop');
         } else if (loopClsName.indexOf('random-loop') >= 0) {
-            loop.className = clsNameUpdate(loop.className, 'random-loop', 'default-loop');
+            $(loop).removeClass('random-loop');
+            $(loop).addClass('default-loop');
         }
 
     };
@@ -307,31 +297,32 @@ $(window).load(function() {
         //顺序播放，没有下一个回到第一个
         if (LoopBacTop === -18) {
 
-            if (trMusicOn.nextElementSibling) {
-                targetTd = trMusicOn.nextElementSibling.getElementsByTagName('td')[0];
+            if ($(trMusicOn).next().length) {
+                targetTd = $(trMusicOn).next().find('td')[0];
             } else {
-                targetTd = trCollection[0].getElementsByTagName('td')[0];
+                targetTd = $(trCollection[0]).find('td')[0];
             }
 
         } //单曲循环
         else if (LoopBacTop === -36) {
-            targetTd = trMusicOn.getElementsByTagName('td')[0];
+            targetTd = $(trMusicOn).find('td')[0];
         } //随机播放
         else if (LoopBacTop === -54) {
             var randomTr = trCollection[Math.round(Math.random() * trCollection.length)];
-            targetTd = randomTr.getElementsByTagName('td')[0];
+            targetTd = $(randomTr).find('td')[0];
         }
 
         musicChange(targetTd);
     };
+
     //滑入滑出需要点亮
     //点击进度条显示后，滑出也需要点亮
     //点击进度条消失后，不滑出依旧亮，滑出不亮
     volume.onmousemove = function() {
-        this.style.opacity = 1;
+        $(this).css('opacity', 1);
     };
     volume.onmouseout = function() {
-        this.style.opacity = 0.8;
+        $(this).css('opacity', 0.8);
     };
     volume.onclick = function() {
         var volProgressVis = window.getComputedStyle(volProgress).visibility;
@@ -342,43 +333,44 @@ $(window).load(function() {
         } else {
             volProgress.style.visibility = 'hidden';
             volume.onmouseout = function() {
-                this.style.opacity = 0.8;
+                $(this).css('opacity', 0.8);
             };
         }
     };
+
     //上一曲、下一曲、暂停区域
     musicControl.onclick = function(event) {
         var e = event || window.event,
             tar = e.target || e.srcElement,
-            clsNameArr = tar.className.split(/\s+/),
-            isClicked = clsNameArr.indexOf('last') >= 0 || clsNameArr.indexOf('next') >= 0 || clsNameArr.indexOf('start') >= 0 || clsNameArr.indexOf('pause') >= 0;
-
+            isClicked = $(tar).hasClass('last') || $(tar).hasClass('next') || $(tar).hasClass('start') || $(tar).hasClass('pause');
         if (isClicked) {
             //如果已经选中了音乐了
             if (trMusicOn) {
 
-                if (clsNameArr.indexOf('last') >= 0) {
+                if ($(tar).hasClass('last')) {
                     //第一首的上一首仍为第一首
-                    if (trMusicOn.previousElementSibling) {
-                        musicChange(trMusicOn.previousElementSibling.children[0]);
+                    if ($(trMusicOn).prev().length) {
+                        musicChange($(trMusicOn).prev()[0].children[0]);
                     } else {
                         musicChange(trMusicOn.children[0]);
                     }
 
-                } else if (clsNameArr.indexOf('next') >= 0) {
+                } else if ($(tar).hasClass('next')) {
                     //最后一首的下一首仍为最后一首
-                    if (trMusicOn.nextElementSibling) {
-                        musicChange(trMusicOn.nextElementSibling.children[0]);
+                    if ($(trMusicOn).next().length) {
+                        musicChange($(trMusicOn).next()[0].children[0]);
                     } else {
                         musicChange(trMusicOn.children[0]);
                     }
 
-                } else if (clsNameArr.indexOf('pause') >= 0) {
+                } else if ($(tar).hasClass('pause')) {
                     audio.pause();
-                    tar.className = clsNameUpdate(tar.className, 'pause', 'start');
-                } else if (clsNameArr.indexOf('start') >= 0) {
+                    $(tar).removeClass('pause');
+                    $(tar).addClass('start');
+                } else if ($(tar).hasClass('start')) {
                     audio.play();
-                    tar.className = clsNameUpdate(tar.className, 'start', 'pause');
+                    $(tar).removeClass('start');
+                    $(tar).addClass('pause');
                 }
                 //如果根本没有音乐在播放，也就是都没有点击过音乐，从第一首开始
             } else {
@@ -392,8 +384,8 @@ $(window).load(function() {
     tableDiv.onscroll = function(event) {
         var e = event || window.event,
             tar = e.target || e.srcElement,
-            tableScrollProgressTopNeed = tar.scrollTop + tableDivHei * (tar.scrollTop / table.outerHeight);
-        tableScrollProgress.css("top", tableScrollProgressTopNeed + 'px');
+            tableScrollProgressTopNeed = $(tar).scrollTop() + tableDivHei * ($(tar).scrollTop() / table.offsetHeight);
+        tableScrollProgress.style.top = tableScrollProgressTopNeed + 'px';
     };
 
     /**
@@ -401,20 +393,20 @@ $(window).load(function() {
      * @param  {Number} tableHei 音乐表格的实际高度,每发送一次请求更新了列表后都要处理     
      */
     function initializeScroll(tableHei, tableDivHei) {
-        tableScroll.height(tableHei + 'px');
+        tableScroll.style.height = tableHei + 'px';
         if (tableDivHei >= tableHei) {
-            tableScrollProgress.height('100%');
+            tableScrollProgress.style.height = '100%';
         } else {
-            tableScrollProgress.height(tableDivHei * (tableDivHei / tableHei) + 'px');
+            tableScrollProgress.style.height = tableDivHei * (tableDivHei / tableHei) + 'px';
         }
     }
 
     //初始化
-    document.forms[0].elements["keyword"].value = 'bad romance';
+    inputKeyword.value = 'bad romance';
     btnSubmit.click();
-    document.forms[0].elements["keyword"].value = '';
+    inputKeyword.value = '';
     musicData.initialize();
-    initializeScroll(table.outerHeight, tableDivHei);
-    btnSubmit.width(btnSubmit.offsetHeight + 'px');
-    inputKeyword.width(form.offsetWidth - btnSubmit.offsetWidth + 'px');
-});
+    initializeScroll(table.offsetHeight, tableDivHei);
+    btnSubmit.style.width = btnSubmit.offsetHeight + 'px';
+    inputKeyword.style.width = form.offsetWidth - btnSubmit.offsetWidth + 'px';
+};
