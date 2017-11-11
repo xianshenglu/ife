@@ -313,6 +313,7 @@ window.onload = function() {
     };
 
     //切换音乐循环效果-根据循环图标
+    var LoopBacTop = -18;
     audio.onended = function(event) {
         var displayList = this.display,
             targetTd;
