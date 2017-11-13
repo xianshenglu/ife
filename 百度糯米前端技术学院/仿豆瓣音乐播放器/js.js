@@ -87,13 +87,13 @@ window.onload = function() {
                 });
 
                 //添加音乐列表至tbody
-                var fragment=document.createDocumentFragment();
+                var fragment = document.createDocumentFragment();
                 for (var i = 0; i < displayList.length; i++) {
                     var tr = document.createElement('tr');
                     tr.innerHTML = '<td><a href="' + displayList[i].m4a + '" data-img="' + displayList[i].albumpic_big + '">' + this.display[i].songname + '</a></td>' + '<td>' + this.display[i].singername + '</td>' + '<td>' + this.display[i].albumname + '</td>';
-                	fragment.appendChild(tr);
+                    fragment.appendChild(tr);
                 }
-                    tbody.appendChild(fragment);
+                tbody.appendChild(fragment);
 
                 tableDiv.scrollTop = 0;
 
@@ -205,7 +205,7 @@ window.onload = function() {
 
     /**
      * 更新类名
-     * @param  {Object} objClsName	修改前类名
+     * @param  {Object} objClsName  修改前类名
      * @param  {String} clsNameToDelete 要删的类名
      * @param  {String} clsNameToAppend 要新加的类名
      * @return {String}                 修改后的类名
@@ -224,7 +224,7 @@ window.onload = function() {
             return clsNameToAppend;
         }
     }
-    
+
     //切换播放进度条-根据当前播放位置变化调整
     audio.ontimeupdate = function(event) {
         //进度条
@@ -315,10 +315,10 @@ window.onload = function() {
     //切换音乐循环效果-根据循环图标
     var LoopBacTop = -18;
     audio.onended = function(event) {
-        var displayList = this.display,
+        var loopClsName = loop.className.split(/\s+/),
             targetTd;
         //顺序播放，没有下一个回到第一个
-        if (LoopBacTop === -18) {
+        if (loopClsName.indexOf('default-loop') >= 0) {
 
             if (trMusicOn.nextElementSibling) {
                 targetTd = trMusicOn.nextElementSibling.getElementsByTagName('td')[0];
@@ -327,10 +327,10 @@ window.onload = function() {
             }
 
         } //单曲循环
-        else if (LoopBacTop === -36) {
+        else if (loopClsName.indexOf('single-loop') >= 0) {
             targetTd = trMusicOn.getElementsByTagName('td')[0];
         } //随机播放
-        else if (LoopBacTop === -54) {
+        else if (loopClsName.indexOf('random-loop') >= 0) {
             var randomTr = trCollection[Math.round(Math.random() * trCollection.length)];
             targetTd = randomTr.getElementsByTagName('td')[0];
         }

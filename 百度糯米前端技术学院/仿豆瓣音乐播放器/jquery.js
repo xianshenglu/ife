@@ -161,7 +161,7 @@ window.onload = function() {
      * 切换音乐,需要切换选中状态、专辑、背景、音乐时长、播放按钮
      * @param  {Object} targetTd 音乐所在行的第一个td元素     
      */
-    function musicChange(targetTd) {//bug!!!
+    function musicChange(targetTd) { //bug!!!
         /*console.log(targetTd);*/
         var targetA = $(targetTd).find('a')[0],
             tarImgUrl = targetA.getAttribute("data-img"),
@@ -292,10 +292,10 @@ window.onload = function() {
 
     //切换音乐循环效果-根据循环图标
     audio.onended = function(event) {
-        var displayList = this.display,
+        var loopClsName = loop.className.split(/\s+/),
             targetTd;
         //顺序播放，没有下一个回到第一个
-        if (LoopBacTop === -18) {
+        if (loopClsName.indexOf('default-loop') >= 0) {
 
             if ($(trMusicOn).next().length) {
                 targetTd = $(trMusicOn).next().find('td')[0];
@@ -304,10 +304,10 @@ window.onload = function() {
             }
 
         } //单曲循环
-        else if (LoopBacTop === -36) {
+        else if (loopClsName.indexOf('single-loop') >= 0) {
             targetTd = $(trMusicOn).find('td')[0];
         } //随机播放
-        else if (LoopBacTop === -54) {
+        else if (loopClsName.indexOf('random-loop') >= 0) {
             var randomTr = trCollection[Math.round(Math.random() * trCollection.length)];
             targetTd = $(randomTr).find('td')[0];
         }
@@ -351,7 +351,7 @@ window.onload = function() {
                     //第一首的上一首仍为第一首
                     if ($(trMusicOn).prev().length) {
                         musicChange($(trMusicOn).prev()[0].children[0]);
-                    } else {     
+                    } else {
                         musicChange(trMusicOn.children[0]);
                     }
 
