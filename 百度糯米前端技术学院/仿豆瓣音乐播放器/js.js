@@ -14,18 +14,14 @@ window.onload = function() {
         tbody = musicTable.getElementsByTagName('tbody')[0],
         trCollection = tbody.getElementsByTagName('tr'),
         trMusicOn,
-        songInfo = musicTable.getElementsByClassName('songInfo')[0],
-        albumImg = songInfo.getElementsByTagName('img')[0],
-        audioControl = content.getElementsByClassName('audioControl')[0],
-        progressBar = audioControl.getElementsByClassName('progressBar')[0],
+        albumImg = musicTable.getElementsByClassName('songInfo')[0].getElementsByTagName('img')[0],        
+        progressBar = content.getElementsByClassName('audioControl')[0].getElementsByClassName('progressBar')[0],
         timeProgress = progressBar.getElementsByClassName('timeProgress')[0],
-        timeProgressControl = timeProgress.getElementsByClassName('progressControl')[0],
-        audio = audioControl.getElementsByTagName('audio')[0],
+        audio = content.getElementsByClassName('audioControl')[0].getElementsByTagName('audio')[0],
         audioTime = progressBar.getElementsByClassName('time')[0],
         loop = progressBar.getElementsByClassName('loop')[0],
         volume = progressBar.getElementsByClassName('volume')[0],
         volProgress = progressBar.getElementsByClassName('volProgress')[0],
-        volProgressControl = volProgress.getElementsByClassName('progressControl')[0],
         musicControl = progressBar.getElementsByClassName('musicControl')[0],
         musicData = {
             raw: {},
@@ -230,7 +226,9 @@ window.onload = function() {
         //进度条
         var e = event || window.event,
             tar = e.target || e.srcElement,
-            percent = 100 * tar.currentTime / this.duration;
+            percent = 100 * tar.currentTime / this.duration,
+            timeProgressControl = timeProgress.getElementsByClassName('progressControl')[0];
+
         timeProgressControl.style.width = percent + '%';
         //时间戳
         var audioPreM = Math.floor(tar.currentTime / 60) < 10 ? '0' + Math.floor(tar.currentTime / 60).toString() : Math.floor(tar.currentTime / 60),
@@ -242,7 +240,8 @@ window.onload = function() {
     audio.onvolumechange = function(event) {
         var e = event || window.event,
             tar = e.target || e.srcElement,
-            percent = 100 * tar.volume;
+            percent = 100 * tar.volume,
+            volProgressControl = volProgress.getElementsByClassName('progressControl')[0];
         volProgressControl.style.width = percent + '%';
     };
 
