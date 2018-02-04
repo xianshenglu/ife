@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>任务三：表单（三）联动</title>
+	<style>
+		body,div,input,select,span,label {
+			margin: 0;
+			padding: 0;
+		}
+		html {
+			height: 100%;
+		}
+		body {
+			height: 100%;
+		}
+		.container {			
+			margin: 0 auto;
+			height: 100%;
+			display: table;
+		}
+		form {
+			display: table-cell;
+			vertical-align: middle;
+		}
+		.isStd {
+			overflow: hidden;
+			margin-bottom: 50px;
+		}
+		.isStd div,.isStd input,.isStd label{
+			float: left;			
+		}		
+		.isStd label {
+			margin-right: 150px;
+		}		
+		.isStd input{
+			display: none;
+		}
+		.isStd:first-child {
+			margin-left: 100px;
+		}
+		.isStd .radioSimu {
+			margin-right: 10px;
+		}
+		.isStd .chosen {
+			background-color: white;
+			width: 8px;
+			height: 8px;
+			border: 6px solid #389afa;
+			border-radius: 10px;	
+		}
+		.isStd .not_chosen {
+			background-color: white;
+			width: 18px;
+			height: 18px;
+			border: 1px solid black;
+			border-radius: 9px;	
+		}
+		.choices {
+			margin-top: 30px;
+		}
+		.choices input[name="company"] {
+			width: 370px;
+		}		
+		.choices .coluName{
+			display: inline-block;
+			width: 80px;
+			text-align: right;
+			margin-right: 15px;
+		}
+		input[type="text"]{
+			height: 25px;			
+			border: 1px solid #A0A0A0;
+			border-radius: 5px;
+		}		
+		.collegeSelect {
+			position: relative;		
+			height: 25px;			
+			padding: 1px 0;
+		}
+		.collegeSelect select {
+			position: absolute;		
+			border: 1px solid #A0A0A0;
+			border-radius: 5px;
+			min-height: 25px;	
+			
+		}
+		.collegeSelect select[name="city"] {
+			left:100px;
+			top: 0;
+			width: 120px;			
+		}
+		.collegeSelect select[name="college"] {
+			left:270px;
+			top: 0;
+			width: 200px;
+		}
+
+		.hidden {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<form action="">
+			<div class="isStd">
+				<div class="students radioSimu chosen"></div>
+				<input type="radio" name="students" id="students" class="students" />
+				<label for="students" class="students">在校生</label>
+				<div class="not_students radioSimu not_chosen"></div>
+				<input type="radio" name="not_students" id="not_students" class="not_students" />
+				<label for="not_students" class="not_students">非在校生</label>
+			</div>
+			<div class="choices collegeSelect ">
+				<span class="coluName">学校</span>
+				<select name="city" id="city">
+					<option value="北京" selected="">北京</option>
+				</select>
+				<select name="college" id="college">
+					<option value="北京大学">北京大学</option>
+				</select>
+			</div>
+			<div class="choices company hidden">
+				<span class="coluName">就业单位</span>
+				<input name="company" type="text" />
+			</div>
+		</form>
+	</div>
+	<script>
+		window.onload=function(){			
+			var form=document.forms[0],		
+			//修改单选框默认样式，和对应的学校或就业单位	
+			isStd=document.getElementsByClassName("isStd")[0],
+			studentsDiv=isStd.getElementsByClassName("students")[0],
+			notStudentsDiv=isStd.getElementsByClassName("not_students")[0],
+			studentsInput=form.elements["students"],
+			notStudentsInput=form.elements["not_students"];
+			isStd.addEventListener("click",showColleCom,false);			
+			function showColleCom(){
+				var targetEle=event.target;
+				//如果点击的是非在校生
+				if (targetEle.className.indexOf("not_students")>=0) {
+					notStudentsInput.checked=true;
+					//如果之前没有选中非在校生，就加个样式className，把在校生的样式className去掉
+					//如果之前选中了，就不再重复添加样式className了
+					if (notStudentsDiv.className.indexOf(" chosen")<0) {
+						notStudentsDiv.className=notStudentsDiv.className.replace(' not_chosen',' chosen');		
+						studentsInput.checked=false;	
+						studentsDiv.className=studentsDiv.className.replace(" chosen",' not_chosen');			
+						company.style.display="block";
+						collegeSelect.style.display="none";
+					}					
+				}else if(targetEle.className.indexOf("not_students")<0){					
+					studentsInput.checked=true;
+					if (studentsDiv.className.indexOf(" chosen")<0) {
+						studentsDiv.className=studentsDiv.className.replace(' not_chosen',' chosen');
+						notStudentsInput.checked=false;	
+						notStudentsDiv.className=notStudentsDiv.className.replace(" chosen",' not_chosen');
+						collegeSelect.style.display="block";
+						company.style.display="none";
+					}
+				}
+			}
+			//定义省市和大学，实现联动
+			var collegeArr={
+				"北京":["北京大学","清华大学","中国人民大学"],
+				"南京":["南京大学","东南大学","南京审计大学"],
+				"上海":["同济大学","交通大学","上海财经大学"]
+			},
+			    city=form.elements["city"],				
+				collegeSelect=form.getElementsByClassName('collegeSelect')[0],
+				company=form.getElementsByClassName("company")[0],
+				collegeRange=collegeArr[city.value],
+				college=form.elements["college"];	
+			//通过mousemove先更新 select 列表；！！！
+			//select 下的option如果是动态生成，第一次点击显示有故障，可以采用 mousemove 来触发第一次事件，先更新 select 列表，这样当点击时就不会有故障出现
+			city.addEventListener("mousemove",cityChoice,true);
+			city.addEventListener("click",cityChoice,true);
+			var mousemoveTime=0;
+			//option 无法触发 click 事件,在option上click只会触发select上的click
+			function cityChoice() {	
+				var selectedIndex=city.selectedIndex,
+					selectedOpt=city.options[selectedIndex],
+					fragment=document.createDocumentFragment();
+					//第一次鼠标滑过才执行，更新列表，之后就不执行了
+				if (mousemoveTime==0) {
+					mousemoveTime=mousemoveTime+1;					
+				//判断是否已经加载过省市数据，如果已经加载过了，这里就不加载了
+				if (city.length<=1&&mousemoveTime==1) {
+					city.innerHTML=null;
+					for(var key in collegeArr){							
+						var option=document.createElement("option");
+						option.value=key;
+						option.text=key;
+						fragment.appendChild(option);								
+					}
+					city.appendChild(fragment);
+				}				
+			}			
+			//大学联动				
+			if (event.type=="click") {
+				var collegeRange=collegeArr[city.value];
+				college.innerHTML=null;					 
+				for (var i = 0; i < collegeRange.length; i++) {
+					var opt=document.createElement("option");
+					opt.value=collegeRange[i];
+					opt.text=collegeRange[i];
+					fragment.appendChild(opt);
+				}
+				college.appendChild(fragment);
+			}
+		}
+	};
+		
+	</script>
+</body>
+</html>
